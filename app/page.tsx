@@ -21,7 +21,7 @@ export default function Home() {
 
           <div className="hero-copy reveal reveal-2">
             <p className="micro-label">Hello, I’m</p>
-            <h1>Stephen<br />Pinacate.</h1>
+            <h1 style={{ textTransform: "none" }}>Stephen Pinacate</h1>
             <p className="hero-lead">
               A full-stack developer and computer engineering student building practical software across web, mobile, and AI-assisted systems.
             </p>
