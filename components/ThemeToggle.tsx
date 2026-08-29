@@ -31,15 +31,12 @@ export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const saved = localStorage.getItem("portfolio-theme");
-    const initial: Theme = saved === "dark" ? "dark" : "light";
-    setTheme(initial);
-    applyTheme(initial);
+    setTheme("light");
+    applyTheme("light");
   }, []);
 
   const selectTheme = (next: Theme) => {
     setTheme(next);
-    localStorage.setItem("portfolio-theme", next);
     applyTheme(next);
   };
 
