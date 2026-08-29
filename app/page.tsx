@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
@@ -42,12 +43,18 @@ export default function Home() {
               </div>
             </div>
 
-            <div className="portrait-slot" aria-label="Reserved space for Stephen Pinacate's portrait">
-              <div className="portrait-grid" aria-hidden="true" />
-              <span className="micro-label">Portrait / reserved</span>
-              <strong>SP</strong>
-              <span>Photo space</span>
-            </div>
+            <figure className="portrait-slot">
+              <Image
+                className="portrait-image"
+                src="/stephen-pinacate.webp"
+                alt="Stephen Pinacate"
+                fill
+                priority
+                sizes="(max-width: 767px) 272px, 208px"
+              />
+              <div className="portrait-shade" aria-hidden="true" />
+              <figcaption>Stephen Pinacate · 2026</figcaption>
+            </figure>
           </div>
 
           <div className="hero-credentials reveal reveal-3" aria-label="Selected achievements">
