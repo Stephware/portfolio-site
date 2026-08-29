@@ -14,10 +14,6 @@ html.dark {
   --gray-300: #3a3a42;
 }
 
-.hero h1 {
-  text-transform: none;
-}
-
 .theme-switcher {
   position: fixed;
   top: 1.15rem;
