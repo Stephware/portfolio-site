@@ -1,8 +1,17 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, type MouseEvent } from "react";
 
 type Theme = "light" | "dark";
+
+type ViewTransition = {
+  ready: Promise<void>;
+  finished: Promise<void>;
+};
+
+type ViewTransitionDocument = Document & {
+  startViewTransition?: (update: () => void) => ViewTransition;
+};
 
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
@@ -29,36 +38,94 @@ function MoonIcon() {
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");
+  const [transitioning, setTransitioning] = useState(false);
 
   useEffect(() => {
     setTheme("light");
     applyTheme("light");
   }, []);
 
-  const selectTheme = (next: Theme) => {
-    setTheme(next);
-    applyTheme(next);
+  const selectTheme = (next: Theme, event: MouseEvent<HTMLButtonElement>) => {
+    if (next === theme || transitioning) return;
+
+    const root = document.documentElement;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const viewTransitionDocument = document as ViewTransitionDocument;
+
+    if (!viewTransitionDocument.startViewTransition || prefersReducedMotion) {
+      setTheme(next);
+      applyTheme(next);
+      return;
+    }
+
+    const rect = event.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const radius = Math.hypot(
+      Math.max(x, window.innerWidth - x),
+      Math.max(y, window.innerHeight - y),
+    );
+
+    setTransitioning(true);
+    root.classList.add("theme-transitioning");
+    root.dataset.themeTarget = next;
+
+    const transition = viewTransitionDocument.startViewTransition(() => {
+      applyTheme(next);
+      setTheme(next);
+    });
+
+    transition.ready
+      .then(() => {
+        root.animate(
+          {
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${radius}px at ${x}px ${y}px)`,
+            ],
+          },
+          {
+            duration: 760,
+            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            pseudoElement: "::view-transition-new(root)",
+          },
+        );
+      })
+      .catch(() => undefined);
+
+    transition.finished.finally(() => {
+      setTransitioning(false);
+      root.classList.remove("theme-transitioning");
+      delete root.dataset.themeTarget;
+    });
   };
 
   return (
-    <div className="theme-switcher" role="group" aria-label="Color theme">
+    <div
+      className={`theme-switcher ${transitioning ? "is-transitioning" : ""}`}
+      data-theme={theme}
+      role="group"
+      aria-label="Color theme"
+    >
       <button
         type="button"
         className={`theme-icon-button ${theme === "light" ? "active" : ""}`}
-        onClick={() => selectTheme("light")}
+        onClick={(event) => selectTheme("light", event)}
         aria-label="Use light theme"
         aria-pressed={theme === "light"}
         title="Light theme"
+        disabled={transitioning}
       >
         <SunIcon />
       </button>
       <button
         type="button"
         className={`theme-icon-button ${theme === "dark" ? "active" : ""}`}
-        onClick={() => selectTheme("dark")}
+        onClick={(event) => selectTheme("dark", event)}
         aria-label="Use dark theme"
         aria-pressed={theme === "dark"}
         title="Dark theme"
+        disabled={transitioning}
       >
         <MoonIcon />
       </button>
