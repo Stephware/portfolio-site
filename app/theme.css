@@ -14,6 +14,29 @@ html.dark {
   --gray-300: #3a3a42;
 }
 
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 2;
+}
+
+html.theme-transitioning body,
+html.theme-transitioning .sidebar,
+html.theme-transitioning .mobile-header,
+html.theme-transitioning .project-card,
+html.theme-transitioning .stack-panel,
+html.theme-transitioning .theme-switcher {
+  transition: none !important;
+}
+
 .theme-switcher {
   position: fixed;
   top: 1.15rem;
@@ -29,7 +52,15 @@ html.dark {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 8px 24px -16px rgb(0 0 0 / 0.35);
-  transition: background-color 500ms ease, border-color 500ms ease;
+  transition: background-color 500ms ease, border-color 500ms ease, transform 240ms cubic-bezier(.16,1,.3,1), box-shadow 240ms ease;
+}
+
+.theme-switcher:hover {
+  box-shadow: 0 12px 28px -16px rgb(0 0 0 / 0.42);
+}
+
+.theme-switcher.is-transitioning {
+  transform: scale(1.035);
 }
 
 .theme-icon-button {
@@ -43,12 +74,12 @@ html.dark {
   background: transparent;
   color: var(--gray-500);
   cursor: pointer;
-  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+  transition: background-color 200ms ease, color 200ms ease, transform 240ms cubic-bezier(.16,1,.3,1), opacity 200ms ease;
 }
 
 .theme-icon-button:hover {
   color: var(--ink);
-  transform: translateY(-1px);
+  transform: translateY(-1px) scale(1.04);
 }
 
 .theme-icon-button.active {
@@ -56,10 +87,33 @@ html.dark {
   color: var(--background);
 }
 
+.theme-icon-button:disabled {
+  cursor: default;
+}
+
 .theme-icon-button svg {
   width: 0.95rem;
   height: 0.95rem;
   stroke-width: 1.7;
+  transition: transform 500ms cubic-bezier(.16,1,.3,1), opacity 220ms ease;
+}
+
+.theme-switcher[data-theme="light"] .theme-icon-button:first-child svg {
+  transform: rotate(90deg) scale(1.04);
+}
+
+.theme-switcher[data-theme="dark"] .theme-icon-button:last-child svg {
+  transform: rotate(-12deg) scale(1.05);
+}
+
+html.theme-transitioning .site-main {
+  animation: theme-content-settle 760ms cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes theme-content-settle {
+  0% { transform: scale(0.998); filter: saturate(0.9) brightness(0.96); }
+  45% { transform: scale(1.001); filter: saturate(1.02) brightness(1.01); }
+  100% { transform: scale(1); filter: none; }
 }
 
 @media (max-width: 1023px) {
@@ -70,7 +124,13 @@ html.dark {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .theme-icon-button {
-    transition: none;
+  ::view-transition-old(root),
+  ::view-transition-new(root),
+  .theme-switcher,
+  .theme-icon-button,
+  .theme-icon-button svg,
+  html.theme-transitioning .site-main {
+    animation: none !important;
+    transition: none !important;
   }
 }
