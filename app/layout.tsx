@@ -34,12 +34,8 @@ export const viewport: Viewport = {
 
 const themeScript = `
 (function () {
-  try {
-    var saved = localStorage.getItem('portfolio-theme');
-    var theme = saved === 'dark' ? 'dark' : 'light';
-    document.documentElement.dataset.theme = theme;
-    document.documentElement.classList.toggle('dark', theme === 'dark');
-  } catch (_) {}
+  document.documentElement.dataset.theme = 'light';
+  document.documentElement.classList.remove('dark');
 })();`;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
