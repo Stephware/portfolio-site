@@ -1,6 +1,6 @@
 # Stephen Pinacate — Portfolio
 
-Initial portfolio implementation built with Next.js, TypeScript, and Tailwind CSS.
+Personal software engineering portfolio built with Next.js, TypeScript, and Tailwind CSS.
 
 ## Development
 
@@ -14,10 +14,14 @@ Then open `http://localhost:3000`.
 ## Current structure
 
 - Responsive desktop sidebar and mobile navigation
-- Light / dark / system themes
-- Placeholder-ready project case studies
-- Achievements and experience sections
-- About and technical stack section
-- Contact section
+- Light and dark themes with a cinematic gradient sweep transition
+- Featured project work with explicit ownership, role, scope, and contribution
+- Expandable additional-project section
+- Achievement highlights in the hero plus a full recognition section
+- Leadership and technical competition sections
+- Education and categorized technical skills
+- Reserved portrait area for a future photo
+- Open Graph social image and favicon
+- Keyboard focus styles, Escape-to-close mobile navigation, and reduced-motion support
 
-Content is intentionally provisional so real projects, achievements, screenshots, experience, links, and descriptions can be added next without redesigning the site.
+Public contact links are intentionally limited to GitHub until additional contact information is explicitly chosen for publication.

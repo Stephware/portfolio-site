@@ -1,3 +1,13 @@
+section[id] {
+  scroll-margin-top: 5rem;
+}
+
+:where(a, button, summary):focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .project-actions a {
   color: var(--gray-600);
   text-decoration: underline;
@@ -11,12 +21,191 @@
   text-decoration-color: var(--ink);
 }
 
+.hero-main {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 13rem;
+  gap: clamp(2rem, 6vw, 5rem);
+  align-items: center;
+}
+
+.hero-subline {
+  margin: 1rem 0 0;
+  color: var(--gray-400);
+  font: 10px var(--font-geist-mono), monospace;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.portrait-slot {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  min-height: 16rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  border: 1px solid var(--gray-300);
+  border-radius: 16px;
+  background: linear-gradient(145deg, var(--gray-50), var(--background));
+}
+
+.portrait-grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.45;
+  background-image: linear-gradient(var(--gray-200) 1px, transparent 1px), linear-gradient(90deg, var(--gray-200) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.portrait-slot > *:not(.portrait-grid) {
+  position: relative;
+  z-index: 1;
+}
+
+.portrait-slot strong {
+  align-self: center;
+  margin: auto 0;
+  color: var(--gray-300);
+  font: 500 4.8rem/1 var(--font-geist-mono), monospace;
+  letter-spacing: -0.08em;
+}
+
+.portrait-slot > span:last-child {
+  color: var(--gray-400);
+  font: 9px var(--font-geist-mono), monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-credentials {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: clamp(3rem, 7vw, 5rem);
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.hero-credentials > div {
+  min-width: 0;
+  padding: 1rem;
+  border-right: 1px solid var(--gray-200);
+}
+
+.hero-credentials > div:first-child { padding-left: 0; }
+.hero-credentials > div:last-child { border-right: 0; }
+
+.hero-credentials strong,
+.hero-credentials small {
+  display: block;
+}
+
+.hero-credentials strong {
+  margin-top: 0.4rem;
+  font: 500 11px var(--font-geist-mono), monospace;
+}
+
+.hero-credentials small {
+  margin-top: 0.2rem;
+  color: var(--gray-400);
+  font: 9px var(--font-geist-mono), monospace;
+}
+
 .project-card:not(.project-card-featured) .project-copy {
-  min-height: 22rem;
+  min-height: 25rem;
 }
 
 .project-card:not(.project-card-featured) .project-copy > p {
   line-height: 1.62;
+}
+
+.project-facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin: 1.35rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.project-facts div { min-width: 0; }
+.project-facts dt {
+  color: var(--gray-400);
+  font: 8px var(--font-geist-mono), monospace;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+.project-facts dd {
+  margin: 0.3rem 0 0;
+  color: var(--gray-600);
+  font-size: 0.78rem;
+}
+
+.project-contribution {
+  margin-top: 1.2rem;
+  padding: 0.9rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--gray-50) 70%, transparent);
+}
+
+.project-contribution p {
+  margin-top: 0.45rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.more-projects,
+.earlier-achievements {
+  margin-top: 1.25rem;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.more-projects > summary,
+.earlier-achievements > summary {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  cursor: pointer;
+}
+
+.more-projects > summary::-webkit-details-marker,
+.earlier-achievements > summary::-webkit-details-marker {
+  display: none;
+}
+
+.more-projects summary strong {
+  display: block;
+  margin-top: 0.25rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.more-projects-icon,
+.earlier-achievements summary > span:last-child {
+  flex: 0 0 auto;
+  font: 300 1.5rem/1 var(--font-geist-mono), monospace;
+  transition: transform 280ms cubic-bezier(.16,1,.3,1);
+}
+
+.more-projects[open] .more-projects-icon,
+.earlier-achievements[open] summary > span:last-child {
+  transform: rotate(45deg);
+}
+
+.more-project-grid {
+  padding: 0 0 1.25rem;
+}
+
+.earlier-achievements .achievement-list {
+  padding-bottom: 0.75rem;
 }
 
 .leadership-timeline .timeline-item h3 {
@@ -67,11 +256,66 @@
   color: var(--gray-500);
 }
 
+.education-card {
+  margin-top: 2rem;
+  padding: 1.15rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 12px;
+  background: var(--gray-50);
+}
+
+.education-card h3 {
+  margin: 0.55rem 0 0.25rem;
+  font-size: 1rem;
+  font-weight: 550;
+}
+
+.education-card > p {
+  margin: 0;
+  color: var(--gray-500);
+}
+
+.education-meta {
+  display: grid;
+  gap: 0.25rem;
+  margin-top: 0.85rem;
+  color: var(--gray-400);
+  font: 9px var(--font-geist-mono), monospace;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
 .skills-panel strong {
   line-height: 1.55;
 }
 
 @media (max-width: 767px) {
+  section[id] { scroll-margin-top: 4.5rem; }
+
+  .hero-main {
+    grid-template-columns: 1fr;
+  }
+
+  .portrait-slot {
+    width: min(100%, 17rem);
+    min-height: 19rem;
+  }
+
+  .hero-credentials {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-credentials > div,
+  .hero-credentials > div:first-child {
+    padding: 0.85rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .hero-credentials > div:last-child {
+    border-bottom: 0;
+  }
+
   .participation-grid {
     grid-template-columns: 1fr;
   }
@@ -82,5 +326,16 @@
 
   .project-card:not(.project-card-featured) .project-copy {
     min-height: 0;
+  }
+
+  .project-facts {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1023px) {
+  .mobile-menu {
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 }

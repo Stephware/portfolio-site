@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
@@ -16,6 +16,8 @@ const links = [
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#top");
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
 
   useEffect(() => {
     const sections = links
@@ -38,8 +40,29 @@ export function Navigation() {
 
   useEffect(() => {
     document.body.classList.toggle("menu-open", open);
-    return () => document.body.classList.remove("menu-open");
+
+    if (open) {
+      requestAnimationFrame(() => firstMobileLinkRef.current?.focus());
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && open) {
+        setOpen(false);
+        requestAnimationFrame(() => menuButtonRef.current?.focus());
+      }
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.classList.remove("menu-open");
+      document.removeEventListener("keydown", onKeyDown);
+    };
   }, [open]);
+
+  const closeMenu = () => {
+    setOpen(false);
+    requestAnimationFrame(() => menuButtonRef.current?.focus());
+  };
 
   return (
     <>
@@ -51,6 +74,7 @@ export function Navigation() {
           <span className="brand-name">Stephen Pinacate</span>
         </a>
         <button
+          ref={menuButtonRef}
           type="button"
           className="menu-button"
           onClick={() => setOpen((value) => !value)}
@@ -77,6 +101,7 @@ export function Navigation() {
                 className={`nav-link ${active === href ? "active" : ""}`}
                 href={href}
                 key={href}
+                aria-current={active === href ? "location" : undefined}
               >
                 <span>{number}</span>
                 {label}
@@ -92,16 +117,27 @@ export function Navigation() {
           </div>
           <div className="external-links">
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <span>LinkedIn — add later</span>
-            <span>Résumé — add later</span>
           </div>
         </div>
       </aside>
 
-      <div id="mobile-menu" className={`mobile-menu ${open ? "open" : ""}`} aria-hidden={!open}>
+      <div
+        id="mobile-menu"
+        className={`mobile-menu ${open ? "open" : ""}`}
+        aria-hidden={!open}
+        role="dialog"
+        aria-modal="true"
+        aria-label="Portfolio navigation"
+      >
         <nav>
-          {links.map(([number, label, href]) => (
-            <a href={href} key={href} onClick={() => setOpen(false)}>
+          {links.map(([number, label, href], index) => (
+            <a
+              ref={index === 0 ? firstMobileLinkRef : undefined}
+              href={href}
+              key={href}
+              onClick={closeMenu}
+              aria-current={active === href ? "location" : undefined}
+            >
               <span>{number}</span>
               {label}
             </a>
