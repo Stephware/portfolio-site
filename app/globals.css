@@ -116,18 +116,37 @@ button { font: inherit; }
 .external-links { display: grid; gap: 0.35rem; margin-bottom: 1.25rem; font: 10px var(--font-geist-mono), monospace; }
 .external-links a { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent); text-underline-offset: 2px; }
 .external-links span { color: var(--gray-400); }
-.theme-toggle {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.65rem 0;
-  border: 0;
+.theme-control {
+  display: grid;
+  gap: 0.55rem;
+  padding-top: 0.9rem;
   border-top: 1px solid var(--gray-200);
+}
+.theme-options {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
+  padding: 0.25rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 8px;
+  background: var(--gray-50);
+}
+.theme-option {
+  border: 0;
+  border-radius: 6px;
+  padding: 0.45rem 0.35rem;
   background: transparent;
-  color: var(--gray-600);
+  color: var(--gray-500);
   cursor: pointer;
-  font: 10px var(--font-geist-mono), monospace;
+  font: 9px var(--font-geist-mono), monospace;
+  letter-spacing: 0.04em;
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+.theme-option:hover { color: var(--ink); }
+.theme-option.active {
+  background: var(--ink);
+  color: var(--background);
+  transform: translateY(-1px);
 }
 
 .mobile-header {
@@ -161,8 +180,8 @@ button { font: inherit; }
 .mobile-menu nav { display: grid; }
 .mobile-menu nav a { display: flex; gap: 1rem; align-items: baseline; padding: 0.8rem 0; border-bottom: 1px solid var(--gray-200); font-size: clamp(1.8rem, 9vw, 3rem); letter-spacing: -0.04em; }
 .mobile-menu nav a span { color: var(--gray-400); font: 10px var(--font-geist-mono), monospace; letter-spacing: 0; }
-.mobile-menu-footer { display: flex; justify-content: space-between; align-items: center; font: 10px var(--font-geist-mono), monospace; }
-.theme-toggle-compact { width: auto; gap: 1rem; border-top: 0; }
+.mobile-menu-footer { display: grid; gap: 1rem; font: 10px var(--font-geist-mono), monospace; }
+.theme-control-compact { width: min(100%, 20rem); }
 
 .site-main { min-width: 0; }
 .section { position: relative; max-width: 56rem; margin: 0 auto; padding: 5rem 1rem; border-bottom: 1px solid var(--gray-200); }
