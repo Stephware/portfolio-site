@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import "./theme.css";
+import "./profile.css";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +19,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Stephen Pinacate — Full-Stack Developer",
   description:
-    "Stephen Pinacate's software development portfolio featuring full-stack, mobile, and AI-powered projects.",
+    "Stephen Pinacate's software development portfolio featuring full-stack, mobile, desktop, and AI-assisted projects.",
   openGraph: {
     title: "Stephen Pinacate — Full-Stack Developer",
     description:
-      "Full-stack developer building practical web, mobile, and AI-assisted software systems.",
+      "Full-stack developer building practical web, mobile, desktop, and AI-assisted software systems.",
     type: "website",
   },
 };

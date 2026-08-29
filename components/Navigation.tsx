@@ -7,9 +7,10 @@ const links = [
   ["01", "Home", "#top"],
   ["02", "Projects", "#projects"],
   ["03", "Achievements", "#achievements"],
-  ["04", "Experience", "#experience"],
-  ["05", "About", "#about"],
-  ["06", "Contact", "#contact"],
+  ["04", "Leadership", "#leadership"],
+  ["05", "Competitions", "#competitions"],
+  ["06", "About", "#about"],
+  ["07", "Contact", "#contact"],
 ] as const;
 
 export function Navigation() {
@@ -90,20 +91,14 @@ export function Navigation() {
             Open to opportunities
           </div>
           <div className="external-links">
-            <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">
-              GitHub ↗
-            </a>
+            <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
             <span>LinkedIn — add later</span>
             <span>Résumé — add later</span>
           </div>
         </div>
       </aside>
 
-      <div
-        id="mobile-menu"
-        className={`mobile-menu ${open ? "open" : ""}`}
-        aria-hidden={!open}
-      >
+      <div id="mobile-menu" className={`mobile-menu ${open ? "open" : ""}`} aria-hidden={!open}>
         <nav>
           {links.map(([number, label, href]) => (
             <a href={href} key={href} onClick={() => setOpen(false)}>
@@ -113,9 +108,7 @@ export function Navigation() {
           ))}
         </nav>
         <div className="mobile-menu-footer">
-          <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">
-            GitHub ↗
-          </a>
+          <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
         </div>
       </div>
     </>
