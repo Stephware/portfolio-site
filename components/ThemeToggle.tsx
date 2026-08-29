@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, type MouseEvent } from "react";
+import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
@@ -45,7 +45,7 @@ export function ThemeToggle() {
     applyTheme("light");
   }, []);
 
-  const selectTheme = (next: Theme, event: MouseEvent<HTMLButtonElement>) => {
+  const selectTheme = (next: Theme) => {
     if (next === theme || transitioning) return;
 
     const root = document.documentElement;
@@ -57,14 +57,6 @@ export function ThemeToggle() {
       applyTheme(next);
       return;
     }
-
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = rect.left + rect.width / 2;
-    const y = rect.top + rect.height / 2;
-    const radius = Math.hypot(
-      Math.max(x, window.innerWidth - x),
-      Math.max(y, window.innerHeight - y),
-    );
 
     setTransitioning(true);
     root.classList.add("theme-transitioning");
@@ -79,14 +71,17 @@ export function ThemeToggle() {
       .then(() => {
         root.animate(
           {
-            clipPath: [
-              `circle(0px at ${x}px ${y}px)`,
-              `circle(${radius}px at ${x}px ${y}px)`,
+            maskImage: [
+              "linear-gradient(90deg, transparent 0%, transparent 46%, rgba(0,0,0,.12) 48%, rgba(0,0,0,.4) 50%, rgba(0,0,0,.75) 52%, #000 54%, #000 100%)",
+              "linear-gradient(90deg, transparent 0%, transparent 46%, rgba(0,0,0,.12) 48%, rgba(0,0,0,.4) 50%, rgba(0,0,0,.75) 52%, #000 54%, #000 100%)",
             ],
+            maskSize: ["250% 100%", "250% 100%"],
+            maskPosition: ["0% 0%", "100% 0%"],
           },
           {
-            duration: 760,
-            easing: "cubic-bezier(0.16, 1, 0.3, 1)",
+            duration: 920,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            fill: "both",
             pseudoElement: "::view-transition-new(root)",
           },
         );
@@ -110,7 +105,7 @@ export function ThemeToggle() {
       <button
         type="button"
         className={`theme-icon-button ${theme === "light" ? "active" : ""}`}
-        onClick={(event) => selectTheme("light", event)}
+        onClick={() => selectTheme("light")}
         aria-label="Use light theme"
         aria-pressed={theme === "light"}
         title="Light theme"
@@ -121,7 +116,7 @@ export function ThemeToggle() {
       <button
         type="button"
         className={`theme-icon-button ${theme === "dark" ? "active" : ""}`}
-        onClick={(event) => selectTheme("dark", event)}
+        onClick={() => selectTheme("dark")}
         aria-label="Use dark theme"
         aria-pressed={theme === "dark"}
         title="Dark theme"
