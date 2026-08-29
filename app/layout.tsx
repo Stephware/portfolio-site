@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "./theme.css";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -28,19 +29,16 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   colorScheme: "light dark",
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
-    { media: "(prefers-color-scheme: dark)", color: "#0c0c0f" },
-  ],
+  themeColor: "#fdfcf9",
 };
 
 const themeScript = `
 (function () {
   try {
-    var saved = localStorage.getItem('portfolio-theme') || 'system';
-    var dark = saved === 'dark' || (saved === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
-    document.documentElement.dataset.theme = saved;
-    document.documentElement.classList.toggle('dark', dark);
+    var saved = localStorage.getItem('portfolio-theme');
+    var theme = saved === 'dark' ? 'dark' : 'light';
+    document.documentElement.dataset.theme = theme;
+    document.documentElement.classList.toggle('dark', theme === 'dark');
   } catch (_) {}
 })();`;
 

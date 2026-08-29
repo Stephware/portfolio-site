@@ -42,6 +42,8 @@ export function Navigation() {
 
   return (
     <>
+      <ThemeToggle />
+
       <header className="mobile-header">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
           <span className="brand-mark">SP</span>
@@ -94,7 +96,6 @@ export function Navigation() {
             <span>LinkedIn — add later</span>
             <span>Résumé — add later</span>
           </div>
-          <ThemeToggle />
         </div>
       </aside>
 
@@ -115,7 +116,6 @@ export function Navigation() {
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">
             GitHub ↗
           </a>
-          <ThemeToggle compact />
         </div>
       </div>
     </>

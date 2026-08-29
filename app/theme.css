@@ -1,0 +1,76 @@
+:root {
+  --background: #fdfcf9;
+  --gray-50: #faf8f4;
+  --gray-100: #f5f2ec;
+  --gray-200: #e9e5dd;
+  --gray-300: #d5d0c7;
+}
+
+html.dark {
+  --background: #0c0c0f;
+  --gray-50: #18181b;
+  --gray-100: #1e1e22;
+  --gray-200: #2a2a30;
+  --gray-300: #3a3a42;
+}
+
+.theme-switcher {
+  position: fixed;
+  top: 1.15rem;
+  right: 1.25rem;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  padding: 0.2rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--background) 88%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 8px 24px -16px rgb(0 0 0 / 0.35);
+  transition: background-color 500ms ease, border-color 500ms ease;
+}
+
+.theme-icon-button {
+  width: 2rem;
+  height: 2rem;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--gray-500);
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, transform 200ms ease;
+}
+
+.theme-icon-button:hover {
+  color: var(--ink);
+  transform: translateY(-1px);
+}
+
+.theme-icon-button.active {
+  background: var(--ink);
+  color: var(--background);
+}
+
+.theme-icon-button svg {
+  width: 0.95rem;
+  height: 0.95rem;
+  stroke-width: 1.7;
+}
+
+@media (max-width: 1023px) {
+  .theme-switcher {
+    top: 0.78rem;
+    right: 4.4rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .theme-icon-button {
+    transition: none;
+  }
+}
