@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 
 type Theme = "system" | "light" | "dark";
 
-const labels: Record<Theme, string> = {
-  system: "System",
-  light: "Light",
-  dark: "Dark",
-};
-
-const order: Theme[] = ["system", "light", "dark"];
+const options: { value: Theme; label: string }[] = [
+  { value: "light", label: "Light" },
+  { value: "dark", label: "Dark" },
+  { value: "system", label: "System" },
+];
 
 function applyTheme(theme: Theme) {
   const root = document.documentElement;
@@ -45,22 +43,28 @@ export function ThemeToggle({ compact = false }: { compact?: boolean }) {
     return () => media.removeEventListener("change", onChange);
   }, []);
 
-  const cycleTheme = () => {
-    const next = order[(order.indexOf(theme) + 1) % order.length];
+  const selectTheme = (next: Theme) => {
     setTheme(next);
     localStorage.setItem("portfolio-theme", next);
     applyTheme(next);
   };
 
   return (
-    <button
-      type="button"
-      className={`theme-toggle ${compact ? "theme-toggle-compact" : ""}`}
-      onClick={cycleTheme}
-      aria-label={`Theme: ${labels[theme]}. Click to change.`}
-    >
+    <div className={`theme-control ${compact ? "theme-control-compact" : ""}`}>
       <span className="micro-label">Theme</span>
-      <span>{labels[theme]}</span>
-    </button>
+      <div className="theme-options" role="group" aria-label="Color theme">
+        {options.map((option) => (
+          <button
+            key={option.value}
+            type="button"
+            className={`theme-option ${theme === option.value ? "active" : ""}`}
+            onClick={() => selectTheme(option.value)}
+            aria-pressed={theme === option.value}
+          >
+            {option.label}
+          </button>
+        ))}
+      </div>
+    </div>
   );
 }
