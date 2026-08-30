@@ -14,6 +14,8 @@ export type Project = {
   repositoryLabel?: string;
   detailPath?: string;
   liveUrl?: string;
+  previewImage?: string;
+  previewAlt?: string;
 };
 
 export const projects: Project[] = [
@@ -34,6 +36,8 @@ export const projects: Project[] = [
     repositoryLabel: "Private source",
     detailPath: "/projects/innovet",
     liveUrl: "https://apcc-innovet.runasp.net/",
+    previewImage: "/Screenshot 2026-08-30 at 11.58.07 AM.png",
+    previewAlt: "INNOVET veterinary clinic management system interface",
   },
   {
     number: "02",
