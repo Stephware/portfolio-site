@@ -40,28 +40,40 @@ const integrityFeatures = [
 
 const productVisuals = [
   {
-    src: "/vitally-dashboard-sanitized.svg",
-    alt: "Sanitized VITALLY assistant dashboard with demo operational data",
+    src: "/Screenshot 2026-08-30 at 7.35.31 PM.png",
+    alt: "Sanitized VITALLY assistant dashboard",
     label: "Dashboard",
     note: "Daily operations at a glance",
   },
   {
-    src: "/vitally-records-sanitized.svg",
-    alt: "Sanitized VITALLY records table using demo patient and transaction values",
+    src: "/Screenshot 2026-08-30 at 7.35.48 PM.png",
+    alt: "Sanitized VITALLY records workspace",
     label: "Records",
     note: "Searchable transaction history",
   },
   {
-    src: "/vitally-add-record-sanitized.svg",
-    alt: "Sanitized VITALLY add record workflow using demo patient and item values",
+    src: "/Screenshot 2026-08-30 at 7.35.39 PM.png",
+    alt: "Sanitized VITALLY add record workflow",
     label: "Add record",
     note: "Patient → items → payment",
   },
   {
-    src: "/vitally-inventory-sanitized.svg",
-    alt: "Sanitized VITALLY inventory screen using demo product and stock values",
+    src: "/Screenshot 2026-08-30 at 7.36.17 PM.png",
+    alt: "Sanitized VITALLY inventory workspace",
     label: "Inventory",
-    note: "Stock, batches, expiry, reorder",
+    note: "Stock · expiry · reorder",
+  },
+  {
+    src: "/Screenshot 2026-08-30 at 7.36.30 PM.png",
+    alt: "Sanitized VITALLY expenses workspace",
+    label: "Expenses",
+    note: "Clinic operating costs",
+  },
+  {
+    src: "/Screenshot 2026-08-30 at 7.35.11 PM.png",
+    alt: "Sanitized VITALLY sign-in screen",
+    label: "Access",
+    note: "Role-aware clinic sign in",
   },
 ];
 
@@ -104,12 +116,8 @@ export default function VitallyCaseStudy() {
                 workflow instead of separate spreadsheets or disconnected tools.
               </p>
               <div className={base.heroActions}>
-                <a className={base.primaryAction} href="#product">
-                  See the product ↓
-                </a>
-                <a className={base.secondaryAction} href="#engineering">
-                  View engineering details
-                </a>
+                <a className={base.primaryAction} href="#product">See the product ↓</a>
+                <a className={base.secondaryAction} href="#engineering">View engineering details</a>
               </div>
             </div>
 
@@ -122,10 +130,10 @@ export default function VitallyCaseStudy() {
           </div>
 
           <figure className={styles.heroProductVisual}>
-            <div className={styles.demoBadge}>Sanitized demo data</div>
+            <div className={styles.demoBadge}>Sanitized production visual</div>
             <Image
-              src="/vitally-dashboard-sanitized.svg"
-              alt="Sanitized VITALLY clinic operations dashboard using demo data"
+              src="/Screenshot 2026-08-30 at 7.35.31 PM.png"
+              alt="Sanitized VITALLY clinic operations dashboard"
               fill
               priority
               sizes="(max-width: 800px) 100vw, 1180px"
@@ -156,11 +164,12 @@ export default function VitallyCaseStudy() {
           <div className={styles.productHeading}>
             <div>
               <p className={base.sectionIndex}>02 — Product in use</p>
-              <h2>Real workflows, shown with safe demo values.</h2>
+              <h2>The actual workflow, shown safely.</h2>
             </div>
             <p>
-              These public visuals mirror VITALLY&apos;s production workflows while replacing patient,
-              transaction, financial, staff, and inventory details with clearly marked demo data.
+              These screenshots come from the real VITALLY interface and were sanitized before being
+              published. They show how staff move between the dashboard, records, checkout, inventory,
+              expenses, and authenticated access without exposing private clinic information.
             </p>
           </div>
 
@@ -275,9 +284,9 @@ export default function VitallyCaseStudy() {
           <div className={styles.privacyNote}>
             <span>Data responsibility</span>
             <p>
-              VITALLY is used with operational clinic data. Patient/customer names, payment references,
-              financial records, staff identities, and other production details are intentionally not
-              reproduced in this public case study. Every public product visual uses sanitized demo values.
+              VITALLY is used with operational clinic data. The public screenshots shown here were
+              sanitized before publication so the portfolio can demonstrate the real interface and
+              workflow without exposing patient/customer names, staff identities, or other private records.
             </p>
           </div>
         </section>
