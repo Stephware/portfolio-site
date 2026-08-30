@@ -45,6 +45,12 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="project-preview-meta">
         <span className="micro-label">{project.imageLabel}</span>
         <span className="project-preview-scope">{project.scope ?? "Software project"}</span>
+        <div className="project-preview-mobile-summary">
+          <h3>
+            {project.detailPath ? <Link href={project.detailPath}>{project.title}</Link> : project.title}
+          </h3>
+          <p>{project.description}</p>
+        </div>
       </div>
     </div>
   ) : project.detailPath ? (
@@ -54,7 +60,7 @@ export function ProjectCard({ project }: { project: Project }) {
   ) : visualCore;
 
   return (
-    <article className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
+    <article className={`project-card ${project.featured ? "project-card-featured" : ""} ${project.previewImage ? "project-card-with-preview" : ""}`}>
       {previewColumn}
 
       <div className="project-copy">
