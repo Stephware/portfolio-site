@@ -1,7 +1,10 @@
 .project-preview-column {
   display: flex;
-  min-height: 100%;
   flex-direction: column;
+}
+
+.project-card-featured .project-preview-column {
+  min-height: 100%;
 }
 
 .project-preview-image-link {
@@ -58,7 +61,6 @@
 }
 
 .project-preview-meta {
-  flex: 1 0 auto;
   min-height: 7.5rem;
   display: flex;
   flex-direction: column;
@@ -70,6 +72,10 @@
   background: var(--background);
 }
 
+.project-card-featured .project-preview-meta {
+  flex: 1 0 auto;
+}
+
 .project-preview-meta .micro-label {
   color: var(--gray-500);
 }
@@ -79,10 +85,6 @@
   font: 10px var(--font-geist-mono), monospace;
   letter-spacing: .045em;
   text-transform: uppercase;
-}
-
-.project-preview-mobile-summary {
-  display: none;
 }
 
 .project-card:hover .project-preview-image {
@@ -131,6 +133,7 @@ html.dark .project-card:hover .project-preview-image {
   }
 
   .project-preview-column,
+  .project-card-featured .project-preview-column,
   .project-preview-image-link {
     width: 100%;
     min-height: 0;
@@ -147,41 +150,14 @@ html.dark .project-card:hover .project-preview-image {
     border-bottom: 1px solid var(--gray-200);
   }
 
-  .project-preview-meta {
+  .project-preview-meta,
+  .project-card-featured .project-preview-meta {
     flex: 0 0 auto;
     min-height: 0;
     height: auto;
     justify-content: flex-start;
     gap: .4rem;
-    padding: 1rem 1.1rem 1.25rem;
-  }
-
-  .project-preview-mobile-summary {
-    display: block;
-    width: 100%;
-    margin-top: .95rem;
-    padding-top: 1rem;
-    border-top: 1px solid var(--gray-200);
-  }
-
-  .project-preview-mobile-summary h3 {
-    margin: 0 0 .55rem;
-    color: var(--ink);
-    font-size: 1.25rem;
-    font-weight: 500;
-    letter-spacing: -.03em;
-  }
-
-  .project-preview-mobile-summary p {
-    margin: 0;
-    color: var(--gray-500);
-    font-size: .92rem;
-    line-height: 1.6;
-  }
-
-  .project-card-with-preview .project-copy > h3,
-  .project-card-with-preview .project-copy > p {
-    display: none;
+    padding: 1rem 1.1rem 1.15rem;
   }
 
   .project-card-featured .project-copy {
