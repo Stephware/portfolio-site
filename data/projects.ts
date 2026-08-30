@@ -44,15 +44,16 @@ export const projects: Project[] = [
     title: "VITALLY",
     description:
       "A mobile-friendly clinic operations and transaction platform built for two clinics, with expansion in mind as additional clinics express interest. It supports role-based workspaces, sales and expense records, inventory monitoring, transaction history, and daily operational summaries.",
-    tags: ["React", "ASP.NET Core", "JWT", "SQL Server"],
+    tags: ["ASP.NET Core", ".NET 9", "EF Core", "SQL Server"],
     homepage: "featured",
     imageLabel: "CLINIC OPERATIONS SYSTEM",
     ownership: "Solo project",
     role: "Full-stack Developer",
     contribution:
-      "Built the frontend and backend, role-based authentication, clinic operations workflows, transaction tracking, inventory monitoring, and supporting data model.",
+      "Built the application end to end, including role-based authentication, sales and payment workflows, expenses, inventory and stock movement logic, reporting, auditability, responsive interfaces, PWA support, and production deployment.",
     scope: "Built for 2 clinics · designed to expand",
     repositoryLabel: "Private source",
+    detailPath: "/projects/vitally",
   },
   {
     number: "03",
