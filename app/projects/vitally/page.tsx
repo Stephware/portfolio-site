@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import base from "../innovet/innovet.module.css";
@@ -35,6 +36,33 @@ const integrityFeatures = [
   "Transaction cancellation restores tracked stock instead of silently deleting history",
   "Cancellation requires a reason and creates an auditable operational trail",
   "Sales and expenses feed reporting rather than living as disconnected records",
+];
+
+const productVisuals = [
+  {
+    src: "/vitally-dashboard-sanitized.svg",
+    alt: "Sanitized VITALLY assistant dashboard with demo operational data",
+    label: "Dashboard",
+    note: "Daily operations at a glance",
+  },
+  {
+    src: "/vitally-records-sanitized.svg",
+    alt: "Sanitized VITALLY records table using demo patient and transaction values",
+    label: "Records",
+    note: "Searchable transaction history",
+  },
+  {
+    src: "/vitally-add-record-sanitized.svg",
+    alt: "Sanitized VITALLY add record workflow using demo patient and item values",
+    label: "Add record",
+    note: "Patient → items → payment",
+  },
+  {
+    src: "/vitally-inventory-sanitized.svg",
+    alt: "Sanitized VITALLY inventory screen using demo product and stock values",
+    label: "Inventory",
+    note: "Stock, batches, expiry, reorder",
+  },
 ];
 
 function FeatureList({ items }: { items: string[] }) {
@@ -76,8 +104,8 @@ export default function VitallyCaseStudy() {
                 workflow instead of separate spreadsheets or disconnected tools.
               </p>
               <div className={base.heroActions}>
-                <a className={base.primaryAction} href="#workflow">
-                  Explore the workflow ↓
+                <a className={base.primaryAction} href="#product">
+                  See the product ↓
                 </a>
                 <a className={base.secondaryAction} href="#engineering">
                   View engineering details
@@ -93,43 +121,16 @@ export default function VitallyCaseStudy() {
             </dl>
           </div>
 
-          <div className={styles.systemVisual} aria-label="VITALLY operational system map">
-            <div className={styles.systemVisualHeader}>
-              <span>Operational flow</span>
-              <span>Records stay connected</span>
-            </div>
-            <div className={styles.systemFlow}>
-              <article>
-                <span>01</span>
-                <strong>Sales</strong>
-                <p>Patient · line items · payment</p>
-              </article>
-              <i>→</i>
-              <article>
-                <span>02</span>
-                <strong>Inventory</strong>
-                <p>Stock · batches · movements</p>
-              </article>
-              <i>→</i>
-              <article>
-                <span>03</span>
-                <strong>Reporting</strong>
-                <p>Daily activity · records · totals</p>
-              </article>
-              <i>↕</i>
-              <article>
-                <span>04</span>
-                <strong>Expenses</strong>
-                <p>Operational costs · history</p>
-              </article>
-              <i>→</i>
-              <article>
-                <span>05</span>
-                <strong>Audit trail</strong>
-                <p>Actor · action · reason</p>
-              </article>
-            </div>
-          </div>
+          <figure className={styles.heroProductVisual}>
+            <div className={styles.demoBadge}>Sanitized demo data</div>
+            <Image
+              src="/vitally-dashboard-sanitized.svg"
+              alt="Sanitized VITALLY clinic operations dashboard using demo data"
+              fill
+              priority
+              sizes="(max-width: 800px) 100vw, 1180px"
+            />
+          </figure>
         </section>
 
         <section className={base.introSection}>
@@ -151,6 +152,33 @@ export default function VitallyCaseStudy() {
           </div>
         </section>
 
+        <section className={styles.productSection} id="product">
+          <div className={styles.productHeading}>
+            <div>
+              <p className={base.sectionIndex}>02 — Product in use</p>
+              <h2>Real workflows, shown with safe demo values.</h2>
+            </div>
+            <p>
+              These public visuals mirror VITALLY&apos;s production workflows while replacing patient,
+              transaction, financial, staff, and inventory details with clearly marked demo data.
+            </p>
+          </div>
+
+          <div className={styles.productGallery}>
+            {productVisuals.map((visual) => (
+              <figure className={styles.productCard} key={visual.src}>
+                <div className={styles.productViewport}>
+                  <Image src={visual.src} alt={visual.alt} fill sizes="(max-width: 800px) 100vw, 50vw" />
+                </div>
+                <figcaption>
+                  <span>{visual.label}</span>
+                  <span>{visual.note}</span>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+
         <nav className={base.roleNav} aria-label="VITALLY case study sections">
           <a href="#admin"><span>01</span> Admin</a>
           <a href="#assistant"><span>02</span> Assistant</a>
@@ -159,7 +187,7 @@ export default function VitallyCaseStudy() {
 
         <section className={base.roleSection} id="admin">
           <div className={base.roleHeading}>
-            <p className={base.sectionIndex}>02 — Admin workspace</p>
+            <p className={base.sectionIndex}>03 — Admin workspace</p>
             <h2>Broader oversight for the people responsible for clinic operations.</h2>
             <p>
               The administrative side keeps operational visibility and higher-impact controls in one
@@ -172,7 +200,7 @@ export default function VitallyCaseStudy() {
 
         <section className={base.roleSection} id="assistant">
           <div className={base.roleHeading}>
-            <p className={base.sectionIndex}>03 — Assistant workspace</p>
+            <p className={base.sectionIndex}>04 — Assistant workspace</p>
             <h2>Fast access to the records staff touch throughout the working day.</h2>
             <p>
               Assistants can work directly with sales, expenses, and inventory without receiving every
@@ -185,7 +213,7 @@ export default function VitallyCaseStudy() {
 
         <section className={base.roleSection} id="workflow">
           <div className={base.roleHeading}>
-            <p className={base.sectionIndex}>04 — Transaction integrity</p>
+            <p className={base.sectionIndex}>05 — Transaction integrity</p>
             <h2>A sale is more than a number added to a daily total.</h2>
             <p>
               VITALLY treats transactions as operational events. Stock validation, payment, inventory
@@ -208,36 +236,20 @@ export default function VitallyCaseStudy() {
 
         <section className={styles.inventorySection}>
           <div>
-            <p className={base.sectionIndex}>05 — Inventory that follows the transaction</p>
+            <p className={base.sectionIndex}>06 — Inventory that follows the transaction</p>
             <h2>Stock is part of the workflow, not a separate afterthought.</h2>
           </div>
           <div className={styles.inventoryGrid}>
-            <article>
-              <span>Stock visibility</span>
-              <strong>Low-stock awareness</strong>
-              <p>Reorder levels and active stock make shortages visible during normal clinic use.</p>
-            </article>
-            <article>
-              <span>Batch safety</span>
-              <strong>Expiry-aware handling</strong>
-              <p>Tracked batches can carry expiry dates, and expired stock is prevented from entering a completed sale.</p>
-            </article>
-            <article>
-              <span>Flexible services</span>
-              <strong>Open-amount items</strong>
-              <p>Services that do not use one fixed selling price can accept an amount at transaction time while normal products keep their configured price.</p>
-            </article>
-            <article>
-              <span>Traceability</span>
-              <strong>Stock movements</strong>
-              <p>Stock-in, sales, cancellations, and controlled adjustments create a history of how quantities changed.</p>
-            </article>
+            <article><span>Stock visibility</span><strong>Low-stock awareness</strong><p>Reorder levels and active stock make shortages visible during normal clinic use.</p></article>
+            <article><span>Batch safety</span><strong>Expiry-aware handling</strong><p>Tracked batches can carry expiry dates, and expired stock is prevented from entering a completed sale.</p></article>
+            <article><span>Flexible services</span><strong>Open-amount items</strong><p>Services that do not use one fixed selling price can accept an amount at transaction time while normal products keep their configured price.</p></article>
+            <article><span>Traceability</span><strong>Stock movements</strong><p>Stock-in, sales, cancellations, and controlled adjustments create a history of how quantities changed.</p></article>
           </div>
         </section>
 
         <section className={base.engineeringSection} id="engineering">
           <div className={base.engineeringLead}>
-            <p className={base.sectionIndex}>06 — Engineering</p>
+            <p className={base.sectionIndex}>07 — Engineering</p>
             <h2>Designed for maintainable operations and controlled access.</h2>
             <p>
               The application uses ASP.NET Core with EF Core and SQL Server, with repositories and
@@ -248,46 +260,30 @@ export default function VitallyCaseStudy() {
           </div>
 
           <div className={base.engineeringGrid}>
-            <article>
-              <span>Architecture</span>
-              <h3>Repository + service layers</h3>
-              <p>Sales, inventory, expenses, users, payments, reporting, stock movements, and audit logging are separated into focused application responsibilities.</p>
-            </article>
-            <article>
-              <span>Data</span>
-              <h3>EF Core + SQL Server</h3>
-              <p>Operational records stay relational so transactions, line items, payments, users, stock changes, and expenses can be traced together.</p>
-            </article>
-            <article>
-              <span>Access</span>
-              <h3>Role-based authorization</h3>
-              <p>Admin and Assistant capabilities are enforced at controller and workflow boundaries rather than presented as visual differences only.</p>
-            </article>
-            <article>
-              <span>Delivery</span>
-              <h3>Automated MonsterASP deployment</h3>
-              <p>The production workflow restores, builds, publishes, and deploys the .NET application from the master branch using protected hosting secrets.</p>
-            </article>
+            <article><span>Architecture</span><h3>Repository + service layers</h3><p>Sales, inventory, expenses, users, payments, reporting, stock movements, and audit logging are separated into focused application responsibilities.</p></article>
+            <article><span>Data</span><h3>EF Core + SQL Server</h3><p>Operational records stay relational so transactions, line items, payments, users, stock changes, and expenses can be traced together.</p></article>
+            <article><span>Access</span><h3>Role-based authorization</h3><p>Admin and Assistant capabilities are enforced at controller and workflow boundaries rather than presented as visual differences only.</p></article>
+            <article><span>Delivery</span><h3>Automated MonsterASP deployment</h3><p>The production workflow restores, builds, publishes, and deploys the .NET application from the master branch using protected hosting secrets.</p></article>
           </div>
         </section>
 
         <section className={styles.realWorldSection}>
           <div>
-            <p className={base.sectionIndex}>07 — Real-world use</p>
-            <h2>A portfolio case study without exposing production records.</h2>
+            <p className={base.sectionIndex}>08 — Real-world use</p>
+            <h2>Production credibility without publishing production records.</h2>
           </div>
           <div className={styles.privacyNote}>
             <span>Data responsibility</span>
             <p>
               VITALLY is used with operational clinic data. Patient/customer names, payment references,
               financial records, staff identities, and other production details are intentionally not
-              reproduced in this public case study. Product visuals can be added using sanitized demo data.
+              reproduced in this public case study. Every public product visual uses sanitized demo values.
             </p>
           </div>
         </section>
 
         <section className={base.ownershipSection}>
-          <p className={base.sectionIndex}>08 — My contribution</p>
+          <p className={base.sectionIndex}>09 — My contribution</p>
           <div>
             <h2>Built across the full operational stack.</h2>
             <p>
@@ -305,9 +301,7 @@ export default function VitallyCaseStudy() {
             <h2>Software built for the work behind the counter.</h2>
           </div>
           <div className={base.footerActions}>
-            <Link className={base.primaryAction} href="/#projects">
-              Back to portfolio ←
-            </Link>
+            <Link className={base.primaryAction} href="/#projects">Back to portfolio ←</Link>
           </div>
         </footer>
       </main>
