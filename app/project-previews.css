@@ -1,70 +1,59 @@
 .project-visual-with-image {
   isolation: isolate;
-  background: #111;
+  background: var(--gray-100);
 }
 
 .project-preview-image {
+  z-index: 0;
   object-fit: cover;
   object-position: center;
+  opacity: .18;
+  filter: grayscale(.35) saturate(.72) contrast(.94);
   transform: scale(1.005);
-  transition: transform 700ms cubic-bezier(.16,1,.3,1), filter 450ms ease;
+  transition: transform 700ms cubic-bezier(.16,1,.3,1), opacity 350ms ease, filter 450ms ease;
   will-change: transform;
 }
 
-.project-preview-shade {
+.project-preview-wash {
   position: absolute;
   inset: 0;
   z-index: 1;
   pointer-events: none;
-  background:
-    linear-gradient(to top, rgb(0 0 0 / .52), transparent 42%),
-    linear-gradient(to bottom, rgb(0 0 0 / .14), transparent 30%);
-  transition: opacity 350ms ease;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--background) 78%, transparent), color-mix(in srgb, var(--gray-100) 58%, transparent));
 }
 
-.project-preview-badge {
-  position: absolute;
+.project-visual-with-image .visual-grid {
   z-index: 2;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  color: rgb(255 255 255 / .94);
-  font: 9px var(--font-geist-mono), monospace;
-  letter-spacing: .09em;
-  text-transform: uppercase;
-  text-shadow: 0 2px 12px rgb(0 0 0 / .55);
+  opacity: .32;
+}
+
+.project-visual-with-image .project-visual-label {
+  z-index: 3;
+}
+
+.project-visual-with-image .project-visual-label strong {
+  color: color-mix(in srgb, var(--ink) 28%, var(--gray-300));
 }
 
 .project-card:hover .project-preview-image {
-  transform: scale(1.03);
-  filter: contrast(1.015) saturate(1.025);
-}
-
-.project-card:hover .project-preview-shade {
-  opacity: .9;
+  opacity: .25;
+  transform: scale(1.025);
+  filter: grayscale(.2) saturate(.82) contrast(.98);
 }
 
 html.dark .project-preview-image {
-  filter: brightness(.82) saturate(.85) contrast(1.08);
+  opacity: .15;
+  filter: grayscale(.45) brightness(.78) saturate(.62) contrast(1.05);
 }
 
 html.dark .project-card:hover .project-preview-image {
-  filter: brightness(.88) saturate(.9) contrast(1.08);
+  opacity: .21;
+  filter: grayscale(.3) brightness(.82) saturate(.7) contrast(1.06);
 }
 
 @media (max-width: 767px) {
   .project-card-featured .project-visual-with-image {
     min-height: 20rem;
-  }
-
-  .project-preview-badge {
-    left: .8rem;
-    right: .8rem;
-    bottom: .8rem;
   }
 }
 
