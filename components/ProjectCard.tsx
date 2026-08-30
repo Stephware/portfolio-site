@@ -3,53 +3,59 @@ import Link from "next/link";
 import type { Project } from "@/data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
-  const visual = (
-    <div className={project.previewImage ? "project-preview-shell" : undefined}>
-      <div
-        className={`project-visual project-visual-${project.number} ${project.previewImage ? "project-visual-with-image" : ""}`}
-        aria-label={`${project.title} project visual area`}
-      >
-        {project.previewImage ? (
-          <>
-            <Image
-              src={project.previewImage}
-              alt={project.previewAlt ?? `${project.title} project interface`}
-              fill
-              sizes="(max-width: 767px) 100vw, 60vw"
-              className="project-preview-image"
-            />
-            <div className="project-preview-wash" aria-hidden="true" />
-          </>
-        ) : null}
-
-        <div className="visual-grid" aria-hidden="true" />
-        <div className={`project-visual-label ${project.previewImage ? "project-visual-label-preview" : ""}`}>
-          {project.previewImage ? null : <span className="micro-label">{project.imageLabel}</span>}
-          <strong>{project.number}</strong>
-          {project.previewImage ? null : <span>{project.scope ?? "Software project"}</span>}
-        </div>
-      </div>
-
+  const visualCore = (
+    <div
+      className={`project-visual project-visual-${project.number} ${project.previewImage ? "project-visual-with-image" : ""}`}
+      aria-label={`${project.title} project visual area`}
+    >
       {project.previewImage ? (
-        <div className="project-preview-meta">
-          <span className="micro-label">{project.imageLabel}</span>
-          <span className="project-preview-scope">{project.scope ?? "Software project"}</span>
-        </div>
+        <>
+          <Image
+            src={project.previewImage}
+            alt={project.previewAlt ?? `${project.title} project interface`}
+            fill
+            sizes="(max-width: 767px) 100vw, 60vw"
+            className="project-preview-image"
+          />
+          <div className="project-preview-wash" aria-hidden="true" />
+        </>
       ) : null}
+
+      <div className="visual-grid" aria-hidden="true" />
+      <div className={`project-visual-label ${project.previewImage ? "project-visual-label-preview" : ""}`}>
+        {project.previewImage ? null : <span className="micro-label">{project.imageLabel}</span>}
+        <strong>{project.number}</strong>
+        {project.previewImage ? null : <span>{project.scope ?? "Software project"}</span>}
+      </div>
     </div>
   );
 
-  return (
-    <article className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
+  const previewColumn = project.previewImage ? (
+    <div className="project-preview-column">
       {project.detailPath ? (
         <Link
-          className={project.previewImage ? "project-preview-link" : undefined}
+          className="project-preview-image-link"
           href={project.detailPath}
           aria-label={`View ${project.title} case study`}
         >
-          {visual}
+          {visualCore}
         </Link>
-      ) : visual}
+      ) : visualCore}
+
+      <div className="project-preview-meta">
+        <span className="micro-label">{project.imageLabel}</span>
+        <span className="project-preview-scope">{project.scope ?? "Software project"}</span>
+      </div>
+    </div>
+  ) : project.detailPath ? (
+    <Link href={project.detailPath} aria-label={`View ${project.title} case study`}>
+      {visualCore}
+    </Link>
+  ) : visualCore;
+
+  return (
+    <article className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
+      {previewColumn}
 
       <div className="project-copy">
         <div className="project-meta">
