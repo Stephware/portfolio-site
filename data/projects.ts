@@ -65,12 +65,15 @@ export const projects: Project[] = [
     tags: ["Kotlin", "Jetpack Compose", "ASP.NET Core", "SQL Server"],
     homepage: "featured",
     imageLabel: "MULTIMODAL TRANSPORT NAVIGATION",
-    ownership: "Team of 3 developers",
+    ownership: "Team project",
     role: "Full-stack / Mobile Developer",
     contribution:
-      "Worked across routing and navigation flows, map behavior, backend integration, live-trip behavior, and Android implementation across the commuter journey.",
+      "Worked across routing and navigation flows, map behavior, backend integration, live-trip behavior, Android implementation, and the commuter-facing experience from onboarding through active navigation.",
     scope: "Multimodal commuter navigation for Pampanga",
     repository: "https://github.com/Mark-Batongbacal/AUP",
+    detailPath: "/projects/tuki",
+    previewImage: "/Screenshot 2026-08-30 at 9.03.41 PM.png",
+    previewAlt: "TUKI multimodal commuter navigation app",
   },
   {
     number: "04",
@@ -78,7 +81,7 @@ export const projects: Project[] = [
     description:
       "A digital request and approval platform for AUF workflows covering venue, budget, liquidation, reimbursement, and material requests, with multi-stage review, e-signatures, attachments, email notifications, review queues, and generated signed PDF e-copies.",
     tags: ["PHP", "MySQLi", "mPDF / FPDI", "PHPMailer"],
-    homepage: "featured",
+    homepage: "more",
     imageLabel: "DIGITAL APPROVAL WORKFLOW",
     ownership: "Team of 2 developers",
     role: "Full-stack Developer",
@@ -116,5 +119,20 @@ export const projects: Project[] = [
       "Implemented the numerical algorithms, equation-processing flow, iterative result presentation, plotting, and the desktop interface as a complete numerical-methods learning tool.",
     scope: "Root finding · Linear systems · Regression",
     repository: "https://github.com/gutierrez-jv/LVS-Gauss-Busters",
+  },
+  {
+    number: "07",
+    title: "MALLOW'S CAFE KIOSK",
+    description:
+      "A self-service cafe ordering experience designed to make menu browsing, item selection, and order entry clearer and faster at the counter. The project focuses on reducing ordering friction through a kiosk-style interface and a more structured digital ordering flow.",
+    tags: ["Kiosk", "Ordering UX", "Cafe Operations"],
+    homepage: "more",
+    imageLabel: "SELF-SERVICE CAFE ORDERING",
+    ownership: "Project build",
+    role: "Application Developer",
+    contribution:
+      "Designed and developed the kiosk-oriented ordering experience, organizing menu discovery and order entry around a simpler customer flow suitable for a cafe environment.",
+    scope: "Menu browsing · order entry · kiosk workflow",
+    repositoryLabel: "Project source not linked",
   },
 ];
