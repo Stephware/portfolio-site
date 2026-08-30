@@ -17,22 +17,16 @@ export function ProjectCard({ project }: { project: Project }) {
             sizes="(max-width: 767px) 100vw, 60vw"
             className="project-preview-image"
           />
-          <div className="project-preview-shade" aria-hidden="true" />
-          <div className="project-preview-badge">
-            <span>{project.title}</span>
-            <span>Live system</span>
-          </div>
+          <div className="project-preview-wash" aria-hidden="true" />
         </>
-      ) : (
-        <>
-          <div className="visual-grid" aria-hidden="true" />
-          <div className="project-visual-label">
-            <span className="micro-label">{project.imageLabel}</span>
-            <strong>{project.number}</strong>
-            <span>{project.scope ?? "Software project"}</span>
-          </div>
-        </>
-      )}
+      ) : null}
+
+      <div className="visual-grid" aria-hidden="true" />
+      <div className="project-visual-label">
+        <span className="micro-label">{project.imageLabel}</span>
+        <strong>{project.number}</strong>
+        <span>{project.scope ?? "Software project"}</span>
+      </div>
     </div>
   );
 
