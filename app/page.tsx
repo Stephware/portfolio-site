@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Navigation } from "@/components/Navigation";
+import { PortfolioPlaceholderStyles } from "@/components/PortfolioPlaceholderStyles";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
@@ -25,6 +26,7 @@ export default function Home() {
 
   return (
     <>
+      <PortfolioPlaceholderStyles />
       <a className="skip-link" href="#main">Skip to content</a>
       <Navigation />
 
