@@ -101,7 +101,7 @@ export default function Home() {
 
         <section className="section" id="experience">
           <SectionHeading index="03" label="experience & career proof" title="Reserved now. Replaced with verified proof as it becomes available.">
-            <p>These placeholders keep the next career-ready pieces visible so they can be filled with real OJT experience, recommendations, links, metrics, certifications, and post-graduation positioning later.</p>
+            <p>These placeholders keep the next career-ready pieces visible so they can be filled with real OJT experience, links, metrics, certifications, and post-graduation positioning later.</p>
           </SectionHeading>
 
           <div className="career-proof-grid">
@@ -135,23 +135,6 @@ export default function Home() {
               </div>
               <p className="placeholder-reminder">{currentBuild.reminder}</p>
             </article>
-          </div>
-
-          <div className="career-subsection">
-            <div className="career-subsection-heading">
-              <span className="micro-label">Recommendations · reserved</span>
-              <h3>Three voices that can validate the work from different angles.</h3>
-            </div>
-            <div className="recommendation-grid">
-              {recommendationPlaceholders.map((item) => (
-                <article className="recommendation-placeholder" key={item.relationship}>
-                  <span className="micro-label">{item.relationship}</span>
-                  <blockquote>“{item.quote}”</blockquote>
-                  <strong>{item.name}</strong>
-                  <small>{item.role}</small>
-                </article>
-              ))}
-            </div>
           </div>
 
           <div className="career-subsection recruiter-placeholder-panel">
@@ -202,8 +185,24 @@ export default function Home() {
           </details>
         </section>
 
+        <section className="section" id="recommendations">
+          <SectionHeading index="04" label="recommendations" title="External proof from people who have worked with me.">
+            <p>This section is reserved for verified recommendations once they are available, so professional and academic validation can stand on its own instead of being buried inside experience.</p>
+          </SectionHeading>
+          <div className="recommendation-grid">
+            {recommendationPlaceholders.map((item) => (
+              <article className="recommendation-placeholder" key={item.relationship}>
+                <span className="micro-label">{item.relationship}</span>
+                <blockquote>“{item.quote}”</blockquote>
+                <strong>{item.name}</strong>
+                <small>{item.role}</small>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section" id="achievements">
-          <SectionHeading index="04" label="achievements" title="Recognition across academics, competitions, and organizations.">
+          <SectionHeading index="05" label="achievements" title="Recognition across academics, competitions, and organizations.">
             <p>Recent and career-relevant distinctions stay visible first, while earlier mathematics awards remain available without crowding the main story.</p>
           </SectionHeading>
           <div className="achievement-list">
@@ -244,7 +243,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="leadership">
-          <SectionHeading index="05" label="leadership & organizations" title="Roles that grew with responsibility.">
+          <SectionHeading index="06" label="leadership & organizations" title="Roles that grew with responsibility.">
             <p>My leadership work spans student government, Computer Engineering organizations, and technical support roles within the AUF College of Engineering and Architecture community.</p>
           </SectionHeading>
           <div className="timeline leadership-timeline">
@@ -261,7 +260,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="competitions">
-          <SectionHeading index="06" label="competitions & participation" title="Technical competition experience beyond the podium.">
+          <SectionHeading index="07" label="competitions & participation" title="Technical competition experience beyond the podium.">
             <p>These entries show technical environments where I tested networking, electronics, troubleshooting, and problem-solving skills even when the result was participation rather than a placement.</p>
           </SectionHeading>
           <div className="participation-grid">
@@ -279,7 +278,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="about">
-          <SectionHeading index="07" label="about & skills" title="Full-stack work, grounded in systems thinking.">
+          <SectionHeading index="08" label="about & skills" title="Full-stack work, grounded in systems thinking.">
             <p>I work across the software stack and enjoy projects where architecture, data, interface design, and real operational constraints have to work together.</p>
           </SectionHeading>
           <div className="about-grid">
@@ -311,7 +310,7 @@ export default function Home() {
 
         <section className="section contact-section" id="contact">
           <div className="contact-halftone halftone" aria-hidden="true" />
-          <p className="section-index">08 — contact</p>
+          <p className="section-index">09 — contact</p>
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
