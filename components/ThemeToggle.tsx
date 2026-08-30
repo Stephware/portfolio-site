@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 type Theme = "light" | "dark";
 
@@ -39,11 +39,6 @@ function MoonIcon() {
 export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");
   const [transitioning, setTransitioning] = useState(false);
-
-  useEffect(() => {
-    setTheme("light");
-    applyTheme("light");
-  }, []);
 
   const selectTheme = (next: Theme) => {
     if (next === theme || transitioning) return;
