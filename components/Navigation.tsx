@@ -6,11 +6,12 @@ import { ThemeToggle } from "./ThemeToggle";
 const links = [
   ["01", "Home", "#top"],
   ["02", "Projects", "#projects"],
-  ["03", "Achievements", "#achievements"],
-  ["04", "Leadership", "#leadership"],
-  ["05", "Competitions", "#competitions"],
-  ["06", "About", "#about"],
-  ["07", "Contact", "#contact"],
+  ["03", "Experience", "#experience"],
+  ["04", "Achievements", "#achievements"],
+  ["05", "Leadership", "#leadership"],
+  ["06", "Competitions", "#competitions"],
+  ["07", "About", "#about"],
+  ["08", "Contact", "#contact"],
 ] as const;
 
 export function Navigation() {
@@ -117,6 +118,9 @@ export function Navigation() {
           </div>
           <div className="external-links">
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <span>Resume · reserved</span>
+            <span>LinkedIn · reserved</span>
+            <span>Email · reserved</span>
           </div>
         </div>
       </aside>
@@ -145,6 +149,7 @@ export function Navigation() {
         </nav>
         <div className="mobile-menu-footer">
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <span>Resume · LinkedIn · Email reserved for final links</span>
         </div>
       </div>
     </>
