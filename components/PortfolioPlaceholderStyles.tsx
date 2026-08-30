@@ -275,35 +275,38 @@ export function PortfolioPlaceholderStyles() {
         }
 
         .mobile-menu {
-          padding: 1.5rem 1.25rem 1.25rem;
+          padding: 1.15rem 1rem 1rem;
           overflow-y: auto;
         }
 
         .mobile-menu nav {
-          display: grid;
-          gap: .35rem;
-          align-content: start;
+          display: flex;
+          flex-direction: column;
+          gap: .15rem;
+          align-items: stretch;
+          max-width: 24rem;
+          margin-top: 1.1rem;
         }
 
         .mobile-menu nav a {
           display: grid;
-          grid-template-columns: 1.9rem minmax(0, 1fr);
+          grid-template-columns: 1.2rem minmax(0, 1fr);
           align-items: baseline;
-          gap: .75rem;
-          padding: .55rem 0;
+          gap: .45rem;
+          padding: .38rem 0;
           border-bottom: 0;
           font-family: var(--font-geist-mono), monospace;
-          font-size: clamp(1.35rem, 5.8vw, 1.7rem);
+          font-size: clamp(1.15rem, 5.2vw, 1.38rem);
           font-weight: 400;
-          line-height: 1.08;
-          letter-spacing: -.035em;
+          line-height: 1.15;
+          letter-spacing: -.02em;
         }
 
         .mobile-menu nav a span {
           width: auto;
           color: var(--gray-400);
           font: 8px var(--font-geist-mono), monospace;
-          letter-spacing: .05em;
+          letter-spacing: .04em;
         }
 
         .mobile-menu nav a[aria-current="location"] {
@@ -311,12 +314,12 @@ export function PortfolioPlaceholderStyles() {
         }
 
         .mobile-menu-footer {
-          gap: .45rem;
-          margin-top: 1.25rem;
-          padding-top: 1rem;
+          gap: .35rem;
+          margin-top: 1rem;
+          padding-top: .85rem;
           border-top: 1px solid var(--gray-200);
           font-size: 8px;
-          line-height: 1.45;
+          line-height: 1.4;
         }
       }
     `}</style>
