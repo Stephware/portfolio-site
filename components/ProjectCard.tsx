@@ -1,15 +1,38 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Project } from "@/data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
   const visual = (
-    <div className={`project-visual project-visual-${project.number}`} aria-label={`${project.title} project visual area`}>
-      <div className="visual-grid" aria-hidden="true" />
-      <div className="project-visual-label">
-        <span className="micro-label">{project.imageLabel}</span>
-        <strong>{project.number}</strong>
-        <span>{project.scope ?? "Software project"}</span>
-      </div>
+    <div
+      className={`project-visual project-visual-${project.number} ${project.previewImage ? "project-visual-with-image" : ""}`}
+      aria-label={`${project.title} project visual area`}
+    >
+      {project.previewImage ? (
+        <>
+          <Image
+            src={project.previewImage}
+            alt={project.previewAlt ?? `${project.title} project interface`}
+            fill
+            sizes="(max-width: 767px) 100vw, 60vw"
+            className="project-preview-image"
+          />
+          <div className="project-preview-shade" aria-hidden="true" />
+          <div className="project-preview-badge">
+            <span>{project.title}</span>
+            <span>Live system</span>
+          </div>
+        </>
+      ) : (
+        <>
+          <div className="visual-grid" aria-hidden="true" />
+          <div className="project-visual-label">
+            <span className="micro-label">{project.imageLabel}</span>
+            <strong>{project.number}</strong>
+            <span>{project.scope ?? "Software project"}</span>
+          </div>
+        </>
+      )}
     </div>
   );
 
