@@ -114,18 +114,29 @@ html.dark .project-card:hover .project-preview-image {
 }
 
 @media (max-width: 767px) {
-  .project-preview-link,
-  .project-preview-shell {
+  .project-card-featured {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     min-height: 0;
     height: auto;
   }
 
-  .project-preview-link {
-    align-self: start;
+  .project-card-featured > .project-preview-link,
+  .project-preview-link,
+  .project-preview-shell {
+    width: 100%;
+    min-height: 0;
+    height: auto;
+    flex: 0 0 auto;
+    align-self: stretch;
   }
 
   .project-card-featured .project-visual-with-image {
+    width: 100%;
     min-height: 20rem;
+    height: 20rem;
+    flex: 0 0 20rem;
     border-right: 0;
     border-bottom: 1px solid var(--gray-200);
   }
@@ -133,9 +144,16 @@ html.dark .project-card:hover .project-preview-image {
   .project-preview-meta {
     flex: 0 0 auto;
     min-height: 0;
+    height: auto;
     justify-content: flex-start;
     gap: .4rem;
     padding: 1rem 1.1rem 1.15rem;
+  }
+
+  .project-card-featured .project-copy {
+    min-height: 0;
+    height: auto;
+    flex: 0 0 auto;
   }
 }
 
