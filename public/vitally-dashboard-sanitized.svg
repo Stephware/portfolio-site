@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f8fbfa"/><stop offset="1" stop-color="#eef5f2"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="16" stdDeviation="24" flood-color="#12382f" flood-opacity=".10"/></filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect x="55" y="44" width="1490" height="812" rx="28" fill="#fff" stroke="#d9e5e1" filter="url(#shadow)"/>
+  <rect x="55" y="44" width="1490" height="82" rx="28" fill="#fff"/>
+  <path d="M55 126h1490" stroke="#e3ece9"/>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <rect x="92" y="69" width="34" height="34" rx="10" fill="#0f6b5c"/>
+    <path d="M100 86h7l5-10 7 20 6-13 5 4 7-11" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="142" y="92" font-size="30" font-weight="700" fill="#17342e">Vitally</text>
+    <rect x="1260" y="68" width="208" height="34" rx="17" fill="#e8f3ef"/>
+    <text x="1364" y="90" text-anchor="middle" font-size="12" font-weight="700" letter-spacing="1.2" fill="#0f6b5c">SANITIZED DEMO DATA</text>
+    <circle cx="1501" cy="86" r="19" fill="#17342e"/>
+    <text x="1501" y="91" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">CA</text>
+
+    <text x="100" y="195" font-size="18" fill="#72847e">Good morning</text>
+    <text x="100" y="239" font-size="38" font-weight="700" fill="#17342e">Clinic Assistant</text>
+    <text x="100" y="271" font-size="16" fill="#71827d">Demo Clinic · Assistant workspace</text>
+    <rect x="100" y="307" width="150" height="48" rx="14" fill="#0f6b5c"/>
+    <text x="175" y="337" text-anchor="middle" font-size="15" font-weight="700" fill="#fff">+ New Record</text>
+    <rect x="264" y="307" width="140" height="48" rx="14" fill="#fff" stroke="#cddcd7"/>
+    <text x="334" y="337" text-anchor="middle" font-size="15" font-weight="700" fill="#17342e">+ Expense</text>
+
+    <text x="100" y="411" font-size="13" font-weight="700" letter-spacing="1.4" fill="#82918c">TODAY · DEMO</text>
+    <g>
+      <rect x="100" y="435" width="316" height="142" rx="18" fill="#f8fbfa" stroke="#dce7e3"/>
+      <text x="126" y="473" font-size="14" fill="#70817b">Sales</text><text x="126" y="532" font-size="34" font-weight="700" fill="#17342e">₱12,480</text><text x="126" y="555" font-size="12" fill="#91a09b">8 completed records</text>
+      <rect x="432" y="435" width="316" height="142" rx="18" fill="#f8fbfa" stroke="#dce7e3"/>
+      <text x="458" y="473" font-size="14" fill="#70817b">Records</text><text x="458" y="532" font-size="34" font-weight="700" fill="#17342e">8</text><text x="458" y="555" font-size="12" fill="#91a09b">All reconciled</text>
+      <rect x="764" y="435" width="316" height="142" rx="18" fill="#f8fbfa" stroke="#dce7e3"/>
+      <text x="790" y="473" font-size="14" fill="#70817b">Expenses</text><text x="790" y="532" font-size="34" font-weight="700" fill="#17342e">₱2,150</text><text x="790" y="555" font-size="12" fill="#91a09b">3 entries today</text>
+      <rect x="1096" y="435" width="316" height="142" rx="18" fill="#fff8f4" stroke="#f0ddd4"/>
+      <text x="1122" y="473" font-size="14" fill="#8b7165">Low stock</text><text x="1122" y="532" font-size="34" font-weight="700" fill="#a55334">2</text><text x="1122" y="555" font-size="12" fill="#a8897b">Review inventory</text>
+    </g>
+
+    <rect x="100" y="610" width="850" height="190" rx="18" fill="#fff" stroke="#dce7e3"/>
+    <text x="128" y="646" font-size="15" font-weight="700" fill="#17342e">Recent records</text>
+    <text x="910" y="646" text-anchor="end" font-size="12" fill="#0f6b5c">VIEW ALL</text>
+    <g font-size="13">
+      <text x="128" y="687" fill="#81908b">DEMO-TX-0008</text><text x="316" y="687" fill="#17342e">Demo Patient A</text><text x="665" y="687" fill="#72847e">Completed</text><text x="910" y="687" text-anchor="end" font-weight="700" fill="#17342e">₱1,250</text>
+      <path d="M128 705h782" stroke="#eef3f1"/>
+      <text x="128" y="739" fill="#81908b">DEMO-TX-0007</text><text x="316" y="739" fill="#17342e">Demo Patient B</text><text x="665" y="739" fill="#72847e">Completed</text><text x="910" y="739" text-anchor="end" font-weight="700" fill="#17342e">₱980</text>
+      <path d="M128 756h782" stroke="#eef3f1"/>
+      <text x="128" y="789" fill="#81908b">DEMO-TX-0006</text><text x="316" y="789" fill="#17342e">Demo Patient C</text><text x="665" y="789" fill="#72847e">Completed</text><text x="910" y="789" text-anchor="end" font-weight="700" fill="#17342e">₱2,100</text>
+    </g>
+
+    <rect x="972" y="610" width="440" height="190" rx="18" fill="#fff" stroke="#dce7e3"/>
+    <text x="1000" y="646" font-size="15" font-weight="700" fill="#17342e">Inventory attention</text>
+    <rect x="1000" y="674" width="384" height="48" rx="12" fill="#fff8f4"/>
+    <text x="1018" y="704" font-size="13" fill="#17342e">Demo Vaccine A</text><text x="1364" y="704" text-anchor="end" font-size="12" font-weight="700" fill="#a55334">2 left</text>
+    <rect x="1000" y="734" width="384" height="48" rx="12" fill="#fff8f4"/>
+    <text x="1018" y="764" font-size="13" fill="#17342e">Demo Supply B</text><text x="1364" y="764" text-anchor="end" font-size="12" font-weight="700" fill="#a55334">4 left</text>
+  </g>
+</svg>
