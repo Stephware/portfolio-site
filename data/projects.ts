@@ -12,6 +12,8 @@ export type Project = {
   scope?: string;
   repository?: string;
   repositoryLabel?: string;
+  detailPath?: string;
+  liveUrl?: string;
 };
 
 export const projects: Project[] = [
@@ -30,6 +32,8 @@ export const projects: Project[] = [
       "Designed and implemented the system end to end, including the application architecture, database-backed workflows, branch management, booking, records, notifications, and client-facing functionality.",
     scope: "10 branches + 1 veterinary hospital",
     repositoryLabel: "Private source",
+    detailPath: "/projects/innovet",
+    liveUrl: "https://apcc-innovet.runasp.net/",
   },
   {
     number: "02",
