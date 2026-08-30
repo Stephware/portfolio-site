@@ -7,11 +7,12 @@ const links = [
   ["01", "Home", "#top"],
   ["02", "Projects", "#projects"],
   ["03", "Experience", "#experience"],
-  ["04", "Achievements", "#achievements"],
-  ["05", "Leadership", "#leadership"],
-  ["06", "Competitions", "#competitions"],
-  ["07", "About", "#about"],
-  ["08", "Contact", "#contact"],
+  ["04", "Recommendations", "#recommendations"],
+  ["05", "Achievements", "#achievements"],
+  ["06", "Leadership", "#leadership"],
+  ["07", "Competitions", "#competitions"],
+  ["08", "About", "#about"],
+  ["09", "Contact", "#contact"],
 ] as const;
 
 export function Navigation() {
