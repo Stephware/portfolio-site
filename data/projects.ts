@@ -10,6 +10,8 @@ export type Project = {
   role: string;
   contribution: string;
   scope?: string;
+  status?: string;
+  impactPlaceholder?: string;
   repository?: string;
   repositoryLabel?: string;
   detailPath?: string;
@@ -17,6 +19,9 @@ export type Project = {
   previewImage?: string;
   previewAlt?: string;
 };
+
+const impactReminder =
+  "Add a verified outcome later: adoption, users served, time saved, cost reduction, workflow improvement, or another measurable result.";
 
 export const projects: Project[] = [
   {
@@ -33,6 +38,8 @@ export const projects: Project[] = [
     contribution:
       "Designed and implemented the system end to end, including the application architecture, database-backed workflows, branch management, booking, records, notifications, and client-facing functionality.",
     scope: "10 branches + 1 veterinary hospital",
+    status: "Production system",
+    impactPlaceholder: impactReminder,
     repositoryLabel: "Private source",
     detailPath: "/projects/innovet",
     liveUrl: "https://apcc-innovet.runasp.net/",
@@ -52,6 +59,8 @@ export const projects: Project[] = [
     contribution:
       "Built the application end to end, including role-based authentication, sales and payment workflows, expenses, inventory and stock movement logic, reporting, auditability, responsive interfaces, PWA support, and production deployment.",
     scope: "Built for 2 clinics · designed to expand",
+    status: "Client system",
+    impactPlaceholder: impactReminder,
     repositoryLabel: "Private source",
     detailPath: "/projects/vitally",
     previewImage: "/mainpage-vitally.png",
@@ -70,6 +79,8 @@ export const projects: Project[] = [
     contribution:
       "Worked across routing and navigation flows, map behavior, backend integration, live-trip behavior, Android implementation, and the commuter-facing experience from onboarding through active navigation.",
     scope: "Multimodal commuter navigation for Pampanga",
+    status: "Hackathon / team product",
+    impactPlaceholder: impactReminder,
     repository: "https://github.com/Mark-Batongbacal/AUP",
     detailPath: "/projects/tuki",
     previewImage: "/Screenshot 2026-08-30 at 9.03.41 PM.png",
@@ -88,6 +99,8 @@ export const projects: Project[] = [
     contribution:
       "Co-developed the end-to-end approval system, including workflow logic, role-based review behavior, request handling, generated document outputs, e-signature flows, attachments, and email notifications.",
     scope: "Venue · Budget · Liquidation · Reimbursement · Materials",
+    status: "Academic team project",
+    impactPlaceholder: impactReminder,
     repository: "https://github.com/KurtSarmiento/auf-requests-system",
   },
   {
@@ -103,6 +116,8 @@ export const projects: Project[] = [
     contribution:
       "Co-developed the academic portal and enrollment workflows, role-based experiences, academic data handling, and Supabase-backed application behavior for AUF CEA.",
     scope: "AUF College of Engineering and Architecture",
+    status: "Academic team project",
+    impactPlaceholder: impactReminder,
     repository: "https://github.com/Mark-Batongbacal/EngrLink",
   },
   {
@@ -118,6 +133,8 @@ export const projects: Project[] = [
     contribution:
       "Implemented the numerical algorithms, equation-processing flow, iterative result presentation, plotting, and the desktop interface as a complete numerical-methods learning tool.",
     scope: "Root finding · Linear systems · Regression",
+    status: "Academic solo project",
+    impactPlaceholder: impactReminder,
     repository: "https://github.com/gutierrez-jv/LVS-Gauss-Busters",
   },
   {
@@ -133,6 +150,8 @@ export const projects: Project[] = [
     contribution:
       "Designed and developed the kiosk-oriented ordering experience, organizing menu discovery and order entry around a simpler customer flow suitable for a cafe environment.",
     scope: "Menu browsing · order entry · kiosk workflow",
+    status: "Kiosk project",
+    impactPlaceholder: impactReminder,
     repositoryLabel: "Project source not linked",
   },
 ];
