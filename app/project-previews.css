@@ -1,8 +1,12 @@
-.project-preview-link,
-.project-preview-shell {
+.project-preview-column {
   display: flex;
   min-height: 100%;
   flex-direction: column;
+}
+
+.project-preview-image-link {
+  display: block;
+  min-height: 0;
 }
 
 .project-visual-with-image {
@@ -122,14 +126,12 @@ html.dark .project-card:hover .project-preview-image {
     height: auto;
   }
 
-  .project-card-featured > .project-preview-link,
-  .project-preview-link,
-  .project-preview-shell {
+  .project-preview-column,
+  .project-preview-image-link {
     width: 100%;
     min-height: 0;
     height: auto;
     flex: 0 0 auto;
-    align-self: stretch;
   }
 
   .project-card-featured .project-visual-with-image {
@@ -151,9 +153,12 @@ html.dark .project-card:hover .project-preview-image {
   }
 
   .project-card-featured .project-copy {
+    display: flex;
     min-height: 0;
     height: auto;
     flex: 0 0 auto;
+    padding: 1.25rem;
+    border-top: 1px solid var(--gray-200);
   }
 }
 
