@@ -4,36 +4,49 @@ import type { Project } from "@/data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
   const visual = (
-    <div
-      className={`project-visual project-visual-${project.number} ${project.previewImage ? "project-visual-with-image" : ""}`}
-      aria-label={`${project.title} project visual area`}
-    >
-      {project.previewImage ? (
-        <>
-          <Image
-            src={project.previewImage}
-            alt={project.previewAlt ?? `${project.title} project interface`}
-            fill
-            sizes="(max-width: 767px) 100vw, 60vw"
-            className="project-preview-image"
-          />
-          <div className="project-preview-wash" aria-hidden="true" />
-        </>
-      ) : null}
+    <div className={project.previewImage ? "project-preview-shell" : undefined}>
+      <div
+        className={`project-visual project-visual-${project.number} ${project.previewImage ? "project-visual-with-image" : ""}`}
+        aria-label={`${project.title} project visual area`}
+      >
+        {project.previewImage ? (
+          <>
+            <Image
+              src={project.previewImage}
+              alt={project.previewAlt ?? `${project.title} project interface`}
+              fill
+              sizes="(max-width: 767px) 100vw, 60vw"
+              className="project-preview-image"
+            />
+            <div className="project-preview-wash" aria-hidden="true" />
+          </>
+        ) : null}
 
-      <div className="visual-grid" aria-hidden="true" />
-      <div className="project-visual-label">
-        <span className="micro-label">{project.imageLabel}</span>
-        <strong>{project.number}</strong>
-        <span>{project.scope ?? "Software project"}</span>
+        <div className="visual-grid" aria-hidden="true" />
+        <div className={`project-visual-label ${project.previewImage ? "project-visual-label-preview" : ""}`}>
+          {project.previewImage ? null : <span className="micro-label">{project.imageLabel}</span>}
+          <strong>{project.number}</strong>
+          {project.previewImage ? null : <span>{project.scope ?? "Software project"}</span>}
+        </div>
       </div>
+
+      {project.previewImage ? (
+        <div className="project-preview-meta">
+          <span className="micro-label">{project.imageLabel}</span>
+          <span className="project-preview-scope">{project.scope ?? "Software project"}</span>
+        </div>
+      ) : null}
     </div>
   );
 
   return (
     <article className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
       {project.detailPath ? (
-        <Link href={project.detailPath} aria-label={`View ${project.title} case study`}>
+        <Link
+          className={project.previewImage ? "project-preview-link" : undefined}
+          href={project.detailPath}
+          aria-label={`View ${project.title} case study`}
+        >
           {visual}
         </Link>
       ) : visual}
