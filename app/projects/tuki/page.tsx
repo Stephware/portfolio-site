@@ -139,7 +139,7 @@ export default function TukiCaseStudy() {
           <div className={styles.heroPhones}>
             <div className={styles.heroPhonePrimary}>
               <Image
-                src="/Screenshot 2026-08-30 at 9.03.41 PM.png"
+                src="/mainpage-tuki.png"
                 alt="TUKI navigation interface"
                 fill
                 priority
