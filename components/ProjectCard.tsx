@@ -67,7 +67,10 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="project-copy">
         <div className="project-meta">
           <span>Project {project.number}</span>
-          {project.featured ? <span className="inverted-chip">Featured</span> : null}
+          <div className="project-meta-chips">
+            {project.status ? <span className="outline-chip">{project.status}</span> : null}
+            {project.featured ? <span className="inverted-chip">Featured</span> : null}
+          </div>
         </div>
 
         <h3>
@@ -90,6 +93,13 @@ export function ProjectCard({ project }: { project: Project }) {
           <span className="micro-label">My contribution</span>
           <p>{project.contribution}</p>
         </div>
+
+        {project.impactPlaceholder ? (
+          <div className="project-impact-placeholder">
+            <span className="micro-label">Impact / outcome · reserved</span>
+            <p>{project.impactPlaceholder}</p>
+          </div>
+        ) : null}
 
         <div className="tag-row">
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
