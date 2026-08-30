@@ -3,9 +3,12 @@ import Link from "next/link";
 import type { Project } from "@/data/projects";
 
 export function ProjectCard({ project }: { project: Project }) {
+  const hasPreview = Boolean(project.previewImage);
+  const usesFeaturedPreview = hasPreview && project.featured;
+
   const visualCore = (
     <div
-      className={`project-visual project-visual-${project.number} ${project.previewImage ? "project-visual-with-image" : ""}`}
+      className={`project-visual project-visual-${project.number} ${hasPreview ? "project-visual-with-image" : ""}`}
       aria-label={`${project.title} project visual area`}
     >
       {project.previewImage ? (
@@ -22,15 +25,15 @@ export function ProjectCard({ project }: { project: Project }) {
       ) : null}
 
       <div className="visual-grid" aria-hidden="true" />
-      <div className={`project-visual-label ${project.previewImage ? "project-visual-label-preview" : ""}`}>
-        {project.previewImage ? null : <span className="micro-label">{project.imageLabel}</span>}
+      <div className={`project-visual-label ${hasPreview ? "project-visual-label-preview" : ""}`}>
+        {!usesFeaturedPreview ? <span className="micro-label">{project.imageLabel}</span> : null}
         <strong>{project.number}</strong>
-        {project.previewImage ? null : <span>{project.scope ?? "Software project"}</span>}
+        {!usesFeaturedPreview ? <span>{project.scope ?? "Software project"}</span> : null}
       </div>
     </div>
   );
 
-  const previewColumn = project.previewImage ? (
+  const visual = usesFeaturedPreview ? (
     <div className="project-preview-column">
       {project.detailPath ? (
         <Link
@@ -45,23 +48,21 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="project-preview-meta">
         <span className="micro-label">{project.imageLabel}</span>
         <span className="project-preview-scope">{project.scope ?? "Software project"}</span>
-        <div className="project-preview-mobile-summary">
-          <h3>
-            {project.detailPath ? <Link href={project.detailPath}>{project.title}</Link> : project.title}
-          </h3>
-          <p>{project.description}</p>
-        </div>
       </div>
     </div>
   ) : project.detailPath ? (
-    <Link href={project.detailPath} aria-label={`View ${project.title} case study`}>
+    <Link
+      className={hasPreview ? "project-preview-image-link" : undefined}
+      href={project.detailPath}
+      aria-label={`View ${project.title} case study`}
+    >
       {visualCore}
     </Link>
   ) : visualCore;
 
   return (
-    <article className={`project-card ${project.featured ? "project-card-featured" : ""} ${project.previewImage ? "project-card-with-preview" : ""}`}>
-      {previewColumn}
+    <article className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
+      {visual}
 
       <div className="project-copy">
         <div className="project-meta">
