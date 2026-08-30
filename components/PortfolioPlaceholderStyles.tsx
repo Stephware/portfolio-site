@@ -273,6 +273,31 @@ export function PortfolioPlaceholderStyles() {
         .recommendation-placeholder {
           min-height: 0;
         }
+
+        .mobile-menu {
+          padding: 1rem;
+          overflow-y: auto;
+        }
+
+        .mobile-menu nav a {
+          gap: .75rem;
+          padding: .45rem 0;
+          font-size: clamp(1.35rem, 6.4vw, 1.85rem);
+          line-height: 1.05;
+          letter-spacing: -.035em;
+        }
+
+        .mobile-menu nav a span {
+          width: 1.4rem;
+          flex: 0 0 1.4rem;
+          font-size: 8px;
+        }
+
+        .mobile-menu-footer {
+          gap: .5rem;
+          padding-top: 1rem;
+          font-size: 8px;
+        }
       }
     `}</style>
   );
