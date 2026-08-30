@@ -1,3 +1,10 @@
+.project-preview-link,
+.project-preview-shell {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+}
+
 .project-visual-with-image {
   isolation: isolate;
   background: #c7c7c2;
@@ -37,13 +44,36 @@
   z-index: 3;
 }
 
-.project-visual-with-image .project-visual-label .micro-label,
-.project-visual-with-image .project-visual-label > span:last-child {
-  color: rgb(20 20 20 / .58);
+.project-visual-label-preview {
+  justify-content: center;
+  align-items: flex-end;
 }
 
 .project-visual-with-image .project-visual-label strong {
   color: rgb(20 20 20 / .48);
+}
+
+.project-preview-meta {
+  flex: 1 0 auto;
+  min-height: 7.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.25rem;
+  border-top: 1px solid var(--gray-200);
+  background: var(--background);
+}
+
+.project-preview-meta .micro-label {
+  color: var(--gray-500);
+}
+
+.project-preview-scope {
+  color: var(--gray-600);
+  font: 10px var(--font-geist-mono), monospace;
+  letter-spacing: .045em;
+  text-transform: uppercase;
 }
 
 .project-card:hover .project-preview-image {
@@ -73,11 +103,6 @@ html.dark .project-visual-with-image .visual-grid {
   opacity: .14;
 }
 
-html.dark .project-visual-with-image .project-visual-label .micro-label,
-html.dark .project-visual-with-image .project-visual-label > span:last-child {
-  color: rgb(15 15 15 / .56);
-}
-
 html.dark .project-visual-with-image .project-visual-label strong {
   color: rgb(15 15 15 / .45);
 }
@@ -90,6 +115,11 @@ html.dark .project-card:hover .project-preview-image {
 @media (max-width: 767px) {
   .project-card-featured .project-visual-with-image {
     min-height: 20rem;
+  }
+
+  .project-preview-meta {
+    min-height: 6.25rem;
+    padding: 1rem;
   }
 }
 
