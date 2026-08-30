@@ -132,7 +132,7 @@ export default function VitallyCaseStudy() {
           <figure className={styles.heroProductVisual}>
             <div className={styles.demoBadge}>Sanitized production visual</div>
             <Image
-              src="/Screenshot 2026-08-30 at 7.35.31 PM.png"
+              src="/mainpage-vitally.png"
               alt="Sanitized VITALLY clinic operations dashboard"
               fill
               priority
