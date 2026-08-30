@@ -54,7 +54,7 @@ export const projects: Project[] = [
     scope: "Built for 2 clinics · designed to expand",
     repositoryLabel: "Private source",
     detailPath: "/projects/vitally",
-    previewImage: "/Screenshot 2026-08-30 at 7.35.31 PM.png",
+    previewImage: "/mainpage-vitally.png",
     previewAlt: "Sanitized VITALLY clinic operations dashboard",
   },
   {
