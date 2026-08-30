@@ -275,28 +275,48 @@ export function PortfolioPlaceholderStyles() {
         }
 
         .mobile-menu {
-          padding: 1rem;
+          padding: 1.5rem 1.25rem 1.25rem;
           overflow-y: auto;
         }
 
+        .mobile-menu nav {
+          display: grid;
+          gap: .35rem;
+          align-content: start;
+        }
+
         .mobile-menu nav a {
+          display: grid;
+          grid-template-columns: 1.9rem minmax(0, 1fr);
+          align-items: baseline;
           gap: .75rem;
-          padding: .45rem 0;
-          font-size: clamp(1.35rem, 6.4vw, 1.85rem);
-          line-height: 1.05;
+          padding: .55rem 0;
+          border-bottom: 0;
+          font-family: var(--font-geist-mono), monospace;
+          font-size: clamp(1.35rem, 5.8vw, 1.7rem);
+          font-weight: 400;
+          line-height: 1.08;
           letter-spacing: -.035em;
         }
 
         .mobile-menu nav a span {
-          width: 1.4rem;
-          flex: 0 0 1.4rem;
-          font-size: 8px;
+          width: auto;
+          color: var(--gray-400);
+          font: 8px var(--font-geist-mono), monospace;
+          letter-spacing: .05em;
+        }
+
+        .mobile-menu nav a[aria-current="location"] {
+          color: var(--ink);
         }
 
         .mobile-menu-footer {
-          gap: .5rem;
+          gap: .45rem;
+          margin-top: 1.25rem;
           padding-top: 1rem;
+          border-top: 1px solid var(--gray-200);
           font-size: 8px;
+          line-height: 1.45;
         }
       }
     `}</style>
