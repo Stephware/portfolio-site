@@ -3,6 +3,14 @@ import { Navigation } from "@/components/Navigation";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
+import {
+  careerLinks,
+  currentBuild,
+  experiencePlaceholders,
+  futureProofPlaceholders,
+  postGraduationProfile,
+  recommendationPlaceholders,
+} from "@/data/career";
 import { education } from "@/data/education";
 import { organizations } from "@/data/organizations";
 import { participations } from "@/data/participations";
@@ -89,8 +97,111 @@ export default function Home() {
           ) : null}
         </section>
 
+        <section className="section" id="experience">
+          <SectionHeading index="03" label="experience & career proof" title="Reserved now. Replaced with verified proof as it becomes available.">
+            <p>These placeholders keep the next career-ready pieces visible so they can be filled with real OJT experience, recommendations, links, metrics, certifications, and post-graduation positioning later.</p>
+          </SectionHeading>
+
+          <div className="career-proof-grid">
+            {experiencePlaceholders.map((item) => (
+              <article className="career-placeholder-card" key={`${item.organization}-${item.role}`}>
+                <div className="placeholder-card-meta">
+                  <span>{item.period}</span>
+                  <span className="reserved-chip">Reserved</span>
+                </div>
+                <span className="micro-label">Experience / OJT</span>
+                <h3>{item.role}</h3>
+                <strong>{item.organization}</strong>
+                <p>{item.description}</p>
+                <ul>
+                  {item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
+                </ul>
+              </article>
+            ))}
+
+            <article className="career-placeholder-card current-build-card">
+              <div className="placeholder-card-meta">
+                <span>Currently building</span>
+                <span className="reserved-chip active-chip">In progress</span>
+              </div>
+              <span className="micro-label">Thesis / active development</span>
+              <h3>{currentBuild.title}</h3>
+              <strong>{currentBuild.status}</strong>
+              <p>{currentBuild.description}</p>
+              <div className="tag-row compact-tags">
+                {currentBuild.stack.map((item) => <span key={item}>{item}</span>)}
+              </div>
+              <p className="placeholder-reminder">{currentBuild.reminder}</p>
+            </article>
+          </div>
+
+          <div className="career-subsection">
+            <div className="career-subsection-heading">
+              <span className="micro-label">Recommendations · reserved</span>
+              <h3>Three voices that can validate the work from different angles.</h3>
+            </div>
+            <div className="recommendation-grid">
+              {recommendationPlaceholders.map((item) => (
+                <article className="recommendation-placeholder" key={item.relationship}>
+                  <span className="micro-label">{item.relationship}</span>
+                  <blockquote>“{item.quote}”</blockquote>
+                  <strong>{item.name}</strong>
+                  <small>{item.role}</small>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="career-subsection recruiter-placeholder-panel">
+            <div className="career-subsection-heading">
+              <span className="micro-label">Recruiter links · reserved</span>
+              <h3>Replace these with final, working links before applications.</h3>
+            </div>
+            <div className="reserved-link-grid">
+              {careerLinks.map((item) => (
+                <div className="reserved-link" key={item.label}>
+                  <strong>{item.label}</strong>
+                  <span>Not linked yet</span>
+                  <p>{item.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <details className="future-proof-details">
+            <summary>
+              <span>
+                <span className="micro-label">Later additions</span>
+                <strong>Certifications, technical writing & graduation updates</strong>
+              </span>
+              <span aria-hidden="true">+</span>
+            </summary>
+            <div className="future-proof-content">
+              <div className="future-proof-grid">
+                {futureProofPlaceholders.map((item) => (
+                  <article key={item.title}>
+                    <span className="reserved-chip">Reserved</span>
+                    <h3>{item.title}</h3>
+                    <p>{item.description}</p>
+                    <small>{item.examples}</small>
+                  </article>
+                ))}
+              </div>
+
+              <article className="graduation-copy-placeholder">
+                <span className="micro-label">Post-graduation hero copy · reserved</span>
+                <h3>{postGraduationProfile.eyebrow}</h3>
+                <p>{postGraduationProfile.lead}</p>
+                <strong>{postGraduationProfile.educationLine}</strong>
+                <small>{postGraduationProfile.availability}</small>
+                <p className="placeholder-reminder">{postGraduationProfile.heroStatReminder}</p>
+              </article>
+            </div>
+          </details>
+        </section>
+
         <section className="section" id="achievements">
-          <SectionHeading index="03" label="achievements" title="Recognition across academics, competitions, and organizations.">
+          <SectionHeading index="04" label="achievements" title="Recognition across academics, competitions, and organizations.">
             <p>Recent and career-relevant distinctions stay visible first, while earlier mathematics awards remain available without crowding the main story.</p>
           </SectionHeading>
           <div className="achievement-list">
@@ -131,7 +242,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="leadership">
-          <SectionHeading index="04" label="leadership & organizations" title="Roles that grew with responsibility.">
+          <SectionHeading index="05" label="leadership & organizations" title="Roles that grew with responsibility.">
             <p>My leadership work spans student government, Computer Engineering organizations, and technical support roles within the AUF College of Engineering and Architecture community.</p>
           </SectionHeading>
           <div className="timeline leadership-timeline">
@@ -148,7 +259,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="competitions">
-          <SectionHeading index="05" label="competitions & participation" title="Technical competition experience beyond the podium.">
+          <SectionHeading index="06" label="competitions & participation" title="Technical competition experience beyond the podium.">
             <p>These entries show technical environments where I tested networking, electronics, troubleshooting, and problem-solving skills even when the result was participation rather than a placement.</p>
           </SectionHeading>
           <div className="participation-grid">
@@ -166,7 +277,7 @@ export default function Home() {
         </section>
 
         <section className="section" id="about">
-          <SectionHeading index="06" label="about & skills" title="Full-stack work, grounded in systems thinking.">
+          <SectionHeading index="07" label="about & skills" title="Full-stack work, grounded in systems thinking.">
             <p>I work across the software stack and enjoy projects where architecture, data, interface design, and real operational constraints have to work together.</p>
           </SectionHeading>
           <div className="about-grid">
@@ -198,14 +309,14 @@ export default function Home() {
 
         <section className="section contact-section" id="contact">
           <div className="contact-halftone halftone" aria-hidden="true" />
-          <p className="section-index">07 — contact</p>
+          <p className="section-index">08 — contact</p>
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
-            <p>For public work, source code, and current projects, visit my GitHub profile.</p>
+            <p>GitHub is available now. Resume, LinkedIn, and professional email are intentionally reserved above so the final links can be added before applications.</p>
             <div className="hero-actions">
               <a className="primary-button" href="https://github.com/Stephware" target="_blank" rel="noreferrer">View GitHub ↗</a>
-              <a className="text-link" href="#projects">Review projects ↑</a>
+              <a className="text-link" href="#experience">Career placeholders ↑</a>
             </div>
           </div>
         </section>
