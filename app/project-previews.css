@@ -1,6 +1,6 @@
 .project-visual-with-image {
   isolation: isolate;
-  background: #9b9b97;
+  background: #b4b4af;
   transition: background-color 500ms ease;
 }
 
@@ -9,7 +9,7 @@
   object-fit: cover;
   object-position: center;
   opacity: .22;
-  filter: grayscale(1) brightness(.68) contrast(1.06);
+  filter: grayscale(1) brightness(.76) contrast(1.04);
   transform: scale(1.005);
   transition: transform 700ms cubic-bezier(.16,1,.3,1), opacity 350ms ease, filter 450ms ease;
   will-change: transform;
@@ -22,8 +22,8 @@
   pointer-events: none;
   background: linear-gradient(
     135deg,
-    rgb(55 55 52 / .36),
-    rgb(88 88 84 / .22)
+    rgb(66 66 62 / .26),
+    rgb(104 104 99 / .14)
   );
   transition: background 500ms ease;
 }
@@ -49,7 +49,7 @@
 .project-card:hover .project-preview-image {
   opacity: .29;
   transform: scale(1.025);
-  filter: grayscale(.92) brightness(.72) contrast(1.08);
+  filter: grayscale(.92) brightness(.8) contrast(1.06);
 }
 
 html.dark .project-visual-with-image {
