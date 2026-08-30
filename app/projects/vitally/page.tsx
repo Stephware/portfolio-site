@@ -164,7 +164,7 @@ export default function VitallyCaseStudy() {
             <p>
               The administrative side keeps operational visibility and higher-impact controls in one
               workspace, including inventory configuration, reporting, user-level controls, and audit
-              history alongside the clinic's transaction activity.
+              history alongside the clinic&apos;s transaction activity.
             </p>
           </div>
           <FeatureList items={adminFeatures} />
