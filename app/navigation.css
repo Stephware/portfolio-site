@@ -1,0 +1,16 @@
+/* Shared navigation affordances */
+.section[id],
+section[id],
+nav[id],
+[id="top"] {
+  scroll-margin-top: 5.25rem;
+}
+
+@media (max-width: 767px) {
+  .section[id],
+  section[id],
+  nav[id],
+  [id="top"] {
+    scroll-margin-top: 4.9rem;
+  }
+}
