@@ -5,6 +5,7 @@ import "./theme.css";
 import "./profile.css";
 import "./project-previews.css";
 import "./mobile.css";
+import "./navigation.css";
 
 const geist = Geist({
   variable: "--font-geist-sans",
