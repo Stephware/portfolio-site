@@ -15,6 +15,8 @@ const links = [
   ["09", "Contact", "#contact"],
 ] as const;
 
+const emailHref = "mailto:pinacate.stephen@gmail.com";
+
 export function Navigation() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#top");
@@ -157,9 +159,9 @@ export function Navigation() {
           </div>
           <div className="external-links">
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a href={emailHref}>Email ↗</a>
             <span>Resume · reserved</span>
             <span>LinkedIn · reserved</span>
-            <span>Email · reserved</span>
           </div>
         </div>
       </aside>
@@ -193,7 +195,8 @@ export function Navigation() {
             <ThemeToggle />
           </div>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <span>Resume · LinkedIn · Email reserved for final links</span>
+          <a href={emailHref}>pinacate.stephen@gmail.com ↗</a>
+          <span>Resume · LinkedIn reserved for final links</span>
         </div>
       </div>
     </>
