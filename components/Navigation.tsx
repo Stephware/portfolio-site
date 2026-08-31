@@ -19,7 +19,8 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("#top");
   const menuButtonRef = useRef<HTMLButtonElement>(null);
-  const firstMobileLinkRef = useRef<HTMLAnchorElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileLinkRefs = useRef<Record<string, HTMLAnchorElement | null>>({});
 
   useEffect(() => {
     const sections = links
@@ -41,25 +42,62 @@ export function Navigation() {
   }, []);
 
   useEffect(() => {
+    const main = document.querySelector<HTMLElement>(".site-main");
     document.body.classList.toggle("menu-open", open);
 
     if (open) {
-      requestAnimationFrame(() => firstMobileLinkRef.current?.focus());
+      main?.setAttribute("inert", "");
+      requestAnimationFrame(() => {
+        (mobileLinkRefs.current[active] ?? mobileLinkRefs.current["#top"])?.focus();
+      });
+    } else {
+      main?.removeAttribute("inert");
     }
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape" && open) {
+      if (!open) return;
+
+      if (event.key === "Escape") {
         setOpen(false);
         requestAnimationFrame(() => menuButtonRef.current?.focus());
+        return;
+      }
+
+      if (event.key !== "Tab") return;
+
+      const menu = mobileMenuRef.current;
+      if (!menu) return;
+
+      const focusables = [
+        menuButtonRef.current,
+        ...Array.from(
+          menu.querySelectorAll<HTMLElement>(
+            'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+          ),
+        ),
+      ].filter(Boolean) as HTMLElement[];
+
+      if (focusables.length === 0) return;
+
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
       }
     };
 
     document.addEventListener("keydown", onKeyDown);
     return () => {
       document.body.classList.remove("menu-open");
+      main?.removeAttribute("inert");
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, [open]);
+  }, [open, active]);
 
   const closeMenu = () => {
     setOpen(false);
@@ -68,7 +106,7 @@ export function Navigation() {
 
   return (
     <>
-      <ThemeToggle />
+      <div className="desktop-theme-toggle"><ThemeToggle /></div>
 
       <header className="mobile-header">
         <a className="brand" href="#top" onClick={() => setOpen(false)}>
@@ -127,6 +165,7 @@ export function Navigation() {
       </aside>
 
       <div
+        ref={mobileMenuRef}
         id="mobile-menu"
         className={`mobile-menu ${open ? "open" : ""}`}
         aria-hidden={!open}
@@ -135,9 +174,9 @@ export function Navigation() {
         aria-label="Portfolio navigation"
       >
         <nav>
-          {links.map(([number, label, href], index) => (
+          {links.map(([number, label, href]) => (
             <a
-              ref={index === 0 ? firstMobileLinkRef : undefined}
+              ref={(node) => { mobileLinkRefs.current[href] = node; }}
               href={href}
               key={href}
               onClick={closeMenu}
@@ -149,6 +188,10 @@ export function Navigation() {
           ))}
         </nav>
         <div className="mobile-menu-footer">
+          <div className="mobile-menu-theme">
+            <span className="micro-label">Theme</span>
+            <ThemeToggle />
+          </div>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
           <span>Resume · LinkedIn · Email reserved for final links</span>
         </div>
