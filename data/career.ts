@@ -32,7 +32,8 @@ export const careerLinks: PlaceholderLink[] = [
   },
   {
     label: "Email",
-    note: "Add professional contact email once finalized",
+    href: "mailto:pinacate.stephen@gmail.com",
+    note: "pinacate.stephen@gmail.com",
   },
 ];
 
