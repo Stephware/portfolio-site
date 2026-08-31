@@ -52,13 +52,8 @@ export function PortfolioPlaceholderStyles() {
         background: color-mix(in srgb, var(--gray-50) 72%, transparent);
       }
 
-      .career-placeholder-card {
-        padding: 1.35rem;
-      }
-
-      .current-build-card {
-        border-style: solid;
-      }
+      .career-placeholder-card { padding: 1.35rem; }
+      .current-build-card { border-style: solid; }
 
       .placeholder-card-meta {
         display: flex;
@@ -71,10 +66,7 @@ export function PortfolioPlaceholderStyles() {
         text-transform: uppercase;
       }
 
-      .active-chip {
-        border-style: solid;
-        color: var(--ink);
-      }
+      .active-chip { border-style: solid; color: var(--ink); }
 
       .career-placeholder-card h3,
       .career-subsection h3,
@@ -96,9 +88,7 @@ export function PortfolioPlaceholderStyles() {
       .career-placeholder-card > p,
       .future-proof-grid p,
       .graduation-copy-placeholder p,
-      .reserved-link p {
-        color: var(--gray-500);
-      }
+      .reserved-link p { color: var(--gray-500); }
 
       .career-placeholder-card ul {
         margin: 1rem 0 0;
@@ -107,13 +97,8 @@ export function PortfolioPlaceholderStyles() {
         font-size: .86rem;
       }
 
-      .career-placeholder-card li + li {
-        margin-top: .35rem;
-      }
-
-      .compact-tags {
-        margin-top: 1rem;
-      }
+      .career-placeholder-card li + li { margin-top: .35rem; }
+      .compact-tags { margin-top: 1rem; }
 
       .placeholder-reminder {
         margin-top: 1rem !important;
@@ -122,9 +107,7 @@ export function PortfolioPlaceholderStyles() {
         font: 9px/1.5 var(--font-geist-mono), monospace;
       }
 
-      .career-subsection {
-        margin-top: 3.5rem;
-      }
+      .career-subsection { margin-top: 3.5rem; }
 
       .career-subsection-heading {
         display: grid;
@@ -134,10 +117,7 @@ export function PortfolioPlaceholderStyles() {
         margin-bottom: 1.4rem;
       }
 
-      .career-subsection-heading h3 {
-        margin-top: 0;
-        max-width: 34rem;
-      }
+      .career-subsection-heading h3 { margin-top: 0; max-width: 34rem; }
 
       .recommendation-grid,
       .reserved-link-grid,
@@ -161,10 +141,7 @@ export function PortfolioPlaceholderStyles() {
         line-height: 1.55;
       }
 
-      .recommendation-placeholder strong {
-        margin-top: 1.25rem;
-        font-size: .85rem;
-      }
+      .recommendation-placeholder strong { margin-top: 1.25rem; font-size: .85rem; }
 
       .recommendation-placeholder small,
       .future-proof-grid small,
@@ -178,14 +155,8 @@ export function PortfolioPlaceholderStyles() {
         border-top: 1px solid var(--gray-200);
       }
 
-      .reserved-link {
-        padding: 1rem;
-      }
-
-      .reserved-link strong {
-        display: block;
-        margin-bottom: .3rem;
-      }
+      .reserved-link { padding: 1rem; }
+      .reserved-link strong { display: block; margin-bottom: .3rem; }
 
       .reserved-link > span {
         color: var(--gray-400);
@@ -193,10 +164,7 @@ export function PortfolioPlaceholderStyles() {
         text-transform: uppercase;
       }
 
-      .reserved-link p {
-        margin: 1rem 0 0;
-        font-size: .8rem;
-      }
+      .reserved-link p { margin: 1rem 0 0; font-size: .8rem; }
 
       .future-proof-details {
         margin-top: 3.5rem;
@@ -214,19 +182,9 @@ export function PortfolioPlaceholderStyles() {
         list-style: none;
       }
 
-      .future-proof-details summary::-webkit-details-marker {
-        display: none;
-      }
-
-      .future-proof-details summary > span:first-child {
-        display: grid;
-        gap: .2rem;
-      }
-
-      .future-proof-details summary strong {
-        font-size: .95rem;
-        font-weight: 500;
-      }
+      .future-proof-details summary::-webkit-details-marker { display: none; }
+      .future-proof-details summary > span:first-child { display: grid; gap: .2rem; }
+      .future-proof-details summary strong { font-size: .95rem; font-weight: 500; }
 
       .future-proof-content {
         display: grid;
@@ -234,44 +192,36 @@ export function PortfolioPlaceholderStyles() {
         padding-bottom: 1.25rem;
       }
 
-      .future-proof-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .future-proof-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 
       .future-proof-grid article,
-      .graduation-copy-placeholder {
-        padding: 1rem;
-      }
+      .graduation-copy-placeholder { padding: 1rem; }
 
-      .graduation-copy-placeholder {
-        border-style: solid;
-      }
+      .graduation-copy-placeholder { border-style: solid; }
+      .graduation-copy-placeholder > small { display: block; margin-top: .35rem; }
 
-      .graduation-copy-placeholder > small {
-        display: block;
-        margin-top: .35rem;
-      }
+      .desktop-theme-toggle { display: block; }
+      .mobile-menu-theme { display: none; }
 
       @media (max-width: 767px) {
-        .project-meta {
-          align-items: flex-start;
-          gap: .8rem;
-        }
-
-        .project-meta-chips {
-          max-width: 55%;
-        }
+        .project-meta { align-items: flex-start; gap: .8rem; }
+        .project-meta-chips { max-width: 55%; }
 
         .career-proof-grid,
         .recommendation-grid,
         .reserved-link-grid,
         .future-proof-grid,
-        .career-subsection-heading {
-          grid-template-columns: 1fr;
-        }
+        .career-subsection-heading { grid-template-columns: 1fr; }
 
-        .recommendation-placeholder {
-          min-height: 0;
+        .recommendation-placeholder { min-height: 0; }
+        .desktop-theme-toggle { display: none; }
+        .mobile-menu-theme { display: grid; gap: .55rem; margin-bottom: .65rem; }
+
+        .mobile-menu-theme .theme-switcher {
+          position: static;
+          width: fit-content;
+          margin: 0;
+          transform: none;
         }
 
         .mobile-menu {
@@ -293,13 +243,15 @@ export function PortfolioPlaceholderStyles() {
           grid-template-columns: 1.2rem minmax(0, 1fr);
           align-items: baseline;
           gap: .45rem;
-          padding: .38rem 0;
+          padding: .38rem 0 .38rem .5rem;
           border-bottom: 0;
+          border-radius: 4px;
           font-family: var(--font-geist-mono), monospace;
           font-size: clamp(1.15rem, 5.2vw, 1.38rem);
           font-weight: 400;
           line-height: 1.15;
           letter-spacing: -.02em;
+          transition: background-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
         }
 
         .mobile-menu nav a span {
@@ -310,8 +262,14 @@ export function PortfolioPlaceholderStyles() {
         }
 
         .mobile-menu nav a[aria-current="location"] {
+          background: var(--gray-50);
+          box-shadow: inset 2px 0 0 var(--ink);
           color: var(--ink);
+          font-weight: 600;
+          transform: translateX(.15rem);
         }
+
+        .mobile-menu nav a[aria-current="location"] span { color: var(--ink); }
 
         .mobile-menu-footer {
           gap: .35rem;
