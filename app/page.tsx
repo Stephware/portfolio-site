@@ -1,11 +1,11 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Navigation } from "@/components/Navigation";
 import { PortfolioPlaceholderStyles } from "@/components/PortfolioPlaceholderStyles";
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
 import {
-  careerLinks,
   currentBuild,
   experiencePlaceholders,
   futureProofPlaceholders,
@@ -21,8 +21,7 @@ import { skills } from "@/data/skills";
 export default function Home() {
   const featuredProjects = projects.filter((project) => project.homepage === "featured");
   const moreProjects = projects.filter((project) => project.homepage === "more");
-  const primaryAchievements = achievements.filter((item) => !item.earlier);
-  const earlierAchievements = achievements.filter((item) => item.earlier);
+  const primaryAchievements = achievements.filter((item) => !item.earlier).slice(0, 3);
 
   return (
     <>
@@ -97,11 +96,15 @@ export default function Home() {
               </div>
             </details>
           ) : null}
+
+          <div className="hero-actions">
+            <Link className="primary-button" href="/projects">View all projects →</Link>
+          </div>
         </section>
 
         <section className="section" id="experience">
           <SectionHeading index="03" label="experience & career proof" title="Reserved now. Replaced with verified proof as it becomes available.">
-            <p>These placeholders keep the next career-ready pieces visible so they can be filled with real OJT experience, links, metrics, certifications, and post-graduation positioning later.</p>
+            <p>These placeholders keep the next career-ready pieces visible so they can be filled with real OJT experience, metrics, certifications, and post-graduation positioning later.</p>
           </SectionHeading>
 
           <div className="career-proof-grid">
@@ -135,22 +138,6 @@ export default function Home() {
               </div>
               <p className="placeholder-reminder">{currentBuild.reminder}</p>
             </article>
-          </div>
-
-          <div className="career-subsection recruiter-placeholder-panel">
-            <div className="career-subsection-heading">
-              <span className="micro-label">Recruiter links · reserved</span>
-              <h3>Replace these with final, working links before applications.</h3>
-            </div>
-            <div className="reserved-link-grid">
-              {careerLinks.map((item) => (
-                <div className="reserved-link" key={item.label}>
-                  <strong>{item.label}</strong>
-                  <span>Not linked yet</span>
-                  <p>{item.note}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
           <details className="future-proof-details">
@@ -187,10 +174,10 @@ export default function Home() {
 
         <section className="section" id="recommendations">
           <SectionHeading index="04" label="recommendations" title="External proof from people who have worked with me.">
-            <p>This section is reserved for verified recommendations once they are available, so professional and academic validation can stand on its own instead of being buried inside experience.</p>
+            <p>A concise preview stays on the homepage, while the dedicated recommendations page has room for the complete set as verified feedback becomes available.</p>
           </SectionHeading>
           <div className="recommendation-grid">
-            {recommendationPlaceholders.map((item) => (
+            {recommendationPlaceholders.slice(0, 2).map((item) => (
               <article className="recommendation-placeholder" key={item.relationship}>
                 <span className="micro-label">{item.relationship}</span>
                 <blockquote>“{item.quote}”</blockquote>
@@ -199,11 +186,14 @@ export default function Home() {
               </article>
             ))}
           </div>
+          <div className="hero-actions">
+            <Link className="primary-button" href="/recommendations">View all recommendations →</Link>
+          </div>
         </section>
 
         <section className="section" id="achievements">
           <SectionHeading index="05" label="achievements" title="Recognition across academics, competitions, and organizations.">
-            <p>Recent and career-relevant distinctions stay visible first, while earlier mathematics awards remain available without crowding the main story.</p>
+            <p>Only a short selection stays here now. The complete list has its own page so each result is easier to scan and read.</p>
           </SectionHeading>
           <div className="achievement-list">
             {primaryAchievements.map((item, index) => (
@@ -218,28 +208,9 @@ export default function Home() {
               </article>
             ))}
           </div>
-
-          {earlierAchievements.length > 0 ? (
-            <details className="earlier-achievements">
-              <summary>
-                <span>Earlier academic distinctions</span>
-                <span aria-hidden="true">+</span>
-              </summary>
-              <div className="achievement-list">
-                {earlierAchievements.map((item, index) => (
-                  <article className="achievement-row" key={`${item.year}-${item.title}`}>
-                    <span className="achievement-year">{item.year}</span>
-                    <div>
-                      <span className="micro-label">{item.eyebrow}</span>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </div>
-                    <span className="achievement-index">E{index + 1}</span>
-                  </article>
-                ))}
-              </div>
-            </details>
-          ) : null}
+          <div className="hero-actions">
+            <Link className="primary-button" href="/achievements">View all achievements →</Link>
+          </div>
         </section>
 
         <section className="section" id="leadership">
@@ -314,10 +285,10 @@ export default function Home() {
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
-            <p>GitHub is available now. Resume, LinkedIn, and professional email are intentionally reserved above so the final links can be added before applications.</p>
+            <p>GitHub and email are available now. Resume and LinkedIn can be added once finalized.</p>
             <div className="hero-actions">
               <a className="primary-button" href="https://github.com/Stephware" target="_blank" rel="noreferrer">View GitHub ↗</a>
-              <a className="text-link" href="#experience">Career placeholders ↑</a>
+              <a className="text-link" href="mailto:pinacate.stephen@gmail.com">Email ↗</a>
             </div>
           </div>
         </section>
