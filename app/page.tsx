@@ -50,6 +50,7 @@ export default function Home() {
               <div className="hero-actions">
                 <a className="primary-button" href="#projects">Explore my work <span>↓</span></a>
                 <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+                <a className="text-link" href="mailto:pinacate.stephen@gmail.com">Email ↗</a>
               </div>
             </div>
 
