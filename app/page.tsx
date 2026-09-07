@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { GitHubActivity } from "@/components/GitHubActivity";
 import { Navigation } from "@/components/Navigation";
 import { PortfolioPlaceholderStyles } from "@/components/PortfolioPlaceholderStyles";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -280,9 +281,16 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section" id="github">
+          <SectionHeading index="09" label="github activity" title="Shipping work, visible in public.">
+            <p>A live view of my recent public GitHub activity, including active days, repositories touched, and the latest development events.</p>
+          </SectionHeading>
+          <GitHubActivity />
+        </section>
+
         <section className="section contact-section" id="contact">
           <div className="contact-halftone halftone" aria-hidden="true" />
-          <p className="section-index">09 — contact</p>
+          <p className="section-index">10 — contact</p>
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
