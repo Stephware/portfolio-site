@@ -4,6 +4,7 @@ import "./globals.css";
 import "./theme.css";
 import "./profile.css";
 import "./project-previews.css";
+import "./github-activity.css";
 import "./mobile.css";
 import "./navigation.css";
 
