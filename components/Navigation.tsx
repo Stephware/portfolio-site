@@ -12,7 +12,8 @@ const links = [
   ["06", "Leadership", "#leadership"],
   ["07", "Competitions", "#competitions"],
   ["08", "About", "#about"],
-  ["09", "Contact", "#contact"],
+  ["09", "GitHub", "#github"],
+  ["10", "Contact", "#contact"],
 ] as const;
 
 const emailHref = "mailto:pinacate.stephen@gmail.com";
