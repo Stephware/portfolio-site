@@ -7,6 +7,11 @@ export type OrganizationRole = {
 export const organizations: OrganizationRole[] = [
   {
     period: "2026 — PRESENT",
+    role: "Vice President — Internal",
+    organization: "Institute of Computer Engineers of the Philippines Student Edition — Region 3 (ICpEP.se Region 3)",
+  },
+  {
+    period: "2026 — PRESENT",
     role: "President",
     organization: "Institute of Computer Engineers of the Philippines Student Edition — AUF Chapter (ICpEP.se — AUF Chapter)",
   },
