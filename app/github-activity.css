@@ -2,143 +2,273 @@
   display: none;
 }
 
-.github-dot-tracker {
+.github-momentum {
   width: 100%;
-  padding: .15rem 0 .25rem;
+  padding: .15rem 0 .3rem;
 }
 
-.github-dot-header {
+.github-momentum-header,
+.github-momentum-footer,
+.github-rhythm-axis {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  margin-bottom: 1.55rem;
   color: var(--gray-400);
   font: 9px var(--font-geist-mono), monospace;
-  letter-spacing: .07em;
-  text-transform: lowercase;
-}
-
-.github-dot-header a {
-  transition: color 180ms ease;
-}
-
-.github-dot-header a:hover {
-  color: var(--ink);
-}
-
-.github-dot-scroll {
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: .2rem 0 .45rem;
-  scrollbar-width: none;
-}
-
-.github-dot-scroll::-webkit-scrollbar {
-  display: none;
-}
-
-.github-dot-grid {
-  --dot-cell: 10px;
-  --dot-gap: 2px;
-  display: grid;
-  grid-template-rows: repeat(7, var(--dot-cell));
-  grid-auto-flow: column;
-  grid-auto-columns: var(--dot-cell);
-  gap: var(--dot-gap);
-  width: max-content;
-  min-width: 100%;
-  align-items: center;
-  justify-items: center;
-}
-
-.github-dot {
-  display: block;
-  border-radius: 999px;
-  background: var(--ink);
-  opacity: .14;
-  transition: transform 160ms ease, opacity 160ms ease;
-}
-
-.github-dot:hover {
-  transform: scale(1.35);
-  opacity: 1;
-}
-
-.github-dot-0 {
-  width: 1.5px;
-  height: 1.5px;
-  opacity: .09;
-}
-
-.github-dot-1 {
-  width: 3px;
-  height: 3px;
-  opacity: .45;
-}
-
-.github-dot-2 {
-  width: 5px;
-  height: 5px;
-  opacity: .7;
-}
-
-.github-dot-3 {
-  width: 7px;
-  height: 7px;
-  opacity: .88;
-}
-
-.github-dot-4 {
-  width: 9px;
-  height: 9px;
-  opacity: 1;
-}
-
-.github-dot-total {
-  margin: 1rem 0 0;
-  color: var(--gray-400);
-  font: 8px var(--font-geist-mono), monospace;
-  letter-spacing: .095em;
+  letter-spacing: .075em;
   text-transform: uppercase;
 }
 
-html.dark .github-dot-0 {
-  opacity: .11;
+.github-momentum-header {
+  margin-bottom: 1.65rem;
+  text-transform: lowercase;
 }
 
-html.dark .github-dot-1 {
-  opacity: .5;
+.github-momentum-header a {
+  transition: color 180ms ease;
+}
+
+.github-momentum-header a:hover {
+  color: var(--ink);
+}
+
+.github-momentum-intro {
+  display: grid;
+  grid-template-columns: minmax(0, .85fr) minmax(16rem, .65fr);
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 1.45rem;
+}
+
+.github-momentum-intro h3 {
+  margin: .42rem 0 0;
+  color: var(--ink);
+  font-size: clamp(1.75rem, 3.4vw, 3rem);
+  font-weight: 520;
+  letter-spacing: -.055em;
+  line-height: .98;
+}
+
+.github-momentum-intro p {
+  max-width: 31rem;
+  margin: 0;
+  color: var(--gray-500);
+  font-size: .84rem;
+  line-height: 1.6;
+}
+
+.github-rhythm {
+  display: grid;
+  grid-template-columns: repeat(30, minmax(0, 1fr));
+  gap: clamp(3px, .6vw, 8px);
+  height: clamp(10rem, 21vw, 15rem);
+  align-items: end;
+  padding: 1rem 0 .4rem;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.github-rhythm-day {
+  position: relative;
+  min-width: 0;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: .45rem;
+  cursor: default;
+}
+
+.github-rhythm-track {
+  position: relative;
+  width: 100%;
+  max-width: 13px;
+  height: calc(100% - 1rem);
+  display: flex;
+  align-items: flex-end;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--gray-200) 66%, transparent);
+  overflow: hidden;
+}
+
+.github-rhythm-fill {
+  width: 100%;
+  min-height: 2px;
+  border-radius: inherit;
+  background: var(--ink);
+  opacity: .12;
+  transition: height 350ms cubic-bezier(.16,1,.3,1), opacity 180ms ease, transform 180ms ease;
+  transform-origin: bottom;
+}
+
+.github-rhythm-day.is-active .github-rhythm-fill {
+  opacity: .88;
+}
+
+.github-rhythm-day:nth-child(5n) .github-rhythm-fill,
+.github-rhythm-day:nth-child(7n) .github-rhythm-fill {
+  opacity: .98;
+}
+
+.github-rhythm-dot {
+  width: 4px;
+  height: 4px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--gray-300);
+  transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.github-rhythm-day.is-active .github-rhythm-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--ink);
+}
+
+.github-rhythm-day:hover .github-rhythm-fill {
+  opacity: 1;
+  transform: scaleX(1.18);
+}
+
+.github-rhythm-day:hover .github-rhythm-dot {
+  transform: scale(1.45);
+}
+
+.github-rhythm-axis {
+  margin-top: .7rem;
+  font-size: 8px;
+}
+
+.github-rhythm-axis span:nth-child(2) {
+  color: var(--gray-300);
+}
+
+.github-momentum-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 1.8rem;
+  border-top: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.github-momentum-stats > div {
+  min-width: 0;
+  padding: 1.2rem 1rem 1.25rem 0;
+  border-right: 1px solid var(--gray-200);
+}
+
+.github-momentum-stats > div:not(:first-child) {
+  padding-left: 1rem;
+}
+
+.github-momentum-stats > div:last-child {
+  border-right: 0;
+}
+
+.github-momentum-stats span,
+.github-momentum-stats small {
+  display: block;
+  color: var(--gray-400);
+  font: 8px var(--font-geist-mono), monospace;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.github-momentum-stats strong {
+  display: block;
+  margin: .48rem 0 .25rem;
+  color: var(--ink);
+  font: 500 clamp(1.65rem, 3.5vw, 2.5rem) var(--font-geist-mono), monospace;
+  letter-spacing: -.06em;
+  line-height: 1;
+}
+
+.github-momentum-stats strong em {
+  margin-left: .2rem;
+  color: var(--gray-400);
+  font-size: .72em;
+  font-style: normal;
+  font-weight: 450;
+}
+
+.github-momentum-footer {
+  margin-top: 1rem;
+  font-size: 8px;
+}
+
+html.dark .github-rhythm-track {
+  background: color-mix(in srgb, var(--gray-300) 52%, transparent);
+}
+
+html.dark .github-rhythm-fill {
+  background: var(--ink);
 }
 
 @media (max-width: 767px) {
-  .github-dot-header {
-    margin-bottom: 1.2rem;
+  .github-momentum-header {
+    margin-bottom: 1.3rem;
   }
 
-  .github-dot-grid {
-    --dot-cell: 9px;
-    --dot-gap: 2px;
-    min-width: max-content;
+  .github-momentum-intro {
+    grid-template-columns: 1fr;
+    gap: .85rem;
   }
 
-  .github-dot-scroll {
-    margin-right: -1rem;
-    padding-right: 1rem;
+  .github-momentum-intro p {
+    max-width: 30rem;
   }
 
-  .github-dot-total {
-    max-width: 24rem;
-    line-height: 1.7;
+  .github-rhythm {
+    height: 12rem;
+    gap: 4px;
+    overflow-x: auto;
+    grid-template-columns: repeat(30, minmax(10px, 1fr));
+    padding-bottom: .55rem;
+    scrollbar-width: none;
+  }
+
+  .github-rhythm::-webkit-scrollbar {
+    display: none;
+  }
+
+  .github-rhythm-track {
+    max-width: 10px;
+  }
+
+  .github-momentum-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .github-momentum-stats > div,
+  .github-momentum-stats > div:not(:first-child) {
+    padding: 1rem 0;
+    border-right: 0;
+    border-bottom: 1px solid var(--gray-200);
+  }
+
+  .github-momentum-stats > div:last-child {
+    border-bottom: 0;
+  }
+
+  .github-momentum-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .45rem;
+    line-height: 1.6;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .github-dot {
+  .github-rhythm-fill,
+  .github-rhythm-dot {
     transition: none;
   }
 
-  .github-dot:hover {
+  .github-rhythm-day:hover .github-rhythm-fill,
+  .github-rhythm-day:hover .github-rhythm-dot {
     transform: none;
   }
 }

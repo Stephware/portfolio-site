@@ -83,45 +83,110 @@ function buildEmptyYear(): ContributionDay[] {
   });
 }
 
-function formatDate(value: string) {
+function formatDate(value: string, includeYear = true) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString("en-US", {
     month: "short",
     day: "numeric",
-    year: "numeric",
+    ...(includeYear ? { year: "numeric" } : {}),
     timeZone: "UTC",
   });
 }
 
+function longestActiveStreak(days: ContributionDay[]) {
+  let longest = 0;
+  let current = 0;
+
+  for (const day of days) {
+    if (day.count > 0) {
+      current += 1;
+      longest = Math.max(longest, current);
+    } else {
+      current = 0;
+    }
+  }
+
+  return longest;
+}
+
 export async function GitHubActivity() {
   const { days, total } = await getContributionYear();
-  const visibleDays = days.slice(-371);
+  const recentDays = days.slice(-30);
+  const maxCount = Math.max(1, ...recentDays.map((day) => day.count));
+  const recentTotal = recentDays.reduce((sum, day) => sum + day.count, 0);
+  const activeDays = recentDays.filter((day) => day.count > 0).length;
+  const longestStreak = longestActiveStreak(recentDays);
+  const startLabel = recentDays[0] ? formatDate(recentDays[0].date, false) : "30 days ago";
+  const endLabel = recentDays.at(-1) ? formatDate(recentDays.at(-1)!.date, false) : "Today";
 
   return (
-    <div className="github-dot-tracker">
-      <div className="github-dot-header">
+    <div className="github-momentum">
+      <div className="github-momentum-header">
         <span>09 — github</span>
         <a href={profileUrl} target="_blank" rel="noreferrer" aria-label="Open Stephware on GitHub">
           @{username.toUpperCase()} ↗
         </a>
       </div>
 
-      <div className="github-dot-scroll" role="img" aria-label="GitHub contribution activity for the last year">
-        <div className="github-dot-grid">
-          {visibleDays.map((day) => (
-            <span
-              className={`github-dot github-dot-${Math.max(0, Math.min(4, day.level))}`}
+      <div className="github-momentum-intro">
+        <div>
+          <span className="micro-label">Recent momentum</span>
+          <h3>30 days of building.</h3>
+        </div>
+        <p>Each column is one day. Height shows relative contribution intensity; the figures below use the exact GitHub counts.</p>
+      </div>
+
+      <div className="github-rhythm" role="img" aria-label="GitHub contribution activity for the last 30 days">
+        {recentDays.map((day) => {
+          const height = day.count === 0 ? 3 : Math.round(24 + (day.count / maxCount) * 76);
+
+          return (
+            <div
+              className={`github-rhythm-day ${day.count > 0 ? "is-active" : ""}`}
               key={day.date}
               title={`${formatDate(day.date)}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
-            />
-          ))}
+              aria-label={`${formatDate(day.date)}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
+            >
+              <span className="github-rhythm-track" aria-hidden="true">
+                <span className="github-rhythm-fill" style={{ height: `${height}%` }} />
+              </span>
+              <span className="github-rhythm-dot" aria-hidden="true" />
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="github-rhythm-axis" aria-hidden="true">
+        <span>{startLabel}</span>
+        <span>last 30 days</span>
+        <span>{endLabel}</span>
+      </div>
+
+      <div className="github-momentum-stats">
+        <div>
+          <span>Contributions</span>
+          <strong>{recentTotal.toLocaleString("en-US")}</strong>
+          <small>last 30 days</small>
+        </div>
+        <div>
+          <span>Active days</span>
+          <strong>{activeDays}<em>/30</em></strong>
+          <small>days with activity</small>
+        </div>
+        <div>
+          <span>Longest streak</span>
+          <strong>{longestStreak}</strong>
+          <small>consecutive active days</small>
         </div>
       </div>
 
-      <p className="github-dot-total">
-        {total === null
-          ? "PUBLIC ACTIVITY · CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
-          : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
-      </p>
+      <div className="github-momentum-footer">
+        <span>
+          {total === null
+            ? "YEARLY TOTAL TEMPORARILY UNAVAILABLE"
+            : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
+        </span>
+        <span>LIVE GITHUB DATA · REFRESHES HOURLY</span>
+      </div>
     </div>
   );
 }
