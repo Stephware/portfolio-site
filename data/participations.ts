@@ -13,15 +13,15 @@ export const participations: Participation[] = [
   },
   {
     year: "2026",
-    title: "Can You HackIT? Hackathon — Finalist & Team Lead",
+    title: "Can You HackIT? Hackathon — Finalist, Team Lead & Best School Award",
     description:
-      "Led the team in the Can You HackIT? hackathon hosted by IBPAP, advancing as a finalist while developing and presenting a technology solution under hackathon constraints.",
+      "Led the team in the Can You HackIT? hackathon hosted by IBPAP, advanced as a finalist, and received the Best School Award while developing and presenting a technology solution under hackathon constraints.",
   },
   {
     year: "2026",
     title: "Cisco APJC NetAcad Riders 2026 — Round 1 Participant",
     description:
-      "Competed in Cisco Networking Academy's regional networking competition covering networking concepts, troubleshooting, and technical problem-solving.",
+      "Competed in Cisco APJC NetAcad Riders 2026 Round 1, covering networking concepts, troubleshooting, and technical problem-solving.",
   },
   {
     year: "2026",
