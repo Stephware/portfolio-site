@@ -175,9 +175,27 @@ export default function Home() {
         </section>
 
         <section className="section" id="recommendations">
-          <SectionHeading index="04" label="recommendations" title="Recommendations.">
-            <p>Short feedback from professors, mentors, and collaborators will be added here as I collect it.</p>
+          <SectionHeading index="04" label="recommendations" title="What people I’ve worked with say.">
+            <p>Recommendations from professors, mentors, and collaborators on my work, problem-solving, reliability, and collaboration.</p>
           </SectionHeading>
+
+          <div className="recommendation-grid">
+            {["Professor / Adviser", "Faculty / Mentor", "Collaborator / Team Lead"].map((relationship) => (
+              <article className="recommendation-placeholder" key={relationship}>
+                <span className="micro-label">{relationship}</span>
+                <div className="recommendation-placeholder-lines" aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className="recommendation-placeholder-identity" aria-hidden="true">
+                  <span />
+                  <span />
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <section className="section" id="achievements">
