@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CopyEmail } from "@/components/CopyEmail";
-import { LinkedInIcon, MailIcon, ResumeIcon } from "@/components/ContactIcons";
+import { GitHubIcon, LinkedInIcon, MailIcon, ResumeIcon } from "@/components/ContactIcons";
 import { GitHubActivity } from "@/components/GitHubActivity";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Navigation } from "@/components/Navigation";
@@ -53,7 +53,7 @@ export default function Home() {
                 <a className="primary-button" href="#projects">Explore my work <span>↓</span></a>
                 <ResumePreviewLink className="text-link"><span className="icon-link"><ResumeIcon />Resume</span></ResumePreviewLink>
                 <a className="text-link icon-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
-                <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+                <a className="text-link icon-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer"><GitHubIcon />GitHub</a>
               </div>
             </div>
 
@@ -350,7 +350,7 @@ export default function Home() {
             <div className="hero-actions">
               <ResumePreviewLink className="primary-button"><span className="icon-link"><ResumeIcon />View Resume</span></ResumePreviewLink>
               <a className="text-link" href="/Stephen-Pinacate-Resume.pdf" download="Stephen-Pinacate-Resume.pdf">Download Resume ↓</a>
-              <a className="text-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a className="text-link icon-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
               <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
               <CopyEmail className="text-link contact-email-action"><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
             </div>

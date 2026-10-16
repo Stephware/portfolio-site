@@ -5,7 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { ResumePreviewLink } from "./ResumePreview";
 import { CommandPaletteTrigger } from "./CommandPalette";
 import { CopyEmail } from "./CopyEmail";
-import { LinkedInIcon, MailIcon, ResumeIcon } from "./ContactIcons";
+import { GitHubIcon, LinkedInIcon, MailIcon, ResumeIcon } from "./ContactIcons";
 
 const links = [
   ["01", "Home", "#top"],
@@ -169,7 +169,7 @@ export function Navigation() {
           <div className="external-links">
             <ResumePreviewLink><span className="icon-link"><ResumeIcon />Resume</span></ResumePreviewLink>
             <a className="icon-link" href={linkedInHref} target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
-            <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+            <a className="icon-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer"><GitHubIcon />GitHub</a>
             <CopyEmail><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
           </div>
         </div>
@@ -207,7 +207,7 @@ export function Navigation() {
             <ThemeToggle />
           </div>
           <ResumePreviewLink onOpen={closeMenu}><span className="icon-link"><ResumeIcon />Resume</span></ResumePreviewLink>
-          <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+          <a className="icon-link" href={linkedInHref} target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
           <CopyEmail onCopied={closeMenu}><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
         </div>

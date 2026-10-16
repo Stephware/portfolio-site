@@ -121,7 +121,19 @@ button { font: inherit; }
 }
 .external-links .contact-icon { width: .9rem; height: .9rem; }
 .external-links a, .external-links .copy-email-button { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent); text-underline-offset: 2px; }
-.external-links span { color: var(--gray-400); }
+.external-links > a,
+.external-links > button {
+  color: var(--ink);
+}
+
+.external-links > a:hover,
+.external-links > button:hover {
+  color: var(--ink);
+}
+
+.external-links .copy-email-status {
+  color: var(--gray-400);
+}
 .theme-control {
   display: grid;
   gap: 0.55rem;

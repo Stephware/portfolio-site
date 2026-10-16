@@ -29,3 +29,13 @@ export function ResumeIcon({ className = "contact-icon" }: { className?: string 
     </svg>
   );
 }
+
+
+export function GitHubIcon({ className = "contact-icon" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M15 22v-4.2c0-1.2-.4-2.1-1.1-2.7 3.6-.4 7.4-1.8 7.4-8A6.3 6.3 0 0 0 19.6 2.7 5.8 5.8 0 0 0 19.4 0S18.1-.4 15 1.7a15.4 15.4 0 0 0-6 0C5.9-.4 4.6 0 4.6 0a5.8 5.8 0 0 0-.2 2.7A6.3 6.3 0 0 0 2.7 7.1c0 6.2 3.8 7.6 7.4 8-.6.5-1 1.3-1.1 2.4-.9.4-3.1 1.1-4.5-1.3 0 0-.8-1.5-2.4-1.6 0 0-1.5 0-.1 1 0 0 1 .5 1.7 2.1 0 0 .9 2.8 3.7 2 .1 0 .7-.1 1.5-.4V22" />
+      <path d="M9 19.5c-2.8.8-4.6-1.3-4.6-1.3" />
+    </svg>
+  );
+}
