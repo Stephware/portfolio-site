@@ -81,7 +81,7 @@ export const projects: Project[] = [
     status: "Hackathon / team product",
     repository: "https://github.com/Mark-Batongbacal/AUP",
     detailPath: "/projects/tuki",
-    previewImage: "/Screenshot 2026-08-30 at 9.03.41 PM.png",
+    previewImage: "/Screenshot 2026-08-30 at 9.01.43 PM.png",
     previewAlt: "TUKI onboarding screen featuring the app mascot",
   },
   {
