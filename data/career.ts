@@ -13,14 +13,6 @@ export type ExperiencePlaceholder = {
   reserved: boolean;
 };
 
-export type RecommendationPlaceholder = {
-  relationship: string;
-  name: string;
-  role: string;
-  quote: string;
-  reserved: boolean;
-};
-
 export const careerLinks: PlaceholderLink[] = [
   {
     label: "Resume",
