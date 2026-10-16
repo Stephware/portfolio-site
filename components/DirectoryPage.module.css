@@ -179,22 +179,32 @@
   background: linear-gradient(180deg, var(--gray-50), var(--background));
 }
 
-.recommendationCard blockquote {
+.recommendationPlaceholderLines {
+  display: grid;
+  gap: .7rem;
   margin: 2rem 0 auto;
-  color: var(--gray-600);
-  font-size: 1.05rem;
-  line-height: 1.65;
 }
 
-.recommendationCard strong {
-  margin-top: 2rem;
+.recommendationPlaceholderLines span,
+.recommendationIdentityPlaceholder span {
+  display: block;
+  height: 1px;
+  background: var(--gray-300);
 }
 
-.recommendationCard small {
-  margin-top: .25rem;
-  color: var(--gray-400);
-  font: 9px var(--font-geist-mono), monospace;
+.recommendationPlaceholderLines span:nth-child(1) { width: 92%; }
+.recommendationPlaceholderLines span:nth-child(2) { width: 100%; }
+.recommendationPlaceholderLines span:nth-child(3) { width: 83%; }
+.recommendationPlaceholderLines span:nth-child(4) { width: 56%; }
+
+.recommendationIdentityPlaceholder {
+  display: grid;
+  gap: .5rem;
+  margin-top: 2.25rem;
 }
+
+.recommendationIdentityPlaceholder span:first-child { width: 38%; }
+.recommendationIdentityPlaceholder span:last-child { width: 24%; opacity: .7; }
 
 .achievementRow {
   display: grid;
