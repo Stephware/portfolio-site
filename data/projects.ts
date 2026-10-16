@@ -82,7 +82,7 @@ export const projects: Project[] = [
     repository: "https://github.com/Mark-Batongbacal/AUP",
     detailPath: "/projects/tuki",
     previewImage: "/Screenshot 2026-08-30 at 9.03.41 PM.png",
-    previewAlt: "TUKI multimodal commuter navigation app",
+    previewAlt: "TUKI onboarding screen featuring the app mascot",
   },
   {
     number: "04",
