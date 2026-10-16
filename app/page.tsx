@@ -4,6 +4,7 @@ import { GitHubActivity } from "@/components/GitHubActivity";
 import { Navigation } from "@/components/Navigation";
 import { PortfolioPlaceholderStyles } from "@/components/PortfolioPlaceholderStyles";
 import { ProjectCard } from "@/components/ProjectCard";
+import { ResumePreviewLink } from "@/components/ResumePreview";
 import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
 import { currentBuild } from "@/data/career";
@@ -43,7 +44,7 @@ export default function Home() {
 
               <div className="hero-actions">
                 <a className="primary-button" href="#projects">Explore my work <span>↓</span></a>
-                <a className="text-link" href="/Stephen-Pinacate-Resume.pdf" target="_blank" rel="noreferrer">Resume PDF ↗</a>
+                <ResumePreviewLink className="text-link">Resume →</ResumePreviewLink>
                 <a className="text-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
                 <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
               </div>
@@ -266,7 +267,7 @@ export default function Home() {
             <h2>Building useful systems,<br />one problem at a time.</h2>
             <p>For software opportunities, project discussions, and collaboration, my resume, LinkedIn, GitHub, and email are available below.</p>
             <div className="hero-actions">
-              <a className="primary-button" href="/Stephen-Pinacate-Resume.pdf" target="_blank" rel="noreferrer">View Resume PDF ↗</a>
+              <ResumePreviewLink className="primary-button">View Resume →</ResumePreviewLink>
               <a className="text-link" href="/Stephen-Pinacate-Resume.pdf" download="Stephen-Pinacate-Resume.pdf">Download Resume ↓</a>
               <a className="text-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
               <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>

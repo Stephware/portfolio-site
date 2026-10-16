@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { ResumePreviewModal } from "@/components/ResumePreview";
 import "./globals.css";
 import "./theme.css";
 import "./profile.css";
@@ -62,7 +63,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="en" suppressHydrationWarning>
       <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
-      <body className={`${geist.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${geist.variable} ${geistMono.variable}`}>
+        {children}
+        <ResumePreviewModal />
+      </body>
     </html>
   );
 }
