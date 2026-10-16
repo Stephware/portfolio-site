@@ -30,25 +30,48 @@ export default function AufthorizePage() {
       ]}
       proofs={[
         {
-          src: "/aufthorize-5.png",
-          alt: "AUFTHORIZE officer dashboard with submission and approval summaries",
-          caption: "Officer dashboard — request creation, submission tracking, and approval summaries.",
-        },
-        {
-          src: "/aufthorize-9.png",
-          alt: "AUFTHORIZE reviewer page for approving or rejecting a budget request",
-          caption: "Reviewer workflow — request details, budget breakdown, approval progress, and decision controls.",
-        },
-        {
           src: "/aufthorize-1.png",
-          alt: "Generated AUF liquidation report PDF with approval signature fields",
-          caption: "Generated PDF output — structured liquidation report with financial summary and signature fields.",
+          alt: "AUFTHORIZE project workflow screenshot 1",
           contain: true,
         },
         {
           src: "/aufthorize-2.png",
-          alt: "AUFTHORIZE automated email notifying a requester that budget is available",
-          caption: "Email automation — request-status notification sent with relevant request details.",
+          alt: "AUFTHORIZE project workflow screenshot 2",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-3.png",
+          alt: "AUFTHORIZE project workflow screenshot 3",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-4.png",
+          alt: "AUFTHORIZE project workflow screenshot 4",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-5.png",
+          alt: "AUFTHORIZE project workflow screenshot 5",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-6.png",
+          alt: "AUFTHORIZE project workflow screenshot 6",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-7.png",
+          alt: "AUFTHORIZE project workflow screenshot 7",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-8.png",
+          alt: "AUFTHORIZE project workflow screenshot 8",
+          contain: true,
+        },
+        {
+          src: "/aufthorize-9.png",
+          alt: "AUFTHORIZE project workflow screenshot 9",
           contain: true,
         },
       ]}

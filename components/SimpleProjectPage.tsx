@@ -6,7 +6,7 @@ import styles from "@/components/SimpleProjectPage.module.css";
 export type ProjectProof = {
   src: string;
   alt: string;
-  caption: string;
+  caption?: string;
   contain?: boolean;
 };
 
@@ -97,7 +97,7 @@ export function SimpleProjectPage({
                     className={proof.contain ? styles.containImage : styles.coverImage}
                   />
                 </div>
-                <figcaption>{proof.caption}</figcaption>
+                {proof.caption ? <figcaption>{proof.caption}</figcaption> : null}
               </figure>
             ))}
           </div>
