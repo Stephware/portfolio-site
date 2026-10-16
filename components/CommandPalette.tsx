@@ -119,7 +119,7 @@ export function CommandPalette() {
       hint: "↗",
       keywords: "contact mail",
       run: () => {
-        window.location.href = "mailto:pinacate.stephen@gmail.com";
+        window.open("mailto:pinacate.stephen@gmail.com", "_self");
       },
     },
   ];
