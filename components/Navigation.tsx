@@ -17,6 +17,7 @@ const links = [
 ] as const;
 
 const emailHref = "mailto:pinacate.stephen@gmail.com";
+const linkedInHref = "https://www.linkedin.com/in/stephen-pinacate-3bb592319/";
 
 export function Navigation() {
   const [open, setOpen] = useState(false);
@@ -159,6 +160,8 @@ export function Navigation() {
             Open to opportunities
           </div>
           <div className="external-links">
+            <a href="/resume">Resume →</a>
+            <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
             <a href={emailHref}>Email ↗</a>
           </div>
@@ -193,6 +196,8 @@ export function Navigation() {
             <span className="micro-label">Theme</span>
             <ThemeToggle />
           </div>
+          <a href="/resume" onClick={closeMenu}>Resume →</a>
+          <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
           <a href={emailHref}>pinacate.stephen@gmail.com ↗</a>
         </div>

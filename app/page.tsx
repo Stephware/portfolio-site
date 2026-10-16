@@ -43,8 +43,9 @@ export default function Home() {
 
               <div className="hero-actions">
                 <a className="primary-button" href="#projects">Explore my work <span>↓</span></a>
+                <Link className="text-link" href="/resume">Resume →</Link>
+                <a className="text-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
                 <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-                <a className="text-link" href="mailto:pinacate.stephen@gmail.com">Email ↗</a>
               </div>
             </div>
 
@@ -263,9 +264,11 @@ export default function Home() {
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
-            <p>For software opportunities, project discussions, and collaboration, reach me through GitHub or email.</p>
+            <p>For software opportunities, project discussions, and collaboration, my resume, LinkedIn, GitHub, and email are available below.</p>
             <div className="hero-actions">
-              <a className="primary-button" href="https://github.com/Stephware" target="_blank" rel="noreferrer">View GitHub ↗</a>
+              <Link className="primary-button" href="/resume">View Resume →</Link>
+              <a className="text-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
+              <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
               <a className="text-link" href="mailto:pinacate.stephen@gmail.com">Email ↗</a>
             </div>
           </div>
