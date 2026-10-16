@@ -11,7 +11,6 @@ import {
   experiencePlaceholders,
   futureProofPlaceholders,
   postGraduationProfile,
-  recommendationPlaceholders,
 } from "@/data/career";
 import { education } from "@/data/education";
 import { organizations } from "@/data/organizations";
