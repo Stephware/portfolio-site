@@ -55,30 +55,6 @@ export const currentBuild = {
   reminder: "Add screenshots, milestones, evaluation results, and deployment link as the thesis progresses.",
 };
 
-export const recommendationPlaceholders: RecommendationPlaceholder[] = [
-  {
-    relationship: "Professor / Adviser",
-    name: "Recommendation reserved",
-    role: "Academic / technical perspective",
-    quote: "Add a short verified recommendation about technical ability, initiative, problem-solving, or project ownership.",
-    reserved: true,
-  },
-  {
-    relationship: "OJT Supervisor",
-    name: "Recommendation reserved",
-    role: "Professional work perspective",
-    quote: "Add a short verified recommendation about performance in a real software team or workplace.",
-    reserved: true,
-  },
-  {
-    relationship: "Teammate / Stakeholder",
-    name: "Recommendation reserved",
-    role: "Collaboration / delivery perspective",
-    quote: "Add a short verified recommendation about reliability, collaboration, leadership, or delivering a working system.",
-    reserved: true,
-  },
-];
-
 export const futureProofPlaceholders = [
   {
     title: "Certifications",
