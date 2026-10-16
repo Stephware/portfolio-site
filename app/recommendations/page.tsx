@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Recommendations and feedback for Stephen Pinacate.",
 };
 
+const recommendationGroups = ["Professor / Adviser", "Faculty / Mentor", "Collaborator / Team Lead"];
+
 export default function RecommendationsPage() {
   return (
     <>
@@ -23,14 +25,30 @@ export default function RecommendationsPage() {
             <span className={styles.kicker}>Recommendations</span>
             <h1>What others say.</h1>
             <p>
-              Short recommendations from professors, mentors, and collaborators will be added here
-              as I collect verified feedback about my work, problem-solving, reliability, and collaboration.
+              Recommendations from professors, mentors, and collaborators on my technical work,
+              problem-solving, reliability, leadership, and collaboration.
             </p>
           </div>
         </section>
 
         <section className={styles.sectionBlock}>
-          <p>No recommendations published yet.</p>
+          <div className={styles.recommendationGrid}>
+            {recommendationGroups.map((relationship) => (
+              <article className={styles.recommendationCard} key={relationship}>
+                <span className={styles.eyebrow}>{relationship}</span>
+                <div className={styles.recommendationPlaceholderLines} aria-hidden="true">
+                  <span />
+                  <span />
+                  <span />
+                  <span />
+                </div>
+                <div className={styles.recommendationIdentityPlaceholder} aria-hidden="true">
+                  <span />
+                  <span />
+                </div>
+              </article>
+            ))}
+          </div>
         </section>
 
         <footer className={styles.footer}>
