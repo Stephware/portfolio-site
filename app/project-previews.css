@@ -179,3 +179,39 @@ html.dark .project-card:hover .project-preview-image {
     transform: none;
   }
 }
+
+/* Additional project proof previews */
+.project-card:not(.project-card-featured) .project-visual-with-image .project-preview-image {
+  opacity: .58;
+  filter: grayscale(.45) brightness(.9) contrast(1.02);
+}
+
+.project-card:not(.project-card-featured) .project-visual-with-image .project-preview-wash {
+  background: linear-gradient(180deg, rgb(255 255 255 / .04), rgb(20 20 20 / .12));
+}
+
+.project-card:not(.project-card-featured) .project-visual-with-image .visual-grid {
+  opacity: .08;
+}
+
+.project-preview-number {
+  align-self: flex-end;
+  margin-top: auto;
+  padding: .2rem .45rem;
+  border: 1px solid rgb(255 255 255 / .38);
+  border-radius: 999px;
+  background: rgb(0 0 0 / .32);
+  color: white;
+  font: 500 9px var(--font-geist-mono), monospace;
+  letter-spacing: .06em;
+}
+
+.project-card:not(.project-card-featured):hover .project-preview-image {
+  opacity: .68;
+  filter: grayscale(.25) brightness(.94) contrast(1.03);
+}
+
+html.dark .project-card:not(.project-card-featured) .project-visual-with-image .project-preview-image {
+  opacity: .54;
+  filter: grayscale(.4) brightness(1.05) contrast(.96);
+}

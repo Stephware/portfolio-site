@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 };
 
 function projectDestination(project: (typeof projects)[number]) {
-  return project.detailPath ?? project.liveUrl ?? project.repository ?? "/projects/mallows-cafe-kiosk";
+  return project.detailPath ?? project.liveUrl ?? project.repository ?? "/projects";
 }
 
 export default function ProjectsPage() {
@@ -29,11 +29,11 @@ export default function ProjectsPage() {
             <h1>Projects</h1>
             <p>
               A complete list of the systems I have built or co-built across clinic operations,
-              university workflows, public transport, desktop computing, and kiosk experiences.
+              university workflows, public transport, and desktop computing.
             </p>
           </div>
           <div className={styles.heroAside}>
-            Open each project for its case study, live system, repository, or detailed overview.
+            Open each project for its case study, project overview, live system, or repository.
           </div>
         </section>
 

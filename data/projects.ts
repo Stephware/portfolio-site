@@ -14,6 +14,7 @@ export type Project = {
   repository?: string;
   repositoryLabel?: string;
   detailPath?: string;
+  detailLabel?: string;
   liveUrl?: string;
   previewImage?: string;
   previewAlt?: string;
@@ -94,22 +95,30 @@ export const projects: Project[] = [
     scope: "Venue · Budget · Liquidation · Reimbursement · Materials",
     status: "Academic team project",
     repository: "https://github.com/KurtSarmiento/auf-requests-system",
+    detailPath: "/projects/aufthorize",
+    detailLabel: "View project",
+    previewImage: "/aufthorize-5.png",
+    previewAlt: "AUFTHORIZE officer dashboard showing request workflow summaries",
   },
   {
     number: "05",
     title: "ENGRLINK",
     description:
-      "An academic portal prototype designed around the workflows of the AUF College of Engineering and Architecture (CEA), supporting students, faculty, accounting, and department chairs through enrollment, schedules, grades, balances, subject offerings, and role-based academic workflows.",
+      "An academic portal prototype designed around the workflows of the AUF College of Engineering and Architecture, supporting role-based access to enrollment, student and faculty records, schedules, grades, balances, subject offerings, and announcements.",
     tags: ["C#", "WinUI 3", ".NET", "Supabase"],
     homepage: "more",
     imageLabel: "AUF CEA ACADEMIC PORTAL",
     ownership: "Team of 3 developers",
     role: "Desktop / Full-stack Developer",
     contribution:
-      "Co-developed the academic portal and enrollment workflows, role-based experiences, academic data handling, and Supabase-backed application behavior for AUF CEA.",
+      "Co-developed the academic portal, enrollment workflows, role-based experiences, academic data handling, and Supabase-backed application behavior for AUF CEA.",
     scope: "AUF College of Engineering and Architecture",
     status: "Academic team project",
     repository: "https://github.com/Mark-Batongbacal/EngrLink",
+    detailPath: "/projects/engrlink",
+    detailLabel: "View project",
+    previewImage: "/engrlink-1.png",
+    previewAlt: "ENGRLINK AUF College of Engineering and Architecture desktop portal",
   },
   {
     number: "06",
@@ -122,25 +131,13 @@ export const projects: Project[] = [
     ownership: "Solo project",
     role: "Desktop Developer",
     contribution:
-      "Implemented the numerical algorithms, equation-processing flow, iterative result presentation, plotting, and the desktop interface as a complete numerical-methods learning tool.",
+      "Implemented the numerical algorithms, equation-processing flow, iterative result presentation, plotting, and desktop interface as a numerical-methods learning tool.",
     scope: "Root finding · Linear systems · Regression",
     status: "Academic solo project",
     repository: "https://github.com/gutierrez-jv/LVS-Gauss-Busters",
-  },
-  {
-    number: "07",
-    title: "MALLOW'S CAFE KIOSK",
-    description:
-      "A self-service cafe ordering experience designed to make menu browsing, item selection, and order entry clearer and faster at the counter. The project focuses on reducing ordering friction through a kiosk-style interface and a more structured digital ordering flow.",
-    tags: ["Kiosk", "Ordering UX", "Cafe Operations"],
-    homepage: "more",
-    imageLabel: "SELF-SERVICE CAFE ORDERING",
-    ownership: "Project build",
-    role: "Application Developer",
-    contribution:
-      "Designed and developed the kiosk-oriented ordering experience, organizing menu discovery and order entry around a simpler customer flow suitable for a cafe environment.",
-    scope: "Menu browsing · order entry · kiosk workflow",
-    status: "Kiosk project",
-    repositoryLabel: "Source not publicly available",
+    detailPath: "/projects/gauss-busters",
+    detailLabel: "View project",
+    previewImage: "/gaussbusters-1.png",
+    previewAlt: "GAUSS BUSTERS numerical methods solver showing Newton-Raphson iteration results",
   },
 ];

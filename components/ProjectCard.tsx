@@ -5,6 +5,7 @@ import type { Project } from "@/data/projects";
 export function ProjectCard({ project }: { project: Project }) {
   const hasPreview = Boolean(project.previewImage);
   const usesFeaturedPreview = hasPreview && project.featured;
+  const detailLabel = project.detailLabel ?? "View case study";
 
   const visualCore = (
     <div
@@ -26,9 +27,15 @@ export function ProjectCard({ project }: { project: Project }) {
 
       <div className="visual-grid" aria-hidden="true" />
       <div className={`project-visual-label ${hasPreview ? "project-visual-label-preview" : ""}`}>
-        {!usesFeaturedPreview ? <span className="micro-label">{project.imageLabel}</span> : null}
-        <strong>{project.number}</strong>
-        {!usesFeaturedPreview ? <span>{project.scope ?? "Software project"}</span> : null}
+        {hasPreview ? (
+          <span className="project-preview-number">{project.number}</span>
+        ) : (
+          <>
+            <span className="micro-label">{project.imageLabel}</span>
+            <strong>{project.number}</strong>
+            <span>{project.scope ?? "Software project"}</span>
+          </>
+        )}
       </div>
     </div>
   );
@@ -39,7 +46,7 @@ export function ProjectCard({ project }: { project: Project }) {
         <Link
           className="project-preview-image-link"
           href={project.detailPath}
-          aria-label={`View ${project.title} case study`}
+          aria-label={`${detailLabel}: ${project.title}`}
         >
           {visualCore}
         </Link>
@@ -54,7 +61,7 @@ export function ProjectCard({ project }: { project: Project }) {
     <Link
       className={hasPreview ? "project-preview-image-link" : undefined}
       href={project.detailPath}
-      aria-label={`View ${project.title} case study`}
+      aria-label={`${detailLabel}: ${project.title}`}
     >
       {visualCore}
     </Link>
@@ -94,12 +101,11 @@ export function ProjectCard({ project }: { project: Project }) {
           <p>{project.contribution}</p>
         </div>
 
-
         <div className="tag-row">
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
         <div className="project-actions">
-          {project.detailPath ? <Link href={project.detailPath}>View case study →</Link> : null}
+          {project.detailPath ? <Link href={project.detailPath}>{detailLabel} →</Link> : null}
           {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noreferrer">Live system ↗</a> : null}
           {project.repository ? (
             <a href={project.repository} target="_blank" rel="noreferrer">Repository ↗</a>
