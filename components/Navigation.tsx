@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { ResumePreviewLink } from "./ResumePreview";
 import { CommandPaletteTrigger } from "./CommandPalette";
+import { CopyEmail } from "./CopyEmail";
 
 const links = [
   ["01", "Home", "#top"],
@@ -19,7 +20,6 @@ const links = [
   ["11", "Contact", "#contact"],
 ] as const;
 
-const emailHref = "mailto:pinacate.stephen@gmail.com";
 const linkedInHref = "https://www.linkedin.com/in/stephen-pinacate-3bb592319/";
 
 export function Navigation() {
@@ -169,7 +169,7 @@ export function Navigation() {
             <ResumePreviewLink>Resume →</ResumePreviewLink>
             <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <a href={emailHref}>Email ↗</a>
+            <CopyEmail copiedLabel="Copied ✓">Copy email</CopyEmail>
           </div>
         </div>
       </aside>
@@ -208,7 +208,7 @@ export function Navigation() {
           <ResumePreviewLink onOpen={closeMenu}>Resume →</ResumePreviewLink>
           <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <a href={emailHref}>pinacate.stephen@gmail.com ↗</a>
+          <CopyEmail copiedLabel="Copied ✓" onCopied={closeMenu}>Copy email · pinacate.stephen@gmail.com</CopyEmail>
         </div>
       </div>
     </>

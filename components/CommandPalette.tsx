@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import { useRouter } from "next/navigation";
+import { copyEmailAddress } from "./CopyEmail";
 import styles from "./CommandPalette.module.css";
 
 const openEvent = "portfolio:open-command";
@@ -114,12 +115,12 @@ export function CommandPalette() {
     },
     { label: "GitHub", group: "Links", hint: "↗", run: () => goTo("https://github.com/Stephware") },
     {
-      label: "Email Stephen",
-      group: "Links",
-      hint: "↗",
-      keywords: "contact mail",
+      label: "Copy email",
+      group: "Actions",
+      hint: "Clipboard",
+      keywords: "contact mail email stephen",
       run: () => {
-        window.open("mailto:pinacate.stephen@gmail.com", "_self");
+        void copyEmailAddress();
       },
     },
   ];

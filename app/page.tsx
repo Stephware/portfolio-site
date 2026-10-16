@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CopyEmail } from "@/components/CopyEmail";
 import { GitHubActivity } from "@/components/GitHubActivity";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Navigation } from "@/components/Navigation";
@@ -350,7 +351,7 @@ export default function Home() {
               <a className="text-link" href="/Stephen-Pinacate-Resume.pdf" download="Stephen-Pinacate-Resume.pdf">Download Resume ↓</a>
               <a className="text-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer">LinkedIn ↗</a>
               <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <a className="text-link" href="mailto:pinacate.stephen@gmail.com">Email ↗</a>
+              <CopyEmail className="text-link" copiedLabel="Copied ✓">Copy email</CopyEmail>
             </div>
           </div>
         </section>

@@ -114,7 +114,7 @@ button { font: inherit; }
 }
 .status-dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ink); animation: pulse 1.8s ease-in-out infinite; }
 .external-links { display: grid; gap: 0.35rem; margin-bottom: 1.25rem; font: 10px var(--font-geist-mono), monospace; }
-.external-links a { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent); text-underline-offset: 2px; }
+.external-links a, .external-links .copy-email-button { text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent); text-underline-offset: 2px; }
 .external-links span { color: var(--gray-400); }
 .theme-control {
   display: grid;
@@ -196,6 +196,8 @@ button { font: inherit; }
 .hero-actions { display: flex; align-items: center; gap: 1.4rem; margin-top: 2rem; }
 .primary-button { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.72rem 0.95rem; border: 1px solid var(--ink); border-radius: 7px; background: var(--ink); color: var(--background); font: 10px var(--font-geist-mono), monospace; letter-spacing: 0.04em; text-transform: uppercase; transition: transform 200ms ease, opacity 200ms ease; }
 .primary-button:hover { transform: translateY(-2px); opacity: 0.88; }
+.copy-email-button { padding: 0; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.copy-email-button:hover { color: var(--ink); }
 .text-link { color: var(--gray-600); font: 10px var(--font-geist-mono), monospace; text-decoration: underline; text-decoration-color: color-mix(in srgb, var(--ink) 25%, transparent); text-underline-offset: 3px; }
 .text-link:hover { color: var(--ink); text-decoration-color: var(--ink); }
 .text-link.muted { color: var(--gray-400); }
