@@ -6,12 +6,7 @@ import { PortfolioPlaceholderStyles } from "@/components/PortfolioPlaceholderSty
 import { ProjectCard } from "@/components/ProjectCard";
 import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
-import {
-  currentBuild,
-  experiencePlaceholders,
-  futureProofPlaceholders,
-  postGraduationProfile,
-} from "@/data/career";
+import { currentBuild } from "@/data/career";
 import { education } from "@/data/education";
 import { organizations } from "@/data/organizations";
 import { participations } from "@/data/participations";
@@ -104,78 +99,48 @@ export default function Home() {
         </section>
 
         <section className="section" id="experience">
-          <SectionHeading index="03" label="experience & career proof" title="Reserved now. Replaced with verified proof as it becomes available.">
-            <p>These placeholders keep the next career-ready pieces visible so they can be filled with real OJT experience, metrics, certifications, and post-graduation positioning later.</p>
+          <SectionHeading index="03" label="experience & current work" title="Hands-on development across real systems.">
+            <p>My experience is grounded in building and shipping software across solo and collaborative projects, with hands-on work in architecture, APIs, data, interfaces, deployment, and technical problem-solving.</p>
           </SectionHeading>
 
           <div className="career-proof-grid">
-            {experiencePlaceholders.map((item) => (
-              <article className="career-placeholder-card" key={`${item.organization}-${item.role}`}>
-                <div className="placeholder-card-meta">
-                  <span>{item.period}</span>
-                  <span className="reserved-chip">Reserved</span>
-                </div>
-                <span className="micro-label">Experience / OJT</span>
-                <h3>{item.role}</h3>
-                <strong>{item.organization}</strong>
-                <p>{item.description}</p>
-                <ul>
-                  {item.bullets.map((bullet) => <li key={bullet}>{bullet}</li>)}
-                </ul>
-              </article>
-            ))}
-
             <article className="career-placeholder-card current-build-card">
               <div className="placeholder-card-meta">
-                <span>Currently building</span>
-                <span className="reserved-chip active-chip">In progress</span>
+                <span>Thesis project</span>
+                <span className="reserved-chip active-chip">Active</span>
               </div>
-              <span className="micro-label">Thesis / active development</span>
+              <span className="micro-label">Current work</span>
               <h3>{currentBuild.title}</h3>
               <strong>{currentBuild.status}</strong>
               <p>{currentBuild.description}</p>
               <div className="tag-row compact-tags">
                 {currentBuild.stack.map((item) => <span key={item}>{item}</span>)}
               </div>
-              <p className="placeholder-reminder">{currentBuild.reminder}</p>
+            </article>
+
+            <article className="career-placeholder-card current-build-card">
+              <div className="placeholder-card-meta">
+                <span>Applied development</span>
+                <span className="reserved-chip active-chip">Hands-on</span>
+              </div>
+              <span className="micro-label">Project-based experience</span>
+              <h3>Full-stack systems development</h3>
+              <strong>Web · Mobile · Desktop · AI-assisted applications</strong>
+              <p>
+                Built and co-built systems for clinic operations, university workflows, public transport,
+                numerical computing, and kiosk ordering, working across application architecture,
+                databases, APIs, interfaces, deployment, and team collaboration.
+              </p>
+              <div className="tag-row compact-tags">
+                {["ASP.NET Core", "C#", "SQL Server", "Kotlin", "Git / GitHub"].map((item) => <span key={item}>{item}</span>)}
+              </div>
             </article>
           </div>
-
-          <details className="future-proof-details">
-            <summary>
-              <span>
-                <span className="micro-label">Later additions</span>
-                <strong>Certifications, technical writing & graduation updates</strong>
-              </span>
-              <span aria-hidden="true">+</span>
-            </summary>
-            <div className="future-proof-content">
-              <div className="future-proof-grid">
-                {futureProofPlaceholders.map((item) => (
-                  <article key={item.title}>
-                    <span className="reserved-chip">Reserved</span>
-                    <h3>{item.title}</h3>
-                    <p>{item.description}</p>
-                    <small>{item.examples}</small>
-                  </article>
-                ))}
-              </div>
-
-              <article className="graduation-copy-placeholder">
-                <span className="micro-label">Post-graduation hero copy · reserved</span>
-                <h3>{postGraduationProfile.eyebrow}</h3>
-                <p>{postGraduationProfile.lead}</p>
-                <strong>{postGraduationProfile.educationLine}</strong>
-                <small>{postGraduationProfile.availability}</small>
-                <p className="placeholder-reminder">{postGraduationProfile.heroStatReminder}</p>
-              </article>
-            </div>
-          </details>
         </section>
 
         <section className="section" id="recommendations">
-          <SectionHeading index="04" label="recommendations" title="What people I’ve worked with say.">
-            <p>Recommendations from professors, mentors, and collaborators on my work, problem-solving, reliability, and collaboration.</p>
+          <SectionHeading index="04" label="recommendations" title="Perspectives from professors, mentors, and collaborators.">
+            <p>Feedback focused on my technical work, problem-solving, reliability, leadership, and collaboration.</p>
           </SectionHeading>
 
           <div className="recommendation-grid">
@@ -199,7 +164,7 @@ export default function Home() {
 
         <section className="section" id="achievements">
           <SectionHeading index="05" label="achievements" title="Recognition across academics, competitions, and organizations.">
-            <p>Only a short selection stays here now. The complete list has its own page so each result is easier to scan and read.</p>
+            <p>Selected highlights are shown here, with the complete achievement record available on the dedicated achievements page.</p>
           </SectionHeading>
           <div className="achievement-list">
             {primaryAchievements.map((item, index) => (
@@ -237,8 +202,8 @@ export default function Home() {
         </section>
 
         <section className="section" id="competitions">
-          <SectionHeading index="07" label="competitions & participation" title="Technical competition experience beyond the podium.">
-            <p>These entries show technical environments where I tested networking, electronics, troubleshooting, and problem-solving skills even when the result was participation rather than a placement.</p>
+          <SectionHeading index="07" label="competitions & participation" title="Competition experience across networking, hackathons, and electronics.">
+            <p>Regional placement, finalist recognition, team leadership, and hands-on technical problem-solving across competitive environments.</p>
           </SectionHeading>
           <div className="participation-grid">
             {participations.map((item, index) => (
@@ -287,7 +252,7 @@ export default function Home() {
 
         <section className="section" id="github">
           <SectionHeading index="09" label="github activity" title="Shipping work, visible in public.">
-            <p>A live view of my recent public GitHub activity, including active days, repositories touched, and the latest development events.</p>
+            <p>A live view of my GitHub contribution activity across the last year.</p>
           </SectionHeading>
           <GitHubActivity />
         </section>
@@ -298,7 +263,7 @@ export default function Home() {
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
-            <p>GitHub and email are available now. Resume and LinkedIn can be added once finalized.</p>
+            <p>For software opportunities, project discussions, and collaboration, reach me through GitHub or email.</p>
             <div className="hero-actions">
               <a className="primary-button" href="https://github.com/Stephware" target="_blank" rel="noreferrer">View GitHub ↗</a>
               <a className="text-link" href="mailto:pinacate.stephen@gmail.com">Email ↗</a>

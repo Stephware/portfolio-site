@@ -24,12 +24,12 @@ export default function AchievementsPage() {
             <span className={styles.kicker}>Recognition & milestones</span>
             <h1>Achievements</h1>
             <p>
-              A complete record of selected academic distinctions, technical competition results,
-              and recognition that would be too dense to present comfortably on the main portfolio page.
+              A focused record of academic distinctions, technical competition results,
+              scholarships, and organizational recognition.
             </p>
           </div>
           <div className={styles.heroAside}>
-            The homepage now works as a preview. This page keeps the full list readable and gives each achievement enough space for context.
+            Selected highlights appear on the homepage, while this page presents the complete achievement record with added context.
           </div>
         </section>
 

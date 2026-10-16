@@ -16,8 +16,8 @@ export const achievements: Achievement[] = [
   {
     year: "2026",
     eyebrow: "REGIONAL COMPETITION",
-    title: "9th Regional CpE Challenge — 2nd Place",
-    description: "Earned 2nd place in a competition category at the 9th Regional Computer Engineering Challenge.",
+    title: "2nd Place — Networking Competition, 9th Regional CpE Challenge",
+    description: "Earned 2nd place in the Networking Competition of the 9th Regional CpE Challenge hosted by Huawei.",
   },
   {
     year: "2024 — PRESENT",

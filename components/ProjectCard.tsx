@@ -94,12 +94,6 @@ export function ProjectCard({ project }: { project: Project }) {
           <p>{project.contribution}</p>
         </div>
 
-        {project.impactPlaceholder ? (
-          <div className="project-impact-placeholder">
-            <span className="micro-label">Impact / outcome · reserved</span>
-            <p>{project.impactPlaceholder}</p>
-          </div>
-        ) : null}
 
         <div className="tag-row">
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}

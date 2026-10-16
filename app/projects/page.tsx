@@ -33,8 +33,7 @@ export default function ProjectsPage() {
             </p>
           </div>
           <div className={styles.heroAside}>
-            Click any project to open its case study, live system, repository, or project overview.
-            Existing dedicated case-study pages remain unchanged.
+            Open each project for its case study, live system, repository, or detailed overview.
           </div>
         </section>
 

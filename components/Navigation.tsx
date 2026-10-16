@@ -161,8 +161,6 @@ export function Navigation() {
           <div className="external-links">
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
             <a href={emailHref}>Email ↗</a>
-            <span>Resume · reserved</span>
-            <span>LinkedIn · reserved</span>
           </div>
         </div>
       </aside>
@@ -197,7 +195,6 @@ export function Navigation() {
           </div>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
           <a href={emailHref}>pinacate.stephen@gmail.com ↗</a>
-          <span>Resume · LinkedIn reserved for final links</span>
         </div>
       </div>
     </>
