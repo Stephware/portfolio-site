@@ -134,14 +134,32 @@ export function PortfolioPlaceholderStyles() {
         padding: 1rem;
       }
 
-      .recommendation-placeholder blockquote {
-        margin: 1.25rem 0 auto;
-        color: var(--gray-500);
-        font-size: .9rem;
-        line-height: 1.55;
+      .recommendation-placeholder-lines {
+        display: grid;
+        gap: .55rem;
+        margin: 1.7rem 0 auto;
       }
 
-      .recommendation-placeholder strong { margin-top: 1.25rem; font-size: .85rem; }
+      .recommendation-placeholder-lines span,
+      .recommendation-placeholder-identity span {
+        display: block;
+        height: 1px;
+        background: var(--gray-300);
+      }
+
+      .recommendation-placeholder-lines span:nth-child(1) { width: 92%; }
+      .recommendation-placeholder-lines span:nth-child(2) { width: 100%; }
+      .recommendation-placeholder-lines span:nth-child(3) { width: 84%; }
+      .recommendation-placeholder-lines span:nth-child(4) { width: 58%; }
+
+      .recommendation-placeholder-identity {
+        display: grid;
+        gap: .45rem;
+        margin-top: 2rem;
+      }
+
+      .recommendation-placeholder-identity span:first-child { width: 42%; }
+      .recommendation-placeholder-identity span:last-child { width: 28%; opacity: .7; }
 
       .recommendation-placeholder small,
       .future-proof-grid small,
