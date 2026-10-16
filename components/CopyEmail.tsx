@@ -23,13 +23,11 @@ export async function copyEmailAddress() {
 
 export function CopyEmail({
   className,
-  children = "Email",
-  copiedLabel = "Copied!",
+  children,
   onCopied,
 }: {
   className?: string;
-  children?: ReactNode;
-  copiedLabel?: ReactNode;
+  children: ReactNode;
   onCopied?: () => void;
 }) {
   const [copied, setCopied] = useState(false);
@@ -53,11 +51,13 @@ export function CopyEmail({
       type="button"
       className={`copy-email-button ${className ?? ""}`.trim()}
       onClick={copy}
-      aria-label={copied ? "Email address copied" : "Copy email address"}
+      aria-label="Copy email address"
       title={copied ? "Copied to clipboard" : `Copy ${emailAddress}`}
     >
-      {copied ? copiedLabel : children}
-      <span className="sr-only" aria-live="polite">{copied ? "Email address copied to clipboard." : ""}</span>
+      <span className="contact-link-main">{children}</span>
+      <span className={`copy-email-status ${copied ? "visible" : ""}`} aria-live="polite">
+        {copied ? "Copied" : ""}
+      </span>
     </button>
   );
 }

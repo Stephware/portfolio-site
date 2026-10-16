@@ -5,6 +5,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { ResumePreviewLink } from "./ResumePreview";
 import { CommandPaletteTrigger } from "./CommandPalette";
 import { CopyEmail } from "./CopyEmail";
+import { LinkedInIcon, MailIcon, ResumeIcon } from "./ContactIcons";
 
 const links = [
   ["01", "Home", "#top"],
@@ -166,10 +167,10 @@ export function Navigation() {
             Open to opportunities
           </div>
           <div className="external-links">
-            <ResumePreviewLink>Resume →</ResumePreviewLink>
-            <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
+            <ResumePreviewLink><span className="icon-link"><ResumeIcon />Resume</span></ResumePreviewLink>
+            <a className="icon-link" href={linkedInHref} target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
             <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-            <CopyEmail copiedLabel="Copied ✓">Copy email</CopyEmail>
+            <CopyEmail><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
           </div>
         </div>
       </aside>
@@ -205,10 +206,10 @@ export function Navigation() {
             <span className="micro-label">Theme</span>
             <ThemeToggle />
           </div>
-          <ResumePreviewLink onOpen={closeMenu}>Resume →</ResumePreviewLink>
+          <ResumePreviewLink onOpen={closeMenu}><span className="icon-link"><ResumeIcon />Resume</span></ResumePreviewLink>
           <a href={linkedInHref} target="_blank" rel="noreferrer">LinkedIn ↗</a>
           <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-          <CopyEmail copiedLabel="Copied ✓" onCopied={closeMenu}>Copy email · pinacate.stephen@gmail.com</CopyEmail>
+          <CopyEmail onCopied={closeMenu}><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
         </div>
       </div>
     </>
