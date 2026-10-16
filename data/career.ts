@@ -46,13 +46,32 @@ export const experiencePlaceholders: ExperiencePlaceholder[] = [
   },
 ];
 
-export const currentBuild = {
-  title: "AUF NAVI",
-  status: "Active thesis project",
-  description:
-    "AI-powered smart campus information platform using retrieval-augmented generation, verified university knowledge sources, campus guidance, and one responsive web application for kiosk, web, and PWA use.",
-  stack: ["ASP.NET Core", ".NET 10", "OpenAI", "SQL Server", "PWA"],
-};
+export const currentBuilds = [
+  {
+    title: "AUF NAVI",
+    status: "Active thesis project",
+    description:
+      "A campus information and navigation system for Angeles University Foundation built around structured campus data, building and floor information, campus entities, location records, and working navigation for campus guidance.",
+    stack: ["ASP.NET Core MVC", ".NET 10", "EF Core", "SQL Server"],
+    repository: "https://github.com/Stephware/auf-navi-vision",
+  },
+  {
+    title: "Be My Parol",
+    status: "Active collaborative project",
+    description:
+      "A mobile-first Filipino Christmas parol experience where a host shares a lantern with friends, guests contribute lights and private messages, and the parol grows through curated visual stages while keeping guest participation lightweight.",
+    stack: ["React", "TypeScript", "ASP.NET Core", ".NET 10", "SQL Server"],
+    repository: "https://github.com/Stephware/DecoMyLantern",
+  },
+  {
+    title: "ICpEP Region 3 Hub",
+    status: "Active regional platform build",
+    description:
+      "A centralized platform for ICpEP.se Region 3 chapters covering announcements, events, chapter information, assistance requests, collaboration workflows, account management, role-based access, and regional administration.",
+    stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "TypeScript"],
+    repository: "https://github.com/Stephware/IcpepRegionHub",
+  },
+];
 
 export const futureProofPlaceholders = [
   {

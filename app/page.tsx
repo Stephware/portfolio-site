@@ -7,7 +7,7 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { ResumePreviewLink } from "@/components/ResumePreview";
 import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
-import { currentBuild } from "@/data/career";
+import { currentBuilds } from "@/data/career";
 import { education } from "@/data/education";
 import { hardwareProjects } from "@/data/hardware";
 import { organizations } from "@/data/organizations";
@@ -109,19 +109,24 @@ export default function Home() {
           </SectionHeading>
 
           <div className="career-proof-grid">
-            <article className="career-placeholder-card current-build-card" data-reveal>
-              <div className="placeholder-card-meta">
-                <span>Thesis project</span>
-                <span className="reserved-chip active-chip">Active</span>
-              </div>
-              <span className="micro-label">Current work</span>
-              <h3>{currentBuild.title}</h3>
-              <strong>{currentBuild.status}</strong>
-              <p>{currentBuild.description}</p>
-              <div className="tag-row compact-tags">
-                {currentBuild.stack.map((item) => <span key={item}>{item}</span>)}
-              </div>
-            </article>
+            {currentBuilds.map((build, index) => (
+              <article className="career-placeholder-card current-build-card" data-reveal key={build.title}>
+                <div className="placeholder-card-meta">
+                  <span>{index === 0 ? "Thesis project" : "Current build"}</span>
+                  <span className="reserved-chip active-chip">Active</span>
+                </div>
+                <span className="micro-label">Current work</span>
+                <h3>{build.title}</h3>
+                <strong>{build.status}</strong>
+                <p>{build.description}</p>
+                <div className="tag-row compact-tags">
+                  {build.stack.map((item) => <span key={item}>{item}</span>)}
+                </div>
+                <div className="project-actions">
+                  <a href={build.repository} target="_blank" rel="noreferrer">Repository ↗</a>
+                </div>
+              </article>
+            ))}
 
             <article className="career-placeholder-card current-build-card" data-reveal>
               <div className="placeholder-card-meta">
@@ -130,11 +135,11 @@ export default function Home() {
               </div>
               <span className="micro-label">Project-based experience</span>
               <h3>Full-stack systems development</h3>
-              <strong>Web · Mobile · Desktop · AI-assisted applications</strong>
+              <strong>Web · Mobile · Desktop · Embedded systems</strong>
               <p>
                 Built and co-built systems for clinic operations, university workflows, public transport,
-                and numerical computing, working across application architecture, databases, APIs,
-                interfaces, deployment, and team collaboration.
+                numerical computing, community platforms, and embedded projects, working across application
+                architecture, databases, APIs, interfaces, deployment, and team collaboration.
               </p>
               <div className="tag-row compact-tags">
                 {["ASP.NET Core", "C#", "SQL Server", "Kotlin", "Git / GitHub"].map((item) => <span key={item}>{item}</span>)}
