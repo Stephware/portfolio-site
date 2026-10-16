@@ -21,6 +21,8 @@ export default function Home() {
   const primaryAchievements = achievements.filter((item) => !item.earlier).slice(0, 3);
   const recentOrganizations = organizations.slice(0, 4);
   const earlierOrganizations = organizations.slice(4);
+  const primaryHardwareProjects = hardwareProjects.slice(0, 3);
+  const moreHardwareProjects = hardwareProjects.slice(3);
 
   return (
     <>
@@ -287,11 +289,11 @@ export default function Home() {
           </SectionHeading>
 
           <div className="hardware-grid">
-            {hardwareProjects.map((project) => (
+            {primaryHardwareProjects.map((project) => (
               <article className="hardware-card" key={project.number} data-reveal>
                 <div className="hardware-card-meta">
                   <span>{project.number}</span>
-                  <span>Embedded / hardware</span>
+                  <span>{project.status ?? "Embedded / hardware"}</span>
                 </div>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
@@ -306,6 +308,38 @@ export default function Home() {
               </article>
             ))}
           </div>
+
+          {moreHardwareProjects.length > 0 ? (
+            <details className="more-projects hardware-more">
+              <summary>
+                <span>
+                  <span className="micro-label">Additional hardware work</span>
+                  <strong>View {moreHardwareProjects.length} more hardware projects</strong>
+                </span>
+                <span className="more-projects-icon" aria-hidden="true">+</span>
+              </summary>
+              <div className="hardware-grid hardware-more-grid">
+                {moreHardwareProjects.map((project) => (
+              <article className="hardware-card" key={project.number} data-reveal>
+                <div className="hardware-card-meta">
+                  <span>{project.number}</span>
+                  <span>{project.status ?? "Embedded / hardware"}</span>
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+
+                <div className="hardware-flow" aria-label={project.title + " system flow"}>
+                  {project.flow.map((step) => <span key={step}>{step}</span>)}
+                </div>
+
+                <div className="tag-row">
+                  {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
+              </article>
+                ))}
+              </div>
+            </details>
+          ) : null}
         </section>
 
         <section className="section" id="github">
