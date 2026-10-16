@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
+import { useRouter } from "next/navigation";
 import styles from "./CommandPalette.module.css";
 
 const openEvent = "portfolio:open-command";
@@ -36,105 +37,112 @@ export function CommandPaletteTrigger({
   );
 }
 
-function goTo(href: string) {
-  if (href.startsWith("#")) {
-    if (window.location.pathname === "/") {
-      document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
-      history.replaceState(null, "", href);
-    } else {
-      window.location.assign("/" + href);
-    }
-    return;
-  }
-
-  if (href.startsWith("/")) {
-    window.location.assign(href);
-    return;
-  }
-
-  window.open(href, "_blank", "noopener,noreferrer");
-}
-
 export function CommandPalette() {
+  const router = useRouter();
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  const commands = useMemo<Command[]>(
-    () => [
-      { label: "Home", group: "Sections", hint: "01", keywords: "top intro", run: () => goTo("#top") },
-      { label: "Projects", group: "Sections", hint: "02", run: () => goTo("#projects") },
-      { label: "Experience", group: "Sections", hint: "03", run: () => goTo("#experience") },
-      { label: "Recommendations", group: "Sections", hint: "04", run: () => goTo("#recommendations") },
-      { label: "Achievements", group: "Sections", hint: "05", run: () => goTo("#achievements") },
-      { label: "Leadership", group: "Sections", hint: "06", run: () => goTo("#leadership") },
-      { label: "Competitions", group: "Sections", hint: "07", run: () => goTo("#competitions") },
-      { label: "About & skills", group: "Sections", hint: "08", run: () => goTo("#about") },
-      { label: "Hardware & embedded", group: "Sections", hint: "09", keywords: "electronics esp32 logic", run: () => goTo("#hardware") },
-      { label: "GitHub activity", group: "Sections", hint: "10", run: () => goTo("#github") },
-      { label: "Contact", group: "Sections", hint: "11", run: () => goTo("#contact") },
-      { label: "INNOVET", group: "Projects", hint: "Case study", keywords: "veterinary asp.net", run: () => goTo("/projects/innovet") },
-      { label: "VITALLY", group: "Projects", hint: "Case study", keywords: "clinic inventory", run: () => goTo("/projects/vitally") },
-      { label: "TUKI", group: "Projects", hint: "Case study", keywords: "transport kotlin navigation", run: () => goTo("/projects/tuki") },
-      { label: "AUFTHORIZE", group: "Projects", hint: "Project", keywords: "php approval pdf", run: () => goTo("/projects/aufthorize") },
-      { label: "ENGRLINK", group: "Projects", hint: "Project", keywords: "winui supabase portal", run: () => goTo("/projects/engrlink") },
-      { label: "GAUSS BUSTERS", group: "Projects", hint: "Project", keywords: "numerical methods winui", run: () => goTo("/projects/gauss-busters") },
-      {
-        label: "Preview resume",
-        group: "Actions",
-        hint: "PDF",
-        keywords: "cv",
-        run: () => window.dispatchEvent(new Event("portfolio:open-resume")),
-      },
-      {
-        label: "Toggle color theme",
-        group: "Actions",
-        hint: "Light / dark",
-        keywords: "theme mode",
-        run: () => {
-          const next = document.documentElement.classList.contains("dark") ? "light" : "dark";
-          window.dispatchEvent(new CustomEvent("portfolio:set-theme", { detail: next }));
-        },
-      },
-      {
-        label: "LinkedIn",
-        group: "Links",
-        hint: "↗",
-        run: () => goTo("https://www.linkedin.com/in/stephen-pinacate-3bb592319/"),
-      },
-      { label: "GitHub", group: "Links", hint: "↗", run: () => goTo("https://github.com/Stephware") },
-      {
-        label: "Email Stephen",
-        group: "Links",
-        hint: "↗",
-        keywords: "contact mail",
-        run: () => window.location.assign("mailto:pinacate.stephen@gmail.com"),
-      },
-    ],
-    [],
-  );
+  const openPalette = () => {
+    previousFocusRef.current = document.activeElement as HTMLElement | null;
+    setQuery("");
+    setActive(0);
+    setOpen(true);
+  };
 
-  const filtered = useMemo(() => {
-    const needle = query.trim().toLowerCase();
-    if (!needle) return commands;
-    return commands.filter((command) =>
-      (command.label + " " + command.group + " " + (command.keywords ?? "")).toLowerCase().includes(needle),
-    );
-  }, [commands, query]);
+  const goTo = (href: string) => {
+    if (href.startsWith("#")) {
+      if (window.location.pathname === "/") {
+        document.querySelector(href)?.scrollIntoView({ behavior: "smooth", block: "start" });
+        history.replaceState(null, "", href);
+      } else {
+        router.push("/" + href);
+      }
+      return;
+    }
+
+    if (href.startsWith("/")) {
+      router.push(href);
+      return;
+    }
+
+    window.open(href, "_blank", "noopener,noreferrer");
+  };
+
+  const commands: Command[] = [
+    { label: "Home", group: "Sections", hint: "01", keywords: "top intro", run: () => goTo("#top") },
+    { label: "Projects", group: "Sections", hint: "02", run: () => goTo("#projects") },
+    { label: "Experience", group: "Sections", hint: "03", run: () => goTo("#experience") },
+    { label: "Recommendations", group: "Sections", hint: "04", run: () => goTo("#recommendations") },
+    { label: "Achievements", group: "Sections", hint: "05", run: () => goTo("#achievements") },
+    { label: "Leadership", group: "Sections", hint: "06", run: () => goTo("#leadership") },
+    { label: "Competitions", group: "Sections", hint: "07", run: () => goTo("#competitions") },
+    { label: "About & skills", group: "Sections", hint: "08", run: () => goTo("#about") },
+    { label: "Hardware & embedded", group: "Sections", hint: "09", keywords: "electronics esp32 logic", run: () => goTo("#hardware") },
+    { label: "GitHub activity", group: "Sections", hint: "10", run: () => goTo("#github") },
+    { label: "Contact", group: "Sections", hint: "11", run: () => goTo("#contact") },
+    { label: "INNOVET", group: "Projects", hint: "Case study", keywords: "veterinary asp.net", run: () => goTo("/projects/innovet") },
+    { label: "VITALLY", group: "Projects", hint: "Case study", keywords: "clinic inventory", run: () => goTo("/projects/vitally") },
+    { label: "TUKI", group: "Projects", hint: "Case study", keywords: "transport kotlin navigation", run: () => goTo("/projects/tuki") },
+    { label: "AUFTHORIZE", group: "Projects", hint: "Project", keywords: "php approval pdf", run: () => goTo("/projects/aufthorize") },
+    { label: "ENGRLINK", group: "Projects", hint: "Project", keywords: "winui supabase portal", run: () => goTo("/projects/engrlink") },
+    { label: "GAUSS BUSTERS", group: "Projects", hint: "Project", keywords: "numerical methods winui", run: () => goTo("/projects/gauss-busters") },
+    {
+      label: "Preview resume",
+      group: "Actions",
+      hint: "PDF",
+      keywords: "cv",
+      run: () => window.dispatchEvent(new Event("portfolio:open-resume")),
+    },
+    {
+      label: "Toggle color theme",
+      group: "Actions",
+      hint: "Light / dark",
+      keywords: "theme mode",
+      run: () => {
+        const next = document.documentElement.classList.contains("dark") ? "light" : "dark";
+        window.dispatchEvent(new CustomEvent("portfolio:set-theme", { detail: next }));
+      },
+    },
+    {
+      label: "LinkedIn",
+      group: "Links",
+      hint: "↗",
+      run: () => goTo("https://www.linkedin.com/in/stephen-pinacate-3bb592319/"),
+    },
+    { label: "GitHub", group: "Links", hint: "↗", run: () => goTo("https://github.com/Stephware") },
+    {
+      label: "Email Stephen",
+      group: "Links",
+      hint: "↗",
+      keywords: "contact mail",
+      run: () => {
+        window.location.href = "mailto:pinacate.stephen@gmail.com";
+      },
+    },
+  ];
+
+  const needle = query.trim().toLowerCase();
+  const filtered = needle
+    ? commands.filter((command) =>
+        (command.label + " " + command.group + " " + (command.keywords ?? "")).toLowerCase().includes(needle),
+      )
+    : commands;
+  const safeActive = Math.min(active, Math.max(filtered.length - 1, 0));
 
   useEffect(() => {
-    const onOpen = () => {
-      previousFocusRef.current = document.activeElement as HTMLElement | null;
-      setOpen(true);
-    };
+    const onOpen = () => openPalette();
 
     const onKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
         event.preventDefault();
-        previousFocusRef.current = document.activeElement as HTMLElement | null;
-        setOpen((value) => !value);
+        if (open) {
+          setOpen(false);
+        } else {
+          openPalette();
+        }
       }
     };
 
@@ -144,12 +152,11 @@ export function CommandPalette() {
       window.removeEventListener(openEvent, onOpen);
       document.removeEventListener("keydown", onKeyDown);
     };
-  }, []);
+  }, [open]);
 
   useEffect(() => {
     if (!open) return;
-    setQuery("");
-    setActive(0);
+
     document.body.classList.add("command-palette-open");
     requestAnimationFrame(() => inputRef.current?.focus());
 
@@ -158,10 +165,6 @@ export function CommandPalette() {
       requestAnimationFrame(() => previousFocusRef.current?.focus());
     };
   }, [open]);
-
-  useEffect(() => {
-    if (active >= filtered.length) setActive(0);
-  }, [active, filtered.length]);
 
   const execute = (command: Command | undefined) => {
     if (!command) return;
@@ -192,7 +195,7 @@ export function CommandPalette() {
               if (event.key === "Escape") setOpen(false);
               if (event.key === "ArrowDown") {
                 event.preventDefault();
-                setActive((value) => Math.min(value + 1, filtered.length - 1));
+                setActive((value) => Math.min(value + 1, Math.max(filtered.length - 1, 0)));
               }
               if (event.key === "ArrowUp") {
                 event.preventDefault();
@@ -200,7 +203,7 @@ export function CommandPalette() {
               }
               if (event.key === "Enter") {
                 event.preventDefault();
-                execute(filtered[active]);
+                execute(filtered[safeActive]);
               }
             }}
             placeholder="Search projects, sections, or actions…"
@@ -215,11 +218,11 @@ export function CommandPalette() {
               <button
                 type="button"
                 key={command.group + "-" + command.label}
-                className={index === active ? styles.active : undefined}
+                className={index === safeActive ? styles.active : undefined}
                 onMouseEnter={() => setActive(index)}
                 onClick={() => execute(command)}
                 role="option"
-                aria-selected={index === active}
+                aria-selected={index === safeActive}
               >
                 <span>
                   <small>{command.group}</small>
