@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
 import { ResumePreviewLink } from "./ResumePreview";
+import { CommandPaletteTrigger } from "./CommandPalette";
 
 const links = [
   ["01", "Home", "#top"],
@@ -13,8 +14,9 @@ const links = [
   ["06", "Leadership", "#leadership"],
   ["07", "Competitions", "#competitions"],
   ["08", "About", "#about"],
-  ["09", "GitHub", "#github"],
-  ["10", "Contact", "#contact"],
+  ["09", "Hardware", "#hardware"],
+  ["10", "GitHub", "#github"],
+  ["11", "Contact", "#contact"],
 ] as const;
 
 const emailHref = "mailto:pinacate.stephen@gmail.com";
@@ -156,6 +158,9 @@ export function Navigation() {
         </div>
 
         <div className="sidebar-footer">
+          <CommandPaletteTrigger className="command-trigger">
+            <span>Quick navigation</span><kbd>⌘K</kbd>
+          </CommandPaletteTrigger>
           <div className="availability">
             <span className="status-dot" aria-hidden="true" />
             Open to opportunities
@@ -193,6 +198,9 @@ export function Navigation() {
           ))}
         </nav>
         <div className="mobile-menu-footer">
+          <CommandPaletteTrigger className="command-trigger" onOpen={closeMenu}>
+            <span>Quick navigation</span><kbd>⌘K / Ctrl K</kbd>
+          </CommandPaletteTrigger>
           <div className="mobile-menu-theme">
             <span className="micro-label">Theme</span>
             <ThemeToggle />

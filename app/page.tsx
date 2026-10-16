@@ -9,6 +9,7 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { achievements } from "@/data/achievements";
 import { currentBuild } from "@/data/career";
 import { education } from "@/data/education";
+import { hardwareProjects } from "@/data/hardware";
 import { organizations } from "@/data/organizations";
 import { participations } from "@/data/participations";
 import { projects } from "@/data/projects";
@@ -18,6 +19,8 @@ export default function Home() {
   const featuredProjects = projects.filter((project) => project.homepage === "featured");
   const moreProjects = projects.filter((project) => project.homepage === "more");
   const primaryAchievements = achievements.filter((item) => !item.earlier).slice(0, 3);
+  const recentOrganizations = organizations.slice(0, 4);
+  const earlierOrganizations = organizations.slice(4);
 
   return (
     <>
@@ -106,7 +109,7 @@ export default function Home() {
           </SectionHeading>
 
           <div className="career-proof-grid">
-            <article className="career-placeholder-card current-build-card">
+            <article className="career-placeholder-card current-build-card" data-reveal>
               <div className="placeholder-card-meta">
                 <span>Thesis project</span>
                 <span className="reserved-chip active-chip">Active</span>
@@ -120,7 +123,7 @@ export default function Home() {
               </div>
             </article>
 
-            <article className="career-placeholder-card current-build-card">
+            <article className="career-placeholder-card current-build-card" data-reveal>
               <div className="placeholder-card-meta">
                 <span>Applied development</span>
                 <span className="reserved-chip active-chip">Hands-on</span>
@@ -130,8 +133,8 @@ export default function Home() {
               <strong>Web · Mobile · Desktop · AI-assisted applications</strong>
               <p>
                 Built and co-built systems for clinic operations, university workflows, public transport,
-                numerical computing, and kiosk ordering, working across application architecture,
-                databases, APIs, interfaces, deployment, and team collaboration.
+                and numerical computing, working across application architecture, databases, APIs,
+                interfaces, deployment, and team collaboration.
               </p>
               <div className="tag-row compact-tags">
                 {["ASP.NET Core", "C#", "SQL Server", "Kotlin", "Git / GitHub"].map((item) => <span key={item}>{item}</span>)}
@@ -170,7 +173,7 @@ export default function Home() {
           </SectionHeading>
           <div className="achievement-list">
             {primaryAchievements.map((item, index) => (
-              <article className="achievement-row" key={`${item.year}-${item.title}`}>
+              <article className="achievement-row" key={item.year + "-" + item.title} data-reveal>
                 <span className="achievement-year">{item.year}</span>
                 <div>
                   <span className="micro-label">{item.eyebrow}</span>
@@ -190,9 +193,10 @@ export default function Home() {
           <SectionHeading index="06" label="leadership & organizations" title="Roles that grew with responsibility.">
             <p>My leadership work spans student government, Computer Engineering organizations, and technical support roles within the AUF College of Engineering and Architecture community.</p>
           </SectionHeading>
+
           <div className="timeline leadership-timeline">
-            {organizations.map((item) => (
-              <article className="timeline-item" key={`${item.period}-${item.role}-${item.organization}`}>
+            {recentOrganizations.map((item) => (
+              <article className="timeline-item" key={item.period + item.role + item.organization} data-reveal>
                 <p className="timeline-period">{item.period}</p>
                 <div>
                   <span className="micro-label">{item.organization}</span>
@@ -201,21 +205,41 @@ export default function Home() {
               </article>
             ))}
           </div>
+
+          {earlierOrganizations.length > 0 ? (
+            <details className="compact-details">
+              <summary>
+                <span>Earlier leadership roles · {earlierOrganizations.length}</span>
+                <span className="compact-details-icon" aria-hidden="true">+</span>
+              </summary>
+              <div className="timeline leadership-timeline">
+                {earlierOrganizations.map((item) => (
+                  <article className="timeline-item" key={item.period + item.role + item.organization}>
+                    <p className="timeline-period">{item.period}</p>
+                    <div>
+                      <span className="micro-label">{item.organization}</span>
+                      <h3>{item.role}</h3>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </details>
+          ) : null}
         </section>
 
         <section className="section" id="competitions">
           <SectionHeading index="07" label="competitions & participation" title="Competition experience across networking, hackathons, and electronics.">
             <p>Regional placement, finalist recognition, team leadership, and hands-on technical problem-solving across competitive environments.</p>
           </SectionHeading>
-          <div className="participation-grid">
+          <div className="competition-list">
             {participations.map((item, index) => (
-              <article className="participation-card" key={item.title}>
-                <div className="participation-meta">
-                  <span>{item.year}</span>
-                  <span>{String(index + 1).padStart(2, "0")}</span>
+              <article className="competition-row" key={item.title} data-reveal>
+                <span className="competition-year">{item.year}</span>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.description}</p>
                 </div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
+                <span className="competition-index">{String(index + 1).padStart(2, "0")}</span>
               </article>
             ))}
           </div>
@@ -226,7 +250,7 @@ export default function Home() {
             <p>I work across the software stack and enjoy projects where architecture, data, interface design, and real operational constraints have to work together.</p>
           </SectionHeading>
           <div className="about-grid">
-            <div className="about-copy">
+            <div className="about-copy" data-reveal>
               <p>I’m a Computer Engineering student focused on full-stack software development and practical AI integration. My projects span clinic operations, academic workflows, transportation, numerical computing, and mobile applications.</p>
               <p>Alongside development, I’ve taken on progressively larger leadership roles in AUF CEA and ICpEP.se, giving me experience working with teams, organizations, and real institutional processes — not only code.</p>
 
@@ -240,7 +264,7 @@ export default function Home() {
                 </div>
               </article>
             </div>
-            <div className="stack-panel skills-panel">
+            <div className="stack-panel skills-panel" data-reveal>
               <p className="micro-label">Technical toolkit</p>
               {skills.map((group) => (
                 <div key={group.category}>
@@ -252,8 +276,35 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="section" id="hardware">
+          <SectionHeading index="09" label="hardware & embedded" title="Software thinking applied to physical systems.">
+            <p>Selected embedded and logic-design work covering sensing, control, actuation, and hardware-level problem-solving.</p>
+          </SectionHeading>
+
+          <div className="hardware-grid">
+            {hardwareProjects.map((project) => (
+              <article className="hardware-card" key={project.number} data-reveal>
+                <div className="hardware-card-meta">
+                  <span>{project.number}</span>
+                  <span>Embedded / hardware</span>
+                </div>
+                <h3>{project.title}</h3>
+                <p>{project.description}</p>
+
+                <div className="hardware-flow" aria-label={project.title + " system flow"}>
+                  {project.flow.map((step) => <span key={step}>{step}</span>)}
+                </div>
+
+                <div className="tag-row">
+                  {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section className="section" id="github">
-          <SectionHeading index="09" label="github activity" title="Shipping work, visible in public.">
+          <SectionHeading index="10" label="github activity" title="Shipping work, visible in public.">
             <p>A live view of my GitHub contribution activity across the last year.</p>
           </SectionHeading>
           <GitHubActivity />
@@ -261,7 +312,7 @@ export default function Home() {
 
         <section className="section contact-section" id="contact">
           <div className="contact-halftone halftone" aria-hidden="true" />
-          <p className="section-index">10 — contact</p>
+          <p className="section-index">11 — contact</p>
           <div className="contact-copy">
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>

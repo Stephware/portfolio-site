@@ -97,9 +97,9 @@ export async function GitHubActivity() {
   const visibleDays = days.slice(-371);
 
   return (
-    <div className="github-dot-tracker">
+    <div className="github-dot-tracker" data-reveal>
       <div className="github-dot-header">
-        <span>09 — github</span>
+        <span>10 — github</span>
         <a href={profileUrl} target="_blank" rel="noreferrer" aria-label="Open Stephware on GitHub">
           @{username.toUpperCase()} ↗
         </a>

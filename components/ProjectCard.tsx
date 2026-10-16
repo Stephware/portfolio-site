@@ -6,6 +6,7 @@ export function ProjectCard({ project }: { project: Project }) {
   const hasPreview = Boolean(project.previewImage);
   const usesFeaturedPreview = hasPreview && project.featured;
   const detailLabel = project.detailLabel ?? "View case study";
+  const summary = project.homepageSummary ?? project.description;
 
   const visualCore = (
     <div
@@ -68,7 +69,10 @@ export function ProjectCard({ project }: { project: Project }) {
   ) : visualCore;
 
   return (
-    <article className={`project-card ${project.featured ? "project-card-featured" : ""}`}>
+    <article
+      className={`project-card ${project.featured ? "project-card-featured" : ""}`}
+      data-reveal
+    >
       {visual}
 
       <div className="project-copy">
@@ -83,27 +87,17 @@ export function ProjectCard({ project }: { project: Project }) {
         <h3>
           {project.detailPath ? <Link href={project.detailPath}>{project.title}</Link> : project.title}
         </h3>
-        <p>{project.description}</p>
+        <p className="project-summary">{summary}</p>
 
-        <dl className="project-facts">
-          <div>
-            <dt>Ownership</dt>
-            <dd>{project.ownership}</dd>
-          </div>
-          <div>
-            <dt>Role</dt>
-            <dd>{project.role}</dd>
-          </div>
-        </dl>
-
-        <div className="project-contribution">
-          <span className="micro-label">My contribution</span>
-          <p>{project.contribution}</p>
+        <div className="project-byline">
+          <span>{project.ownership}</span>
+          <span>{project.role}</span>
         </div>
 
         <div className="tag-row">
           {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
         </div>
+
         <div className="project-actions">
           {project.detailPath ? <Link href={project.detailPath}>{detailLabel} →</Link> : null}
           {project.liveUrl ? <a href={project.liveUrl} target="_blank" rel="noreferrer">Live system ↗</a> : null}

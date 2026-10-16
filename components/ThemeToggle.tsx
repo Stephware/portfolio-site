@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
 
@@ -40,7 +40,7 @@ export function ThemeToggle() {
   const [theme, setTheme] = useState<Theme>("light");
   const [transitioning, setTransitioning] = useState(false);
 
-  const selectTheme = (next: Theme) => {
+  const selectTheme = useCallback((next: Theme) => {
     if (next === theme || transitioning) return;
 
     const root = document.documentElement;
@@ -88,7 +88,17 @@ export function ThemeToggle() {
       root.classList.remove("theme-transitioning");
       delete root.dataset.themeTarget;
     });
-  };
+  }, [theme, transitioning]);
+
+  useEffect(() => {
+    const handleThemeCommand = (event: Event) => {
+      const next = (event as CustomEvent<Theme>).detail;
+      if (next === "light" || next === "dark") selectTheme(next);
+    };
+
+    window.addEventListener("portfolio:set-theme", handleThemeCommand);
+    return () => window.removeEventListener("portfolio:set-theme", handleThemeCommand);
+  }, [selectTheme]);
 
   return (
     <div

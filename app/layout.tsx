@@ -1,6 +1,9 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { ResumePreviewModal } from "@/components/ResumePreview";
+import { CommandPalette } from "@/components/CommandPalette";
+import { InteractionObserver } from "@/components/InteractionObserver";
+import { ProjectLightbox } from "@/components/ProjectLightbox";
 import "./globals.css";
 import "./theme.css";
 import "./profile.css";
@@ -8,6 +11,7 @@ import "./project-previews.css";
 import "./github-activity.css";
 import "./mobile.css";
 import "./navigation.css";
+import "./interactions.css";
 
 const geist = Geist({
   variable: "--font-geist-sans",
@@ -65,6 +69,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head><script dangerouslySetInnerHTML={{ __html: themeScript }} /></head>
       <body className={`${geist.variable} ${geistMono.variable}`}>
         {children}
+        <InteractionObserver />
+        <CommandPalette />
+        <ProjectLightbox />
         <ResumePreviewModal />
       </body>
     </html>

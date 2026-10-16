@@ -12,7 +12,7 @@ export function SectionHeading({
   children: ReactNode;
 }) {
   return (
-    <header className="section-heading">
+    <header className="section-heading" data-reveal>
       <p className="section-index">{index} — {label}</p>
       <div className="section-heading-copy">
         <h2>{title}</h2>

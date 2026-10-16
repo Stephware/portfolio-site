@@ -2,6 +2,7 @@ export type Project = {
   number: string;
   title: string;
   description: string;
+  homepageSummary?: string;
   tags: string[];
   featured?: boolean;
   homepage?: "featured" | "more";
@@ -24,6 +25,7 @@ export const projects: Project[] = [
   {
     number: "01",
     title: "INNOVET",
+    homepageSummary: "Multi-branch veterinary platform connecting scheduling, pet records, medical histories, branch operations, and network administration.",
     description:
       "A centralized veterinary clinic management platform designed for 10 branches and one veterinary hospital, bringing branch-aware appointments, client and pet records, medical histories, promotions, notifications, and clinic communication into one system.",
     tags: ["ASP.NET Core", ".NET 9", "EF Core", "SQL Server"],
@@ -45,6 +47,7 @@ export const projects: Project[] = [
   {
     number: "02",
     title: "VITALLY",
+    homepageSummary: "Clinic operations platform for sales, expenses, inventory, reporting, audit records, and role-based daily workflows across two clinics.",
     description:
       "A mobile-friendly clinic operations and transaction platform built for two clinics, with expansion in mind as additional clinics express interest. It supports role-based workspaces, sales and expense records, inventory monitoring, transaction history, and daily operational summaries.",
     tags: ["ASP.NET Core", ".NET 9", "EF Core", "SQL Server"],
@@ -64,6 +67,7 @@ export const projects: Project[] = [
   {
     number: "03",
     title: "TUKI",
+    homepageSummary: "AI-assisted Pampanga commuter navigation combining conversational trip intent with deterministic multimodal routing and live trip guidance.",
     description:
       "An AI-assisted multimodal public-transport navigation app for Pampanga that combines conversational commuter intent with deterministic route planning across walking, tricycle, and jeepney legs, including transfers, fares, ETA, live trip state, navigation guidance, and rerouting.",
     tags: ["Kotlin", "Jetpack Compose", "ASP.NET Core", "SQL Server"],
@@ -83,6 +87,7 @@ export const projects: Project[] = [
   {
     number: "04",
     title: "AUFTHORIZE",
+    homepageSummary: "Digital university request and approval workflows with multi-stage review, e-signatures, generated PDF outputs, and email notifications.",
     description:
       "A digital request and approval platform for AUF workflows covering venue, budget, liquidation, reimbursement, and material requests, with multi-stage review, e-signatures, attachments, email notifications, review queues, and generated signed PDF e-copies.",
     tags: ["PHP", "MySQLi", "mPDF / FPDI", "PHPMailer"],
@@ -103,6 +108,7 @@ export const projects: Project[] = [
   {
     number: "05",
     title: "ENGRLINK",
+    homepageSummary: "Role-based AUF CEA academic portal prototype for enrollment, records, schedules, grades, balances, and announcements.",
     description:
       "An academic portal prototype designed around the workflows of the AUF College of Engineering and Architecture, supporting role-based access to enrollment, student and faculty records, schedules, grades, balances, subject offerings, and announcements.",
     tags: ["C#", "WinUI 3", ".NET", "Supabase"],
@@ -123,6 +129,7 @@ export const projects: Project[] = [
   {
     number: "06",
     title: "GAUSS BUSTERS",
+    homepageSummary: "Desktop numerical-methods solver with traceable iteration steps, equation processing, and plotted numerical results.",
     description:
       "An interactive numerical-methods desktop solver with a Ghostbusters-inspired interface, supporting equation parsing, Bisection, Newton-Raphson, Secant, Gaussian Elimination, regression methods, step-by-step iteration data, and plotted numerical results.",
     tags: ["C#", ".NET 8", "WinUI 3", "ScottPlot"],
