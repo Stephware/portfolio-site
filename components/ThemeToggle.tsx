@@ -74,7 +74,7 @@ export function ThemeToggle() {
             maskPosition: ["0% 0%", "100% 0%"],
           },
           {
-            duration: 920,
+            duration: 1120,
             easing: "cubic-bezier(0.22, 1, 0.36, 1)",
             fill: "both",
             pseudoElement: "::view-transition-new(root)",

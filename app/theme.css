@@ -52,7 +52,7 @@ html.theme-transitioning .theme-switcher {
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   box-shadow: 0 8px 24px -16px rgb(0 0 0 / 0.35);
-  transition: background-color 500ms ease, border-color 500ms ease, transform 240ms cubic-bezier(.16,1,.3,1), box-shadow 240ms ease;
+  transition: background-color 620ms ease, border-color 620ms ease, transform 280ms cubic-bezier(.16,1,.3,1), box-shadow 280ms ease;
 }
 
 .theme-switcher:hover {
@@ -95,7 +95,7 @@ html.theme-transitioning .theme-switcher {
   width: 0.95rem;
   height: 0.95rem;
   stroke-width: 1.7;
-  transition: transform 500ms cubic-bezier(.16,1,.3,1), opacity 220ms ease;
+  transition: transform 620ms cubic-bezier(.16,1,.3,1), opacity 260ms ease;
 }
 
 .theme-switcher[data-theme="light"] .theme-icon-button:first-child svg {
@@ -107,7 +107,7 @@ html.theme-transitioning .theme-switcher {
 }
 
 html.theme-transitioning .site-main {
-  animation: theme-content-settle 760ms cubic-bezier(.16,1,.3,1);
+  animation: theme-content-settle 920ms cubic-bezier(.16,1,.3,1);
 }
 
 @keyframes theme-content-settle {
