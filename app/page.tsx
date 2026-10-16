@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { GitHubActivity } from "@/components/GitHubActivity";
+import { HeroPortrait } from "@/components/HeroPortrait";
 import { Navigation } from "@/components/Navigation";
 import { PortfolioPlaceholderStyles } from "@/components/PortfolioPlaceholderStyles";
 import { ProjectCard } from "@/components/ProjectCard";
@@ -55,18 +55,7 @@ export default function Home() {
               </div>
             </div>
 
-            <figure className="portrait-slot">
-              <Image
-                className="portrait-image"
-                src="/stephen-pinacate.webp"
-                alt="Stephen Pinacate"
-                fill
-                priority
-                sizes="(max-width: 767px) 272px, 208px"
-              />
-              <div className="portrait-shade" aria-hidden="true" />
-              <figcaption>Stephen Pinacate · 2026</figcaption>
-            </figure>
+            <HeroPortrait />
           </div>
 
           <div className="hero-credentials reveal reveal-3" aria-label="Selected achievements">
