@@ -175,22 +175,9 @@ export default function Home() {
         </section>
 
         <section className="section" id="recommendations">
-          <SectionHeading index="04" label="recommendations" title="External proof from people who have worked with me.">
-            <p>A concise preview stays on the homepage, while the dedicated recommendations page has room for the complete set as verified feedback becomes available.</p>
+          <SectionHeading index="04" label="recommendations" title="Recommendations.">
+            <p>Short feedback from professors, mentors, and collaborators will be added here as I collect it.</p>
           </SectionHeading>
-          <div className="recommendation-grid">
-            {recommendationPlaceholders.slice(0, 2).map((item) => (
-              <article className="recommendation-placeholder" key={item.relationship}>
-                <span className="micro-label">{item.relationship}</span>
-                <blockquote>“{item.quote}”</blockquote>
-                <strong>{item.name}</strong>
-                <small>{item.role}</small>
-              </article>
-            ))}
-          </div>
-          <div className="hero-actions">
-            <Link className="primary-button" href="/recommendations">View all recommendations →</Link>
-          </div>
         </section>
 
         <section className="section" id="achievements">
