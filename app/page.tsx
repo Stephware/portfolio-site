@@ -112,6 +112,7 @@ export default function Home() {
                 <h3>{build.title}</h3>
                 <strong>{build.status}</strong>
                 <p>{build.description}</p>
+                <span className="micro-label current-build-stack-label">{build.stackLabel}</span>
                 <div className="tag-row compact-tags">
                   {build.stack.map((item) => <span key={item}>{item}</span>)}
                 </div>

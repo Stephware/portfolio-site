@@ -52,6 +52,7 @@ export const currentBuilds = [
     status: "Active thesis project",
     description:
       "A campus information and navigation system for Angeles University Foundation built around structured campus data, building and floor information, campus entities, location records, and working navigation for campus guidance.",
+    stackLabel: "Current stack",
     stack: ["ASP.NET Core MVC", ".NET 10", "EF Core", "SQL Server"],
     repository: "https://github.com/Stephware/auf-navi-vision",
   },
@@ -60,6 +61,7 @@ export const currentBuilds = [
     status: "Active collaborative project",
     description:
       "A mobile-first Filipino Christmas parol experience where a host shares a lantern with friends, guests contribute lights and private messages, and the parol grows through curated visual stages while keeping guest participation lightweight.",
+    stackLabel: "Current stack",
     stack: ["React", "TypeScript", "ASP.NET Core", ".NET 10", "SQL Server"],
     repository: "https://github.com/Stephware/DecoMyLantern",
   },
@@ -68,8 +70,27 @@ export const currentBuilds = [
     status: "Active regional platform build",
     description:
       "A centralized platform for ICpEP.se Region 3 chapters covering announcements, events, chapter information, assistance requests, collaboration workflows, account management, role-based access, and regional administration.",
+    stackLabel: "Current stack",
     stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "TypeScript"],
     repository: "https://github.com/Stephware/IcpepRegionHub",
+  },
+  {
+    title: "SmartFarm",
+    status: "In-development collaborative project",
+    description:
+      "A planned web-and-Android farm-management platform for farms, plots, crop cycles, daily field work, supply inventory, harvest records, weather reminders, and selected offline mobile workflows. The repository currently establishes the SQL Server database foundation, setup scripts, schema documentation, and development workflow; the application projects and API/mobile layers are the next implementation milestones.",
+    stackLabel: "Planned stack",
+    stack: [
+      ".NET 10 / ASP.NET Core",
+      "EF Core 10",
+      "SQL Server 2022",
+      "Hangfire",
+      "Kotlin / Jetpack Compose",
+      "Room",
+      "Retrofit / OkHttp",
+      "WorkManager",
+    ],
+    repository: "https://github.com/Stephware/SmartFarm",
   },
 ];
 

@@ -257,3 +257,10 @@ body.project-lightbox-open {
 .hardware-more-grid {
   padding-bottom: 1.25rem;
 }
+
+
+.current-build-stack-label {
+  display: block;
+  margin-top: 1.15rem;
+  margin-bottom: -.9rem;
+}
