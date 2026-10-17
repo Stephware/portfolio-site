@@ -39,3 +39,14 @@ export function GitHubIcon({ className = "contact-icon" }: { className?: string 
     </svg>
   );
 }
+
+
+export function DownloadIcon({ className = "contact-icon" }: { className?: string }) {
+  return (
+    <svg className={className} viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <path d="M12 3v11" />
+      <path d="m8 10 4 4 4-4" />
+      <path d="M5 20h14" />
+    </svg>
+  );
+}

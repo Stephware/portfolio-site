@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CopyEmail } from "@/components/CopyEmail";
-import { GitHubIcon, LinkedInIcon, MailIcon, ResumeIcon } from "@/components/ContactIcons";
+import { DownloadIcon, GitHubIcon, LinkedInIcon, MailIcon, ResumeIcon } from "@/components/ContactIcons";
 import { GitHubActivity } from "@/components/GitHubActivity";
 import { HeroPortrait } from "@/components/HeroPortrait";
 import { Navigation } from "@/components/Navigation";
@@ -347,12 +347,65 @@ export default function Home() {
             <span className="micro-label">Open to software opportunities.</span>
             <h2>Building useful systems,<br />one problem at a time.</h2>
             <p>For software opportunities, project discussions, and collaboration, my resume, LinkedIn, GitHub, and email are available below.</p>
-            <div className="hero-actions">
-              <ResumePreviewLink className="primary-button"><span className="icon-link"><ResumeIcon />View Resume</span></ResumePreviewLink>
-              <a className="text-link" href="/Stephen-Pinacate-Resume.pdf" download="Stephen-Pinacate-Resume.pdf">Download Resume ↓</a>
-              <a className="text-link icon-link" href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/" target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
-              <a className="text-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
-              <CopyEmail className="text-link contact-email-action"><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
+            <div className="contact-actions" aria-label="Contact and profile links">
+              <ResumePreviewLink className="contact-action contact-action-primary">
+                <span className="contact-action-icon"><ResumeIcon /></span>
+                <span className="contact-action-copy">
+                  <small>Resume</small>
+                  <strong>View Resume</strong>
+                </span>
+                <span className="contact-action-mark" aria-hidden="true">↗</span>
+              </ResumePreviewLink>
+
+              <a
+                className="contact-action"
+                href="/Stephen-Pinacate-Resume.pdf"
+                download="Stephen-Pinacate-Resume.pdf"
+              >
+                <span className="contact-action-icon"><DownloadIcon /></span>
+                <span className="contact-action-copy">
+                  <small>PDF</small>
+                  <strong>Download Resume</strong>
+                </span>
+                <span className="contact-action-mark" aria-hidden="true">↓</span>
+              </a>
+
+              <a
+                className="contact-action"
+                href="https://www.linkedin.com/in/stephen-pinacate-3bb592319/"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="contact-action-icon"><LinkedInIcon /></span>
+                <span className="contact-action-copy">
+                  <small>Professional profile</small>
+                  <strong>LinkedIn</strong>
+                </span>
+                <span className="contact-action-mark" aria-hidden="true">↗</span>
+              </a>
+
+              <a
+                className="contact-action"
+                href="https://github.com/Stephware"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="contact-action-icon"><GitHubIcon /></span>
+                <span className="contact-action-copy">
+                  <small>Source & activity</small>
+                  <strong>GitHub</strong>
+                </span>
+                <span className="contact-action-mark" aria-hidden="true">↗</span>
+              </a>
+
+              <CopyEmail className="contact-action contact-action-email">
+                <span className="contact-action-icon"><MailIcon /></span>
+                <span className="contact-action-copy">
+                  <small>Click to copy</small>
+                  <strong>pinacate.stephen@gmail.com</strong>
+                </span>
+                <span className="contact-action-mark" aria-hidden="true">⌘C</span>
+              </CopyEmail>
             </div>
           </div>
         </section>
