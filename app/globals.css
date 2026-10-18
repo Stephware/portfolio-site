@@ -241,15 +241,15 @@ button { font: inherit; }
 .mobile-menu nav a {
   position: relative;
   display: grid;
-  grid-template-columns: 1.65rem minmax(0, 1fr);
+  grid-template-columns: 1.45rem minmax(0, 1fr);
   align-items: center;
-  gap: .55rem;
-  min-height: 2.85rem;
-  padding: .54rem .65rem;
-  border-radius: 9px;
+  gap: .45rem;
+  min-height: 2.4rem;
+  padding: .4rem .58rem;
+  border-radius: 8px;
   color: var(--gray-600);
-  font: 500 clamp(1.05rem, 4.7vw, 1.3rem)/1.15 var(--font-geist-mono), monospace;
-  letter-spacing: -.035em;
+  font: 500 clamp(.88rem, 3.7vw, 1.02rem)/1.2 var(--font-geist-mono), monospace;
+  letter-spacing: -.022em;
   transition:
     background-color 180ms ease,
     color 180ms ease,
@@ -259,7 +259,7 @@ button { font: inherit; }
 .mobile-menu nav a span {
   width: auto;
   color: var(--gray-400);
-  font: 8px var(--font-geist-mono), monospace;
+  font: 7px var(--font-geist-mono), monospace;
   letter-spacing: .04em;
 }
 
@@ -661,8 +661,8 @@ button { font: inherit; }
   }
 
   .mobile-menu nav a {
-    min-height: 2.7rem;
-    font-size: clamp(1rem, 4.8vw, 1.22rem);
+    min-height: 2.35rem;
+    font-size: clamp(.88rem, 3.7vw, 1rem);
   }
 }
 
@@ -674,10 +674,10 @@ button { font: inherit; }
   }
 
   .mobile-menu nav a {
-    min-height: 2.55rem;
-    padding-top: .46rem;
-    padding-bottom: .46rem;
-    font-size: 1rem;
+    min-height: 2.3rem;
+    padding-top: .36rem;
+    padding-bottom: .36rem;
+    font-size: .9rem;
   }
 
   .mobile-menu-footer {
