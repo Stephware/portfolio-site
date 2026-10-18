@@ -290,12 +290,47 @@ export function PortfolioPlaceholderStyles() {
         .mobile-menu nav a[aria-current="location"] span { color: var(--ink); }
 
         .mobile-menu-footer {
-          gap: .35rem;
+          gap: .65rem;
           margin-top: 1rem;
           padding-top: .85rem;
           border-top: 1px solid var(--gray-200);
-          font-size: 8px;
-          line-height: 1.4;
+          font-family: var(--font-geist-mono), monospace;
+          font-size: clamp(.88rem, 3.8vw, .96rem);
+          line-height: 1.25;
+        }
+
+        .mobile-menu-footer .command-trigger {
+          min-height: 2.65rem;
+          padding: .6rem .75rem;
+          font-size: clamp(.82rem, 3.5vw, .9rem);
+          line-height: 1.2;
+          letter-spacing: .04em;
+        }
+
+        .mobile-menu-footer .command-trigger kbd {
+          font-size: .72rem;
+        }
+
+        .mobile-menu-theme {
+          gap: .6rem;
+        }
+
+        .mobile-menu-theme .micro-label {
+          padding-left: .5rem;
+          font-size: .74rem;
+          letter-spacing: .08em;
+        }
+
+        .mobile-menu-footer > a,
+        .mobile-menu-footer > button:not(.command-trigger) {
+          min-height: 2.35rem;
+          padding-left: .5rem;
+          font-size: clamp(.88rem, 3.8vw, .96rem);
+        }
+
+        .mobile-menu-footer .contact-icon {
+          width: 1.05rem;
+          height: 1.05rem;
         }
       }
     `}</style>
