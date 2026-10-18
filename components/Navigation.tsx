@@ -128,8 +128,14 @@ export function Navigation() {
           onClick={() => setOpen((value) => !value)}
           aria-expanded={open}
           aria-controls="mobile-menu"
+          aria-label={open ? "Close menu" : "Open menu"}
+          title={open ? "Close menu" : "Open menu"}
         >
-          {open ? "Close" : "Menu"}
+          <span className={`menu-icon ${open ? "open" : ""}`} aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </span>
         </button>
       </header>
 
