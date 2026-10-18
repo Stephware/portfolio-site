@@ -176,6 +176,12 @@ export function Navigation() {
       </aside>
 
       <div
+        className={`mobile-menu-backdrop ${open ? "open" : ""}`}
+        aria-hidden="true"
+        onClick={closeMenu}
+      />
+
+      <div
         ref={mobileMenuRef}
         id="mobile-menu"
         className={`mobile-menu ${open ? "open" : ""}`}
@@ -208,7 +214,7 @@ export function Navigation() {
           </div>
           <ResumePreviewLink onOpen={closeMenu}><span className="icon-link"><ResumeIcon />Resume</span></ResumePreviewLink>
           <a className="icon-link" href={linkedInHref} target="_blank" rel="noreferrer"><LinkedInIcon />LinkedIn</a>
-          <a href="https://github.com/Stephware" target="_blank" rel="noreferrer">GitHub ↗</a>
+          <a className="icon-link" href="https://github.com/Stephware" target="_blank" rel="noreferrer"><GitHubIcon />GitHub</a>
           <CopyEmail onCopied={closeMenu}><MailIcon />pinacate.stephen@gmail.com</CopyEmail>
         </div>
       </div>
