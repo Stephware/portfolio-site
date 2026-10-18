@@ -265,7 +265,7 @@ export function PortfolioPlaceholderStyles() {
           border-bottom: 0;
           border-radius: 4px;
           font-family: var(--font-geist-mono), monospace;
-          font-size: clamp(1.15rem, 5.2vw, 1.38rem);
+          font-size: clamp(.9rem, 4vw, 1rem);
           font-weight: 400;
           line-height: 1.15;
           letter-spacing: -.02em;
