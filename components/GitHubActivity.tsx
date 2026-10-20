@@ -24,11 +24,104 @@ function getContributionLevel(count: number) {
   return 4;
 }
 
+function parseNumber(value: string | undefined) {
+  if (!value) return null;
+  const parsed = Number(value.replace(/,/g, ""));
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
+function countFromTooltip(value: string) {
+  const text = value
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (/no contributions?/i.test(text)) return 0;
+
+  const match = text.match(/([\d,]+)\s+contributions?/i);
+  return parseNumber(match?.[1]);
+}
+
+function parseGitHubContributionHtml(html: string) {
+  const totalMatch = html.match(/([\d,]+)\s+contributions?\s+in\s+the\s+last\s+year/i);
+  const total = parseNumber(totalMatch?.[1]);
+
+  const countsByReference = new Map<string, number>();
+  const tooltipPattern = /<tool-tip\b([^>]*)>([\s\S]*?)<\/tool-tip>/gi;
+
+  for (const match of html.matchAll(tooltipPattern)) {
+    const attributes = match[1] ?? "";
+    const count = countFromTooltip(match[2] ?? "");
+    if (count === null) continue;
+
+    const id = attributes.match(/\bid="([^"]+)"/i)?.[1];
+    const target = attributes.match(/\bfor="([^"]+)"/i)?.[1];
+
+    if (id) countsByReference.set(id, count);
+    if (target) countsByReference.set(target, count);
+  }
+
+  const days: ContributionDay[] = [];
+  const dayPattern = /<(?:td|rect)\b[^>]*\bdata-date="(\d{4}-\d{2}-\d{2})"[^>]*>/gi;
+
+  for (const match of html.matchAll(dayPattern)) {
+    const tag = match[0];
+    const date = match[1];
+    const directCount = parseNumber(tag.match(/\bdata-count="([\d,]+)"/i)?.[1]);
+    const id = tag.match(/\bid="([^"]+)"/i)?.[1];
+    const describedBy = tag.match(/\baria-describedby="([^"]+)"/i)?.[1];
+    const githubLevel = Number(tag.match(/\bdata-level="(\d+)"/i)?.[1] ?? 0);
+
+    let count = directCount;
+    if (count === null && id) count = countsByReference.get(id) ?? null;
+    if (count === null && describedBy) count = countsByReference.get(describedBy) ?? null;
+
+    // GitHub occasionally changes the calendar markup. If an exact tooltip
+    // count cannot be matched, preserve the visible GitHub activity level
+    // instead of incorrectly treating an active day as empty.
+    if (count === null) {
+      count = [0, 1, 5, 15, 40][Math.max(0, Math.min(4, githubLevel))] ?? 0;
+    }
+
+    days.push({
+      date,
+      count,
+      level: getContributionLevel(count),
+    });
+  }
+
+  return { days, total };
+}
+
 async function getContributionYear(): Promise<{ days: ContributionDay[]; total: number | null }> {
+  // Primary source: GitHub's own public contribution calendar. This is the
+  // same profile calendar GitHub renders and can include anonymized private
+  // contributions when the account has private contributions enabled.
+  try {
+    const response = await fetch(
+      `https://github.com/users/${username}/contributions`,
+      {
+        headers: {
+          Accept: "text/html",
+          "User-Agent": "Stephen-Pinacate-Portfolio",
+        },
+        next: { revalidate: 900 },
+      },
+    );
+
+    if (response.ok) {
+      const parsed = parseGitHubContributionHtml(await response.text());
+      if (parsed.days.length > 0) return parsed;
+    }
+  } catch {
+    // Fall through to the public contribution API below.
+  }
+
   try {
     const response = await fetch(
       `https://github-contributions-api.jogruber.de/v4/${username}?y=last`,
-      { next: { revalidate: 3600 } },
+      { next: { revalidate: 900 } },
     );
 
     if (response.ok) {
@@ -55,7 +148,7 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
           Accept: "application/vnd.github+json",
           "X-GitHub-Api-Version": "2022-11-28",
         },
-        next: { revalidate: 1800 },
+        next: { revalidate: 900 },
       },
     );
 
@@ -130,8 +223,8 @@ export async function GitHubActivity() {
 
       <p className="github-dot-total">
         {total === null
-          ? "GITHUB ACTIVITY · CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
-          : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR · PUBLIC + ANONYMIZED PRIVATE WHEN ENABLED ON GITHUB`}
+          ? "CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
+          : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
       </p>
     </div>
   );
