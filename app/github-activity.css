@@ -55,7 +55,8 @@
 .github-dot {
   display: block;
   border-radius: 999px;
-  transition: transform 160ms ease, opacity 160ms ease, background-color 160ms ease;
+  background: var(--ink);
+  transition: transform 160ms ease, opacity 160ms ease;
 }
 
 .github-dot:hover {
@@ -67,34 +68,30 @@
   width: 3px;
   height: 3px;
   background: var(--gray-200);
-  opacity: .55;
+  opacity: .6;
 }
 
 .github-dot-1 {
   width: 5px;
   height: 5px;
-  background: #0e4429;
-  opacity: 1;
+  opacity: .38;
 }
 
 .github-dot-2 {
   width: 6px;
   height: 6px;
-  background: #006d32;
-  opacity: 1;
+  opacity: .58;
 }
 
 .github-dot-3 {
   width: 7px;
   height: 7px;
-  background: #26a641;
-  opacity: 1;
+  opacity: .78;
 }
 
 .github-dot-4 {
   width: 8px;
   height: 8px;
-  background: #39d353;
   opacity: 1;
 }
 
@@ -108,8 +105,12 @@
 
 html.dark .github-dot-0 {
   background: var(--gray-200);
-  opacity: .6;
+  opacity: .55;
 }
+
+html.dark .github-dot-1 { opacity: .42; }
+html.dark .github-dot-2 { opacity: .62; }
+html.dark .github-dot-3 { opacity: .82; }
 
 @media (max-width: 767px) {
   .github-dot-header {
