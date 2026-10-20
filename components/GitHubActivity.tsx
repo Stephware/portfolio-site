@@ -16,6 +16,14 @@ type GitHubEvent = {
 const username = "Stephware";
 const profileUrl = `https://github.com/${username}`;
 
+function getContributionLevel(count: number) {
+  if (count === 0) return 0;
+  if (count <= 4) return 1;
+  if (count <= 14) return 2;
+  if (count <= 39) return 3;
+  return 4;
+}
+
 async function getContributionYear(): Promise<{ days: ContributionDay[]; total: number | null }> {
   try {
     const response = await fetch(
@@ -25,7 +33,10 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
 
     if (response.ok) {
       const data = (await response.json()) as ContributionResponse;
-      const days = data.contributions ?? [];
+      const days = (data.contributions ?? []).map((day) => ({
+        ...day,
+        level: getContributionLevel(day.count),
+      }));
       const total = data.total
         ? Object.values(data.total).reduce((sum, value) => sum + value, 0)
         : days.reduce((sum, day) => sum + day.count, 0);
@@ -44,7 +55,7 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
           Accept: "application/vnd.github+json",
           "X-GitHub-Api-Version": "2022-11-28",
         },
-        next: { revalidate: 3600 },
+        next: { revalidate: 1800 },
       },
     );
 
@@ -62,7 +73,7 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
       return {
         ...day,
         count,
-        level: count === 0 ? 0 : count === 1 ? 1 : count <= 3 ? 2 : count <= 6 ? 3 : 4,
+        level: getContributionLevel(count),
       };
     });
 
@@ -119,8 +130,8 @@ export async function GitHubActivity() {
 
       <p className="github-dot-total">
         {total === null
-          ? "PUBLIC ACTIVITY · CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
-          : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
+          ? "GITHUB ACTIVITY · CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
+          : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR · PUBLIC + ANONYMIZED PRIVATE WHEN ENABLED ON GITHUB`}
       </p>
     </div>
   );
