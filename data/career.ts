@@ -76,10 +76,10 @@ export const currentBuilds = [
   },
   {
     title: "SmartFarm",
-    status: "In-development collaborative project",
+    status: "Collaborative farm-management platform",
     description:
-      "A planned web-and-Android farm-management platform for farms, plots, crop cycles, daily field work, supply inventory, harvest records, weather reminders, and selected offline mobile workflows. The repository currently establishes the SQL Server database foundation, setup scripts, schema documentation, and development workflow; the application projects and API/mobile layers are the next implementation milestones.",
-    stackLabel: "Planned stack",
+      "A web-and-Android farm-management platform designed to help farm owners and field teams manage multiple farms, plots, crop cycles, daily field activities, supply inventory, harvest records, and weather-related reminders, with selected Android workflows supporting offline use and synchronization when connectivity returns.",
+    stackLabel: "Technology stack",
     stack: [
       ".NET 10 / ASP.NET Core",
       "EF Core 10",
