@@ -5,6 +5,7 @@ import styles from "./ResumePreview.module.css";
 
 const resumePath = "/Stephen-Pinacate-Resume.pdf";
 const openEvent = "portfolio:open-resume";
+const mobileResumeQuery = "(max-width: 700px)";
 
 type ResumePreviewLinkProps = {
   children: ReactNode;
@@ -14,8 +15,13 @@ type ResumePreviewLinkProps = {
 
 export function ResumePreviewLink({ children, className, onOpen }: ResumePreviewLinkProps) {
   const openPreview = (event: MouseEvent<HTMLAnchorElement>) => {
-    event.preventDefault();
     onOpen?.();
+
+    // Embedded PDF viewers can clip pages and block scrolling on phones.
+    // Use the browser's native full-document PDF viewer on small screens.
+    if (window.matchMedia(mobileResumeQuery).matches) return;
+
+    event.preventDefault();
     window.dispatchEvent(new Event(openEvent));
   };
 
@@ -33,6 +39,12 @@ export function ResumePreviewModal() {
 
   useEffect(() => {
     const handleOpen = () => {
+      // Also handle resume opens triggered by the command palette on phones.
+      if (window.matchMedia(mobileResumeQuery).matches) {
+        window.location.assign(resumePath);
+        return;
+      }
+
       previousFocusRef.current = document.activeElement as HTMLElement | null;
       setOpen(true);
     };
