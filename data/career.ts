@@ -48,12 +48,21 @@ export const experiencePlaceholders: ExperiencePlaceholder[] = [
 
 export const currentBuilds = [
   {
-    title: "AUF NAVI",
-    status: "Active thesis project",
+    title: "AUF NAVI Vision",
+    status: "Individual thesis · Active development",
     description:
-      "A campus information and navigation system for Angeles University Foundation built around structured campus data, building and floor information, campus entities, location records, and working navigation for campus guidance.",
-    stackLabel: "Current stack",
-    stack: ["ASP.NET Core MVC", ".NET 10", "EF Core", "SQL Server"],
+      "A context-aware campus information and navigation platform designed to connect verified institutional knowledge directly with mapped university destinations. Shared campus-entity records link authority- and time-aware RAG with cited answers to GPS outdoor guidance and vision/OCR-assisted checkpoint-based indoor navigation, while physical routes are computed deterministically with A* on approved 2D map graphs.",
+    stackLabel: "Current + planned stack",
+    stack: [
+      "ASP.NET Core MVC",
+      ".NET 10",
+      "EF Core",
+      "SQL Server",
+      "Kotlin / Jetpack Compose",
+      "OpenAI API / RAG",
+      "CameraX / ML Kit OCR",
+      "MapLibre / A*",
+    ],
     repository: "https://github.com/Stephware/auf-navi-vision",
   },
   {
