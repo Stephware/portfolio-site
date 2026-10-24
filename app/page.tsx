@@ -15,6 +15,7 @@ import { hardwareProjects } from "@/data/hardware";
 import { organizations } from "@/data/organizations";
 import { participations } from "@/data/participations";
 import { projects } from "@/data/projects";
+import { recommendations } from "@/data/recommendations";
 import { skills } from "@/data/skills";
 
 export default function Home() {
@@ -148,20 +149,18 @@ export default function Home() {
           </SectionHeading>
 
           <div className="recommendation-grid">
-            {["Professor / Adviser", "Faculty / Mentor", "Collaborator / Team Lead"].map((relationship) => (
-              <article className="recommendation-placeholder" key={relationship}>
-                <span className="micro-label">{relationship}</span>
-                <div className="recommendation-placeholder-lines" aria-hidden="true">
-                  <span />
-                  <span />
-                  <span />
-                  <span />
-                </div>
-                <div className="recommendation-placeholder-identity" aria-hidden="true">
-                  <span />
-                  <span />
-                </div>
-              </article>
+            {recommendations.map((recommendation) => (
+              <figure className="recommendation-card" key={recommendation.name}>
+                <span className="micro-label">Professional recommendation</span>
+                <blockquote className="recommendation-quote">
+                  <p>{recommendation.quote}</p>
+                </blockquote>
+                <figcaption className="recommendation-attribution">
+                  <strong>{recommendation.name}</strong>
+                  <span>{recommendation.title}</span>
+                  <span>{recommendation.additionalRole}</span>
+                </figcaption>
+              </figure>
             ))}
           </div>
         </section>
