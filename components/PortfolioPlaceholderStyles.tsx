@@ -43,7 +43,6 @@ export function PortfolioPlaceholderStyles() {
       }
 
       .career-placeholder-card,
-      .recommendation-placeholder,
       .reserved-link,
       .future-proof-grid article,
       .graduation-copy-placeholder {
@@ -127,41 +126,47 @@ export function PortfolioPlaceholderStyles() {
         gap: .75rem;
       }
 
-      .recommendation-placeholder {
-        display: flex;
-        flex-direction: column;
-        min-height: 15rem;
-        padding: 1rem;
+      .recommendation-card {
+        grid-column: 1 / -1;
+        margin: 0;
+        padding: clamp(1.5rem, 3.5vw, 2.8rem);
+        border: 1px solid var(--gray-200);
+        border-radius: 16px;
+        background: linear-gradient(160deg, var(--gray-50), var(--background));
       }
 
-      .recommendation-placeholder-lines {
+      .recommendation-quote {
+        max-width: 76ch;
+        margin: 1.35rem 0 1.8rem;
+        color: var(--ink);
+        font-size: clamp(1rem, 1.65vw, 1.18rem);
+        line-height: 1.8;
+        letter-spacing: -.012em;
+      }
+
+      .recommendation-quote p { margin: 0; }
+
+      .recommendation-attribution {
         display: grid;
-        gap: .55rem;
-        margin: 1.7rem 0 auto;
+        gap: .2rem;
+        max-width: 76ch;
+        padding-top: 1.1rem;
+        border-top: 1px solid var(--gray-200);
       }
 
-      .recommendation-placeholder-lines span,
-      .recommendation-placeholder-identity span {
-        display: block;
-        height: 1px;
-        background: var(--gray-300);
+      .recommendation-attribution strong {
+        font-size: 1rem;
+        font-weight: 600;
+        letter-spacing: -.02em;
       }
 
-      .recommendation-placeholder-lines span:nth-child(1) { width: 92%; }
-      .recommendation-placeholder-lines span:nth-child(2) { width: 100%; }
-      .recommendation-placeholder-lines span:nth-child(3) { width: 84%; }
-      .recommendation-placeholder-lines span:nth-child(4) { width: 58%; }
-
-      .recommendation-placeholder-identity {
-        display: grid;
-        gap: .45rem;
-        margin-top: 2rem;
+      .recommendation-attribution span {
+        color: var(--gray-500);
+        font-size: .87rem;
+        line-height: 1.5;
+        overflow-wrap: anywhere;
       }
 
-      .recommendation-placeholder-identity span:first-child { width: 42%; }
-      .recommendation-placeholder-identity span:last-child { width: 28%; opacity: .7; }
-
-      .recommendation-placeholder small,
       .future-proof-grid small,
       .graduation-copy-placeholder small {
         color: var(--gray-400);
@@ -231,7 +236,8 @@ export function PortfolioPlaceholderStyles() {
         .future-proof-grid,
         .career-subsection-heading { grid-template-columns: 1fr; }
 
-        .recommendation-placeholder { min-height: 0; }
+        .recommendation-card { padding: 1.2rem; }
+        .recommendation-quote { font-size: 1rem; line-height: 1.7; }
         .desktop-theme-toggle { display: none; }
         .mobile-menu-theme { display: grid; gap: .55rem; margin-bottom: .65rem; }
 
