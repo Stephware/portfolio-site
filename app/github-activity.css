@@ -7,10 +7,11 @@
   --calendar-gap: 4px;
   /* Match the portfolio's monochrome palette in both themes. */
   --contribution-0: var(--gray-200);
-  --contribution-1: color-mix(in srgb, var(--ink) 14%, var(--background));
-  --contribution-2: color-mix(in srgb, var(--ink) 28%, var(--background));
-  --contribution-3: color-mix(in srgb, var(--ink) 48%, var(--background));
-  --contribution-4: color-mix(in srgb, var(--ink) 72%, var(--background));
+  /* Noticeable contrast even at one contribution, in light and dark mode. */
+  --contribution-1: color-mix(in srgb, var(--ink) 31%, var(--background));
+  --contribution-2: color-mix(in srgb, var(--ink) 49%, var(--background));
+  --contribution-3: color-mix(in srgb, var(--ink) 68%, var(--background));
+  --contribution-4: color-mix(in srgb, var(--ink) 90%, var(--background));
   width: 100%;
   padding: .15rem 0 .25rem;
 }
@@ -48,6 +49,13 @@
 
 .github-calendar-title strong {
   font-weight: 500;
+}
+
+.github-calendar-period {
+  margin: .4rem 0 0;
+  color: var(--gray-500);
+  font: 10px/1.6 var(--font-geist-mono), monospace;
+  letter-spacing: .02em;
 }
 
 .github-calendar-layout {
