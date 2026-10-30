@@ -119,7 +119,7 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
       const data = (await response.json()) as ContributionResponse;
       const days = (data.contributions ?? []).map((day) => ({
         ...day,
-        level: getContributionLevel(day.count),
+        level: getContributionLevel(day.count ?? 0),
       }));
       const total = data.total
         ? Object.values(data.total).reduce((sum, value) => sum + value, 0)
