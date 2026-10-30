@@ -148,7 +148,11 @@
 .github-level-4 { background: var(--contribution-4); }
 
 .github-calendar-empty {
+  /* Outline future dates so March–December stays visible without
+     implying contributions on dates that have not happened. */
   background: transparent;
+  border: 1px solid var(--gray-200);
+  opacity: .48;
   pointer-events: none;
 }
 
