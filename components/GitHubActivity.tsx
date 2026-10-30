@@ -151,36 +151,38 @@ type CalendarWeek = {
   days: (ContributionDay | null)[];
 };
 
-function createCalendarWeeks(contributions: ContributionDay[]): CalendarWeek[] {
-  // GitHub's contribution calendar groups days into Sunday–Saturday weeks.
-  // Dates outside the available data are blank, never fabricated zeros.
-  const sorted = [...contributions]
-    .filter((day) => /^\d{4}-\d{2}-\d{2}$/.test(day.date))
-    .sort((a, b) => a.date.localeCompare(b.date))
-    .slice(-366);
-
-  if (sorted.length === 0) return [];
-
-  const byDate = new Map(sorted.map((day) => [day.date, day]));
-  const first = new Date(sorted[0].date + "T00:00:00Z");
-  const last = new Date(sorted[sorted.length - 1].date + "T00:00:00Z");
+function createCalendarWeeks(contributions: ContributionDay[], year: number): CalendarWeek[] {
+  // Display March 1 through December 31 of the selected calendar year.
+  // Pad each week Sunday–Saturday and never invent future contributions.
+  const now = new Date().toISOString().slice(0, 10);
+  const firstDate = `${year}-03-01`;
+  const lastDate = `${year}-12-31`;
+  const byDate = new Map(
+    contributions
+      .filter((day) => day.date >= firstDate && day.date <= lastDate && day.date <= now)
+      .map((day) => [day.date, day]),
+  );
+  const first = new Date(`${firstDate}T00:00:00Z`);
+  const last = new Date(`${lastDate}T00:00:00Z`);
   first.setUTCDate(first.getUTCDate() - first.getUTCDay());
   last.setUTCDate(last.getUTCDate() + (6 - last.getUTCDay()));
 
   const weeks: CalendarWeek[] = [];
   let currentWeek: (ContributionDay | null)[] = [];
+  let weekDates: string[] = [];
 
   for (let current = new Date(first); current <= last; current.setUTCDate(current.getUTCDate() + 1)) {
     const date = current.toISOString().slice(0, 10);
+    weekDates.push(date);
     currentWeek.push(byDate.get(date) ?? null);
     if (currentWeek.length === 7) {
-      const firstRealDay = currentWeek.find((day) => day !== null);
-      const monthStart = currentWeek.find((day) => day?.date.endsWith("-01"));
-      const labelDay = monthStart ?? (weeks.length === 0 ? firstRealDay : null);
+      // Month labels must also appear for upcoming months (November and
+      // December), when there are correctly no contributions to render.
+      const monthStart = weekDates.find((day) => day >= firstDate && day <= lastDate && day.endsWith("-01"));
       weeks.push({
         key: date,
-        monthLabel: labelDay
-          ? new Date(labelDay.date + "T00:00:00Z").toLocaleDateString("en-US", {
+        monthLabel: monthStart
+          ? new Date(`${monthStart}T00:00:00Z`).toLocaleDateString("en-US", {
               month: "short",
               timeZone: "UTC",
             })
@@ -188,6 +190,7 @@ function createCalendarWeeks(contributions: ContributionDay[]): CalendarWeek[] {
         days: currentWeek,
       });
       currentWeek = [];
+      weekDates = [];
     }
   }
 
@@ -196,7 +199,10 @@ function createCalendarWeeks(contributions: ContributionDay[]): CalendarWeek[] {
 
 export async function GitHubActivity() {
   const { days, total } = await getContributionYear();
-  const weeks = createCalendarWeeks(days);
+  const now = new Date();
+  // In January and February, continue showing the preceding March–December.
+  const calendarYear = now.getUTCMonth() < 2 ? now.getUTCFullYear() - 1 : now.getUTCFullYear();
+  const weeks = days.length ? createCalendarWeeks(days, calendarYear) : [];
 
   return (
     <div className="github-contributions" data-reveal>
@@ -215,6 +221,7 @@ export async function GitHubActivity() {
                 ? "GitHub contributions in the last year"
                 : total.toLocaleString("en-US") + " contributions in the last year"}
             </strong>
+            <p className="github-calendar-period">Showing March–December {calendarYear} · Future dates left blank</p>
           </div>
 
           <div className="github-calendar-layout">
@@ -234,7 +241,7 @@ export async function GitHubActivity() {
               className="github-calendar-scroll"
               dir="rtl"
               role="img"
-              aria-label="GitHub contribution calendar for the last year; newest dates on the right"
+              aria-label={"GitHub contribution calendar from March to December " + calendarYear + "; future dates blank"}
             >
               <div className="github-calendar-inner" dir="ltr">
                 <div className="github-calendar-months" aria-hidden="true">
