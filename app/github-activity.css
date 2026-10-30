@@ -5,21 +5,14 @@
 .github-contributions {
   --calendar-cell: 11px;
   --calendar-gap: 4px;
-  --contribution-0: #ebedf0;
-  --contribution-1: #9be9a8;
-  --contribution-2: #40c463;
-  --contribution-3: #30a14e;
-  --contribution-4: #216e39;
+  /* Match the portfolio's monochrome palette in both themes. */
+  --contribution-0: var(--gray-200);
+  --contribution-1: color-mix(in srgb, var(--ink) 14%, var(--background));
+  --contribution-2: color-mix(in srgb, var(--ink) 28%, var(--background));
+  --contribution-3: color-mix(in srgb, var(--ink) 48%, var(--background));
+  --contribution-4: color-mix(in srgb, var(--ink) 72%, var(--background));
   width: 100%;
   padding: .15rem 0 .25rem;
-}
-
-html.dark .github-contributions {
-  --contribution-0: #161b22;
-  --contribution-1: #0e4429;
-  --contribution-2: #006d32;
-  --contribution-3: #26a641;
-  --contribution-4: #39d353;
 }
 
 .github-contributions-header {
