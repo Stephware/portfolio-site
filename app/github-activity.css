@@ -143,3 +143,129 @@ html.dark .github-dot-3 { opacity: .82; }
     transform: none;
   }
 }
+
+
+/* Public GitHub activity: compact editorial cards in the portfolio theme. */
+.github-recent {
+  margin-top: 2.1rem;
+  padding-top: 1.45rem;
+  border-top: 1px solid var(--gray-200);
+}
+
+.github-recent-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  gap: 1rem;
+  margin-bottom: 1.05rem;
+}
+
+.github-recent-heading .micro-label {
+  color: var(--ink);
+  font-size: 11px;
+}
+
+.github-recent-heading p {
+  color: var(--gray-500);
+  font-size: 12px;
+  line-height: 1.65;
+  margin-top: .45rem;
+}
+
+.github-recent-window {
+  flex: none;
+  color: var(--gray-400);
+  font: 9px var(--font-geist-mono), monospace;
+  letter-spacing: .07em;
+  white-space: nowrap;
+  padding-top: 2px;
+}
+
+.github-recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .65rem;
+}
+
+.github-recent-item {
+  min-width: 0;
+  border: 1px solid var(--gray-200);
+  background: var(--gray-50);
+}
+
+.github-recent-item a {
+  min-height: 7.6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .43rem;
+  padding: .95rem;
+  transition: border-color 180ms ease, background-color 180ms ease;
+}
+
+.github-recent-item:hover {
+  border-color: var(--gray-400);
+}
+
+.github-recent-repository {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--gray-500);
+  font: 9px var(--font-geist-mono), monospace;
+}
+
+.github-recent-item strong {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.github-recent-detail {
+  color: var(--gray-500);
+  font-size: 11px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.github-recent-date {
+  margin-top: auto;
+  color: var(--gray-400);
+  font: 9px var(--font-geist-mono), monospace;
+}
+
+.github-recent-profile {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--ink);
+  font: 10px var(--font-geist-mono), monospace;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.github-recent-empty {
+  padding: 1rem;
+  border: 1px solid var(--gray-200);
+  color: var(--gray-500);
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+@media (max-width: 600px) {
+  .github-recent-heading {
+    flex-direction: column;
+    gap: .4rem;
+  }
+
+  .github-recent-list {
+    grid-template-columns: 1fr;
+  }
+
+  .github-recent-item a {
+    min-height: 6.4rem;
+  }
+}
