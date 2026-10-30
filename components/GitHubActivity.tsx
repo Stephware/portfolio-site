@@ -10,7 +10,26 @@ type ContributionResponse = {
 };
 
 type GitHubEvent = {
+  id: string;
+  type: string;
   created_at: string;
+  repo?: { name: string };
+  payload?: {
+    action?: string;
+    ref?: string | null;
+    ref_type?: string;
+    pull_request?: { number?: number; merged?: boolean };
+    issue?: { number?: number };
+  };
+};
+
+type RecentActivity = {
+  id: string;
+  label: string;
+  detail: string;
+  repository: string;
+  url: string;
+  date: string;
 };
 
 const username = "Stephware";
@@ -140,6 +159,93 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
     // Fall through to the public-event fallback below.
   }
 
+  // If the contribution sources are unavailable, don't manufacture an
+  // all-zero calendar from public events: events aren't contribution counts.
+  return { days: [], total: null };
+}
+
+function formatActivityDate(value: string) {
+  return new Date(value).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    timeZone: "UTC",
+  });
+}
+
+function mapPublicEvent(event: GitHubEvent): RecentActivity | null {
+  const repository = event.repo?.name;
+  if (!repository || !/^[\w.-]+\/[\w.-]+$/.test(repository)) return null;
+  if (!Number.isFinite(Date.parse(event.created_at))) return null;
+
+  const baseUrl = `https://github.com/${repository}`;
+  const payload = event.payload;
+  let label: string;
+  let detail: string;
+  let url = baseUrl;
+
+  switch (event.type) {
+    case "PushEvent": {
+      label = "Pushed code";
+      const branch = payload?.ref?.replace(/^refs\/heads\//, "");
+      detail = branch ? `Updated ${branch}` : "Repository updates";
+      break;
+    }
+    case "PullRequestEvent": {
+      const action = payload?.action;
+      if (action === "closed" && payload?.pull_request?.merged) {
+        label = "Merged a pull request";
+      } else if (action === "opened") {
+        label = "Opened a pull request";
+      } else if (action === "reopened") {
+        label = "Reopened a pull request";
+      } else {
+        return null;
+      }
+      detail = "Pull request activity";
+      if (payload?.pull_request?.number) {
+        url = `${baseUrl}/pull/${payload.pull_request.number}`;
+      }
+      break;
+    }
+    case "CreateEvent": {
+      if (payload?.ref_type === "repository") {
+        label = "Created a repository";
+        detail = "New public repository";
+      } else if (payload?.ref_type === "branch") {
+        label = "Created a branch";
+        detail = payload.ref || "New branch";
+      } else {
+        return null;
+      }
+      break;
+    }
+    case "ReleaseEvent": {
+      if (payload?.action !== "published") return null;
+      label = "Published a release";
+      detail = "New version";
+      url = `${baseUrl}/releases`;
+      break;
+    }
+    case "IssuesEvent": {
+      if (payload?.action !== "opened" && payload?.action !== "closed") return null;
+      label = payload.action === "opened" ? "Opened an issue" : "Closed an issue";
+      detail = "Issue activity";
+      if (payload.issue?.number) {
+        url = `${baseUrl}/issues/${payload.issue.number}`;
+      }
+      break;
+    }
+    default:
+      return null;
+  }
+
+  return { id: event.id, label, detail, repository, url, date: event.created_at };
+}
+
+async function getRecentPublicActivity(): Promise<{ items: RecentActivity[]; available: boolean }> {
+  // Public events require no credentials. Next.js caches the request for
+  // 15 minutes so browsing the portfolio won't exhaust GitHub rate limits.
   try {
     const response = await fetch(
       `https://api.github.com/users/${username}/events/public?per_page=100`,
@@ -147,44 +253,26 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
         headers: {
           Accept: "application/vnd.github+json",
           "X-GitHub-Api-Version": "2022-11-28",
+          "User-Agent": "Stephen-Pinacate-Portfolio",
         },
         next: { revalidate: 900 },
       },
     );
+    if (!response.ok) return { items: [], available: false };
 
-    if (!response.ok) return { days: buildEmptyYear(), total: null };
+    const data: unknown = await response.json();
+    if (!Array.isArray(data)) return { items: [], available: false };
 
-    const events = (await response.json()) as GitHubEvent[];
-    const counts = new Map<string, number>();
-    for (const event of events) {
-      const key = event.created_at.slice(0, 10);
-      counts.set(key, (counts.get(key) ?? 0) + 1);
-    }
+    const items = (data as GitHubEvent[])
+      .map(mapPublicEvent)
+      .filter((item): item is RecentActivity => item !== null)
+      .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
+      .slice(0, 6);
 
-    const days = buildEmptyYear().map((day) => {
-      const count = counts.get(day.date) ?? 0;
-      return {
-        ...day,
-        count,
-        level: getContributionLevel(count),
-      };
-    });
-
-    return { days, total: null };
+    return { items, available: true };
   } catch {
-    return { days: buildEmptyYear(), total: null };
+    return { items: [], available: false };
   }
-}
-
-function buildEmptyYear(): ContributionDay[] {
-  const today = new Date();
-  today.setUTCHours(0, 0, 0, 0);
-
-  return Array.from({ length: 371 }, (_, index) => {
-    const date = new Date(today);
-    date.setUTCDate(today.getUTCDate() - (370 - index));
-    return { date: date.toISOString().slice(0, 10), count: 0, level: 0 };
-  });
 }
 
 function formatDate(value: string) {
@@ -197,7 +285,10 @@ function formatDate(value: string) {
 }
 
 export async function GitHubActivity() {
-  const { days, total } = await getContributionYear();
+  const [{ days, total }, recent] = await Promise.all([
+    getContributionYear(),
+    getRecentPublicActivity(),
+  ]);
   const visibleDays = days.slice(-371);
 
   return (
@@ -209,23 +300,64 @@ export async function GitHubActivity() {
         </a>
       </div>
 
-      <div className="github-dot-scroll" role="img" aria-label="GitHub contribution activity for the last year">
-        <div className="github-dot-grid">
-          {visibleDays.map((day) => (
-            <span
-              className={`github-dot github-dot-${Math.max(0, Math.min(4, day.level))}`}
-              key={day.date}
-              title={`${formatDate(day.date)}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
-            />
-          ))}
-        </div>
-      </div>
+      {visibleDays.length > 0 ? (
+        <>
+          {/* RTL scrolling starts at the newest end on narrow screens,
+              while the LTR grid keeps dates in chronological order. */}
+          <div className="github-dot-scroll" dir="rtl" role="img" aria-label="GitHub contribution activity over the last year; newest dates on the right">
+            <div className="github-dot-grid" dir="ltr">
+              {visibleDays.map((day) => (
+                <span
+                  className={`github-dot github-dot-${Math.max(0, Math.min(4, day.level))}`}
+                  key={day.date}
+                  title={`${formatDate(day.date)}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
+                />
+              ))}
+            </div>
+          </div>
+          <p className="github-dot-total">
+            {total === null
+              ? "CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
+              : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
+          </p>
+        </>
+      ) : (
+        <p className="github-dot-total">CONTRIBUTION CALENDAR TEMPORARILY UNAVAILABLE — VIEW ON GITHUB</p>
+      )}
 
-      <p className="github-dot-total">
-        {total === null
-          ? "CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
-          : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
-      </p>
+      <div className="github-recent">
+        <div className="github-recent-heading">
+          <div>
+            <span className="micro-label">Recent public activity</span>
+            <p>Latest code updates and collaboration across public repositories.</p>
+          </div>
+          <span className="github-recent-window">LAST 30 DAYS</span>
+        </div>
+
+        {recent.items.length > 0 ? (
+          <ul className="github-recent-list">
+            {recent.items.map((item) => (
+              <li className="github-recent-item" key={item.id}>
+                <a href={item.url} target="_blank" rel="noreferrer">
+                  <span className="github-recent-repository">{item.repository}</span>
+                  <strong>{item.label}</strong>
+                  <span className="github-recent-detail">{item.detail}</span>
+                  <span className="github-recent-date">{formatActivityDate(item.date)} <span aria-hidden="true">↗</span></span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="github-recent-empty">
+            {recent.available
+              ? "No recent public events to display. Private repository activity is not shown."
+              : "Recent activity is temporarily unavailable. View the latest updates on GitHub."}
+          </p>
+        )}
+        <a className="github-recent-profile" href={profileUrl} target="_blank" rel="noreferrer">
+          View full GitHub profile ↗
+        </a>
+      </div>
     </div>
   );
 }
