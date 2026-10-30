@@ -123,7 +123,7 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
       }));
       const total = data.total
         ? Object.values(data.total).reduce((sum, value) => sum + value, 0)
-        : days.reduce((sum, day) => sum + day.count, 0);
+        : days.reduce((sum, day) => sum + (day.count ?? 0), 0);
 
       if (days.length > 0) return { days, total };
     }
