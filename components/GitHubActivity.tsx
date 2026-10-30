@@ -1,35 +1,12 @@
 type ContributionDay = {
   date: string;
-  count: number;
+  count: number | null;
   level: number;
 };
 
 type ContributionResponse = {
   total?: Record<string, number>;
   contributions?: ContributionDay[];
-};
-
-type GitHubEvent = {
-  id: string;
-  type: string;
-  created_at: string;
-  repo?: { name: string };
-  payload?: {
-    action?: string;
-    ref?: string | null;
-    ref_type?: string;
-    pull_request?: { number?: number; merged?: boolean };
-    issue?: { number?: number };
-  };
-};
-
-type RecentActivity = {
-  id: string;
-  label: string;
-  detail: string;
-  repository: string;
-  url: string;
-  date: string;
 };
 
 const username = "Stephware";
@@ -96,17 +73,12 @@ function parseGitHubContributionHtml(html: string) {
     if (count === null && id) count = countsByReference.get(id) ?? null;
     if (count === null && describedBy) count = countsByReference.get(describedBy) ?? null;
 
-    // GitHub occasionally changes the calendar markup. If an exact tooltip
-    // count cannot be matched, preserve the visible GitHub activity level
-    // instead of incorrectly treating an active day as empty.
-    if (count === null) {
-      count = [0, 1, 5, 15, 40][Math.max(0, Math.min(4, githubLevel))] ?? 0;
-    }
-
+    // Preserve GitHub's intensity when the exact tooltip count is missing.
+    // Do not invent contribution counts for those days.
     days.push({
       date,
       count,
-      level: getContributionLevel(count),
+      level: count === null ? Math.max(0, Math.min(4, githubLevel)) : getContributionLevel(count),
     });
   }
 
@@ -164,117 +136,6 @@ async function getContributionYear(): Promise<{ days: ContributionDay[]; total: 
   return { days: [], total: null };
 }
 
-function formatActivityDate(value: string) {
-  return new Date(value).toLocaleDateString("en-US", {
-    month: "short",
-    day: "numeric",
-    year: "numeric",
-    timeZone: "UTC",
-  });
-}
-
-function mapPublicEvent(event: GitHubEvent): RecentActivity | null {
-  const repository = event.repo?.name;
-  if (!repository || !/^[\w.-]+\/[\w.-]+$/.test(repository)) return null;
-  if (!Number.isFinite(Date.parse(event.created_at))) return null;
-
-  const baseUrl = `https://github.com/${repository}`;
-  const payload = event.payload;
-  let label: string;
-  let detail: string;
-  let url = baseUrl;
-
-  switch (event.type) {
-    case "PushEvent": {
-      label = "Pushed code";
-      const branch = payload?.ref?.replace(/^refs\/heads\//, "");
-      detail = branch ? `Updated ${branch}` : "Repository updates";
-      break;
-    }
-    case "PullRequestEvent": {
-      const action = payload?.action;
-      if (action === "closed" && payload?.pull_request?.merged) {
-        label = "Merged a pull request";
-      } else if (action === "opened") {
-        label = "Opened a pull request";
-      } else if (action === "reopened") {
-        label = "Reopened a pull request";
-      } else {
-        return null;
-      }
-      detail = "Pull request activity";
-      if (payload?.pull_request?.number) {
-        url = `${baseUrl}/pull/${payload.pull_request.number}`;
-      }
-      break;
-    }
-    case "CreateEvent": {
-      if (payload?.ref_type === "repository") {
-        label = "Created a repository";
-        detail = "New public repository";
-      } else if (payload?.ref_type === "branch") {
-        label = "Created a branch";
-        detail = payload.ref || "New branch";
-      } else {
-        return null;
-      }
-      break;
-    }
-    case "ReleaseEvent": {
-      if (payload?.action !== "published") return null;
-      label = "Published a release";
-      detail = "New version";
-      url = `${baseUrl}/releases`;
-      break;
-    }
-    case "IssuesEvent": {
-      if (payload?.action !== "opened" && payload?.action !== "closed") return null;
-      label = payload.action === "opened" ? "Opened an issue" : "Closed an issue";
-      detail = "Issue activity";
-      if (payload.issue?.number) {
-        url = `${baseUrl}/issues/${payload.issue.number}`;
-      }
-      break;
-    }
-    default:
-      return null;
-  }
-
-  return { id: event.id, label, detail, repository, url, date: event.created_at };
-}
-
-async function getRecentPublicActivity(): Promise<{ items: RecentActivity[]; available: boolean }> {
-  // Public events require no credentials. Next.js caches the request for
-  // 15 minutes so browsing the portfolio won't exhaust GitHub rate limits.
-  try {
-    const response = await fetch(
-      `https://api.github.com/users/${username}/events/public?per_page=100`,
-      {
-        headers: {
-          Accept: "application/vnd.github+json",
-          "X-GitHub-Api-Version": "2022-11-28",
-          "User-Agent": "Stephen-Pinacate-Portfolio",
-        },
-        next: { revalidate: 900 },
-      },
-    );
-    if (!response.ok) return { items: [], available: false };
-
-    const data: unknown = await response.json();
-    if (!Array.isArray(data)) return { items: [], available: false };
-
-    const items = (data as GitHubEvent[])
-      .map(mapPublicEvent)
-      .filter((item): item is RecentActivity => item !== null)
-      .sort((a, b) => Date.parse(b.date) - Date.parse(a.date))
-      .slice(0, 6);
-
-    return { items, available: true };
-  } catch {
-    return { items: [], available: false };
-  }
-}
-
 function formatDate(value: string) {
   return new Date(`${value}T00:00:00Z`).toLocaleDateString("en-US", {
     month: "short",
@@ -284,80 +145,151 @@ function formatDate(value: string) {
   });
 }
 
+type CalendarWeek = {
+  key: string;
+  monthLabel: string;
+  days: (ContributionDay | null)[];
+};
+
+function createCalendarWeeks(contributions: ContributionDay[]): CalendarWeek[] {
+  // GitHub's contribution calendar groups days into Sunday–Saturday weeks.
+  // Dates outside the available data are blank, never fabricated zeros.
+  const sorted = [...contributions]
+    .filter((day) => /^\d{4}-\d{2}-\d{2}$/.test(day.date))
+    .sort((a, b) => a.date.localeCompare(b.date))
+    .slice(-366);
+
+  if (sorted.length === 0) return [];
+
+  const byDate = new Map(sorted.map((day) => [day.date, day]));
+  const first = new Date(sorted[0].date + "T00:00:00Z");
+  const last = new Date(sorted[sorted.length - 1].date + "T00:00:00Z");
+  first.setUTCDate(first.getUTCDate() - first.getUTCDay());
+  last.setUTCDate(last.getUTCDate() + (6 - last.getUTCDay()));
+
+  const weeks: CalendarWeek[] = [];
+  let currentWeek: (ContributionDay | null)[] = [];
+
+  for (let current = new Date(first); current <= last; current.setUTCDate(current.getUTCDate() + 1)) {
+    const date = current.toISOString().slice(0, 10);
+    currentWeek.push(byDate.get(date) ?? null);
+    if (currentWeek.length === 7) {
+      const firstRealDay = currentWeek.find((day) => day !== null);
+      const monthStart = currentWeek.find((day) => day?.date.endsWith("-01"));
+      const labelDay = monthStart ?? (weeks.length === 0 ? firstRealDay : null);
+      weeks.push({
+        key: date,
+        monthLabel: labelDay
+          ? new Date(labelDay.date + "T00:00:00Z").toLocaleDateString("en-US", {
+              month: "short",
+              timeZone: "UTC",
+            })
+          : "",
+        days: currentWeek,
+      });
+      currentWeek = [];
+    }
+  }
+
+  return weeks;
+}
+
 export async function GitHubActivity() {
-  const [{ days, total }, recent] = await Promise.all([
-    getContributionYear(),
-    getRecentPublicActivity(),
-  ]);
-  const visibleDays = days.slice(-371);
+  const { days, total } = await getContributionYear();
+  const weeks = createCalendarWeeks(days);
 
   return (
-    <div className="github-dot-tracker" data-reveal>
-      <div className="github-dot-header">
+    <div className="github-contributions" data-reveal>
+      <div className="github-contributions-header">
         <span>10 — github</span>
         <a href={profileUrl} target="_blank" rel="noreferrer" aria-label="Open Stephware on GitHub">
           @{username.toUpperCase()} ↗
         </a>
       </div>
 
-      {visibleDays.length > 0 ? (
-        <>
-          {/* RTL scrolling starts at the newest end on narrow screens,
-              while the LTR grid keeps dates in chronological order. */}
-          <div className="github-dot-scroll" dir="rtl" role="img" aria-label="GitHub contribution activity over the last year; newest dates on the right">
-            <div className="github-dot-grid" dir="ltr">
-              {visibleDays.map((day) => (
-                <span
-                  className={`github-dot github-dot-${Math.max(0, Math.min(4, day.level))}`}
-                  key={day.date}
-                  title={`${formatDate(day.date)}: ${day.count} contribution${day.count === 1 ? "" : "s"}`}
-                />
-              ))}
+      {weeks.length > 0 ? (
+        <div className="github-calendar-card">
+          <div className="github-calendar-title">
+            <strong>
+              {total === null
+                ? "GitHub contributions in the last year"
+                : total.toLocaleString("en-US") + " contributions in the last year"}
+            </strong>
+          </div>
+
+          <div className="github-calendar-layout">
+            <div className="github-weekdays" aria-hidden="true">
+              <span />
+              <span>Mon</span>
+              <span />
+              <span>Wed</span>
+              <span />
+              <span>Fri</span>
+              <span />
+            </div>
+
+            {/* The scroll viewport starts on the newest weeks on mobile;
+                the inner calendar stays chronological left-to-right. */}
+            <div
+              className="github-calendar-scroll"
+              dir="rtl"
+              role="img"
+              aria-label="GitHub contribution calendar for the last year; newest dates on the right"
+            >
+              <div className="github-calendar-inner" dir="ltr">
+                <div className="github-calendar-months" aria-hidden="true">
+                  {weeks.map((week) => (
+                    <span className="github-calendar-month-slot" key={week.key}>
+                      {week.monthLabel ? <span>{week.monthLabel}</span> : null}
+                    </span>
+                  ))}
+                </div>
+                <div className="github-calendar-grid">
+                  {weeks.flatMap((week) =>
+                    week.days.map((day, dayIndex) =>
+                      day ? (
+                        <span
+                          key={day.date}
+                          className={"github-calendar-day github-level-" + day.level}
+                          title={formatDate(day.date) + ": " + (
+                            day.count === null
+                              ? "contribution level " + day.level
+                              : day.count + " contribution" + (day.count === 1 ? "" : "s")
+                          )}
+                        />
+                      ) : (
+                        <span
+                          className="github-calendar-day github-calendar-empty"
+                          aria-hidden="true"
+                          key={week.key + "-" + dayIndex}
+                        />
+                      ),
+                    ),
+                  )}
+                </div>
+              </div>
             </div>
           </div>
-          <p className="github-dot-total">
-            {total === null
-              ? "CONTRIBUTION TOTAL TEMPORARILY UNAVAILABLE"
-              : `${total.toLocaleString("en-US")} CONTRIBUTIONS IN THE LAST YEAR`}
-          </p>
-        </>
-      ) : (
-        <p className="github-dot-total">CONTRIBUTION CALENDAR TEMPORARILY UNAVAILABLE — VIEW ON GITHUB</p>
-      )}
 
-      <div className="github-recent">
-        <div className="github-recent-heading">
-          <div>
-            <span className="micro-label">Recent public activity</span>
-            <p>Latest code updates and collaboration across public repositories.</p>
+          <div className="github-calendar-footer">
+            <a href={profileUrl} target="_blank" rel="noreferrer">
+              View contribution history on GitHub ↗
+            </a>
+            <div className="github-calendar-legend" aria-label="Contribution intensity from less to more">
+              <span>Less</span>
+              {[0, 1, 2, 3, 4].map((level) => (
+                <span className={"github-calendar-day github-level-" + level} key={level} />
+              ))}
+              <span>More</span>
+            </div>
           </div>
-          <span className="github-recent-window">LAST 30 DAYS</span>
         </div>
-
-        {recent.items.length > 0 ? (
-          <ul className="github-recent-list">
-            {recent.items.map((item) => (
-              <li className="github-recent-item" key={item.id}>
-                <a href={item.url} target="_blank" rel="noreferrer">
-                  <span className="github-recent-repository">{item.repository}</span>
-                  <strong>{item.label}</strong>
-                  <span className="github-recent-detail">{item.detail}</span>
-                  <span className="github-recent-date">{formatActivityDate(item.date)} <span aria-hidden="true">↗</span></span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="github-recent-empty">
-            {recent.available
-              ? "No recent public events to display. Private repository activity is not shown."
-              : "Recent activity is temporarily unavailable. View the latest updates on GitHub."}
-          </p>
-        )}
-        <a className="github-recent-profile" href={profileUrl} target="_blank" rel="noreferrer">
-          View full GitHub profile ↗
-        </a>
-      </div>
+      ) : (
+        <div className="github-calendar-unavailable">
+          Contribution calendar temporarily unavailable.{" "}
+          <a href={profileUrl} target="_blank" rel="noreferrer">View it on GitHub ↗</a>
+        </div>
+      )}
     </div>
   );
 }
