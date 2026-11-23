@@ -46,7 +46,7 @@ export default function Home() {
               <p className="micro-label">Hello, I’m</p>
               <h1>stephen<br />pinacate.</h1>
               <p className="hero-lead">
-                A full-stack developer building software for real operational systems — from clinic platforms and university workflows to transportation and AI-assisted applications.
+                A full-stack developer building software for real operational systems — from clinic platforms and farm management to university workflows, transportation, and AI-assisted applications.
               </p>
               <p className="hero-subline">Computer Engineering · Angeles University Foundation</p>
 

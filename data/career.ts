@@ -83,24 +83,6 @@ export const currentBuilds = [
     stack: ["Next.js", "NestJS", "Prisma", "PostgreSQL", "TypeScript"],
     repository: "https://github.com/Stephware/IcpepRegionHub",
   },
-  {
-    title: "SmartFarm",
-    status: "Collaborative farm-management platform",
-    description:
-      "A web-and-Android farm-management platform designed to help farm owners and field teams manage multiple farms, plots, crop cycles, daily field activities, supply inventory, harvest records, and weather-related reminders, with selected Android workflows supporting offline use and synchronization when connectivity returns.",
-    stackLabel: "Technology stack",
-    stack: [
-      ".NET 10 / ASP.NET Core",
-      "EF Core 10",
-      "SQL Server 2022",
-      "Hangfire",
-      "Kotlin / Jetpack Compose",
-      "Room",
-      "Retrofit / OkHttp",
-      "WorkManager",
-    ],
-    repository: "https://github.com/Stephware/SmartFarm",
-  },
 ];
 
 export const futureProofPlaceholders = [

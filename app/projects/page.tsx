@@ -29,7 +29,7 @@ export default function ProjectsPage() {
             <h1>Projects</h1>
             <p>
               A complete list of the systems I have built or co-built across clinic operations,
-              university workflows, public transport, and desktop computing.
+              university workflows, agriculture, public transport, and desktop computing.
             </p>
           </div>
           <div className={styles.heroAside}>
