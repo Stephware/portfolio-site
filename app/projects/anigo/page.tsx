@@ -245,7 +245,7 @@ export default function AniGoCaseStudy() {
       <main className={styles.page}>
         <header className={styles.topbar}>
           <Link href="/#projects">← Back to portfolio</Link>
-          <span>Completed academic MVP · Two-developer team</span>
+          <span>Completed academic MVP · Independently developed</span>
         </header>
 
         <section className={styles.hero}>
@@ -273,7 +273,7 @@ export default function AniGoCaseStudy() {
             <dl className={styles.facts}>
               <div><dt>Status</dt><dd>Completed academic MVP</dd></div>
               <div><dt>My role</dt><dd>Full-stack / Android developer</dd></div>
-              <div><dt>Team</dt><dd>Two developers</dd></div>
+              <div><dt>Ownership</dt><dd>Sole developer</dd></div>
               <div><dt>Stack</dt><dd>.NET 10 · EF Core · SQL Server · Hangfire · Kotlin</dd></div>
             </dl>
           </div>
@@ -399,14 +399,15 @@ export default function AniGoCaseStudy() {
         <section className={styles.closing}>
           <div>
             <p className={styles.eyebrow}>06 — My contribution</p>
-            <h2>From farm records to connected workflows.</h2>
+            <h2>Independently built, from backend to fieldwork.</h2>
           </div>
           <div className={styles.closingCopy}>
             <p>
-              In our two-developer team, I worked across the full-stack
-              and Android experience: connecting farm-management workflows,
-              backend services, field recording and the progression from
-              on-device data to server-confirmed records.
+              I independently designed and developed AniGo across the web,
+              API, background worker, database and Android app. I built the
+              connected farm-management workflows, field recording,
+              inventory and harvest tracking, scheduled reminders, and
+              synchronization of supported offline entries.
             </p>
             <p>
               AniGo is a completed academic MVP. The repository also documents
