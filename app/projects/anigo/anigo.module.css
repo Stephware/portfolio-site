@@ -14,12 +14,11 @@
   gap: 1rem;
   padding: 1rem 0;
   border-bottom: 1px solid var(--gray-200);
-  background: color-mix(in srgb, var(--background) 92%, transparent);
+  background: color-mix(in srgb, var(--background) 93%, transparent);
   backdrop-filter: blur(16px);
 }
 
-.topbar a,
-.topbar span {
+.topbar a, .topbar span {
   color: var(--gray-500);
   font: 9px var(--font-geist-mono), monospace;
   letter-spacing: .06em;
@@ -36,11 +35,11 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  margin-bottom: clamp(2.5rem, 6vw, 5rem);
   color: var(--gray-400);
   font: 9px var(--font-geist-mono), monospace;
   letter-spacing: .08em;
   text-transform: uppercase;
-  margin-bottom: clamp(2.5rem, 6vw, 5rem);
 }
 
 .heroGrid {
@@ -97,21 +96,23 @@
 
 .primaryAction {
   padding: .75rem 1.05rem;
+  border-radius: 999px;
   background: var(--ink);
   color: var(--background);
-  border-radius: 999px;
 }
 
 .secondaryAction { color: var(--gray-600); }
-
 .primaryAction:hover { opacity: .85; }
 .secondaryAction:hover { color: var(--ink); }
 
-.facts { margin: 0; border-top: 1px solid var(--gray-200); }
+.facts {
+  margin: 0;
+  border-top: 1px solid var(--gray-200);
+}
 
 .facts div {
   display: grid;
-  grid-template-columns: 5rem 1fr;
+  grid-template-columns: 5rem minmax(0, 1fr);
   gap: .8rem;
   padding: .85rem 0;
   border-bottom: 1px solid var(--gray-200);
@@ -130,12 +131,131 @@
   line-height: 1.5;
 }
 
+.heroScreens {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(13rem, .8fr);
+  gap: clamp(1rem, 2.5vw, 1.75rem);
+  align-items: stretch;
+  margin-top: clamp(3rem, 7vw, 6rem);
+  scroll-margin-top: 6rem;
+}
+
+.heroWeb,
+.heroPhone,
+.webCard,
+.phoneCard {
+  min-width: 0;
+  margin: 0;
+}
+
+.heroWeb {
+  align-self: start;
+  overflow: hidden;
+  border: 1px solid var(--gray-300);
+  border-radius: 16px;
+  background: var(--gray-50);
+  box-shadow: 0 22px 55px -40px rgb(0 0 0 / .3);
+}
+
+.browserChrome {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  min-height: 2.5rem;
+  padding: .7rem .9rem;
+  border-bottom: 1px solid var(--gray-200);
+  background: var(--gray-50);
+  color: var(--gray-500);
+  font: 9px var(--font-geist-mono), monospace;
+  letter-spacing: .035em;
+}
+
+.chromeDots {
+  display: flex;
+  gap: .28rem;
+}
+
+.chromeDots span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--gray-300);
+}
+
+.heroWebViewport,
+.webViewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: #f5f8f5;
+}
+
+.screenshot,
+.phoneScreenshot {
+  object-fit: contain;
+  object-position: center;
+}
+
+.heroWeb figcaption,
+.heroPhone figcaption {
+  padding: .9rem 1rem 1rem;
+  color: var(--gray-500);
+  font: 9px/1.65 var(--font-geist-mono), monospace;
+  letter-spacing: .025em;
+}
+
+.heroPhone {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 1.3rem .85rem .8rem;
+  border: 1px solid var(--gray-200);
+  border-radius: 16px;
+  background: var(--gray-50);
+}
+
+.heroPhone .phoneShell {
+  width: min(85%, 218px);
+}
+
+.heroPhone figcaption {
+  text-align: center;
+}
+
+.phoneShell {
+  width: min(100%, 212px);
+  padding: 5px;
+  border: 2px solid #1b2b23;
+  border-radius: 26px;
+  background: #1b2b23;
+  box-shadow: 0 20px 42px -32px rgb(0 0 0 / .55);
+}
+
+.phoneViewport {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 720 / 1610;
+  overflow: hidden;
+  border-radius: 19px;
+  background: #f8f9f5;
+}
+
+.imageNote {
+  margin: 1rem 0 0;
+  color: var(--gray-500);
+  font: 10px/1.7 var(--font-geist-mono), monospace;
+}
+
 .showcase,
 .workflows,
 .architectureSection,
 .closing {
   padding: clamp(4rem, 8vw, 7rem) 0;
   border-top: 1px solid var(--gray-200);
+  scroll-margin-top: 5.5rem;
 }
 
 .sectionHeading {
@@ -144,7 +264,7 @@
 }
 
 .sectionHeading h2,
-.closingCopy h2 {
+.closing h2 {
   margin: .8rem 0 1rem;
   font-size: clamp(2.35rem, 5.7vw, 4.75rem);
   line-height: 1.03;
@@ -153,192 +273,80 @@
 }
 
 .sectionHeading > p:last-child,
-.closingCopy > p:not(.eyebrow) {
+.closingCopy p {
   max-width: 44rem;
   color: var(--gray-500);
   font-size: .95rem;
   line-height: 1.75;
 }
 
-.platformGrid {
+.webGallery {
   display: grid;
-  grid-template-columns: minmax(0, 1.85fr) minmax(15rem, .9fr);
-  gap: clamp(1rem, 3vw, 2rem);
-  align-items: stretch;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 1.5rem);
 }
 
-.webPanel,
-.mobilePanel { min-width: 0; margin: 0; }
-
-.webPanel {
-  align-self: start;
+.webCard {
   overflow: hidden;
-  border: 1px solid var(--gray-300);
-  border-radius: 18px;
+  border: 1px solid var(--gray-200);
+  border-radius: 15px;
   background: var(--gray-50);
+  transition: border-color 180ms ease, transform 180ms ease;
 }
 
-.browserBar {
+.webCard:hover {
+  border-color: var(--gray-400);
+  transform: translateY(-3px);
+}
+
+.webCard .browserChrome {
+  min-height: 2rem;
+  padding: .55rem .75rem;
+}
+
+.screenCaption {
   display: flex;
-  gap: 1rem;
-  align-items: center;
-  padding: .9rem 1rem;
-  border-bottom: 1px solid var(--gray-200);
+  flex-direction: column;
+  gap: .35rem;
+  padding: .95rem 1rem 1.05rem;
 }
 
-.browserBar > span {
-  color: var(--gray-500);
-  font: 9px var(--font-geist-mono), monospace;
-}
-
-.browserDots { display: flex; gap: .35rem; }
-.browserDots span {
-  display: block;
-  width: 7px;
-  height: 7px;
-  border-radius: 999px;
-  background: var(--gray-300);
-}
-
-.webPhoto {
-  position: relative;
-  aspect-ratio: 16 / 10;
-  overflow: hidden;
-  background: #aebca1;
-}
-
-.webPhoto img,
-.phonePhoto img,
-.closingPhoto img { object-fit: cover; }
-
-.webPhoto::after,
-.phonePhoto::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 28%, rgb(14 24 16 / .78));
-}
-
-.photoOverlay {
-  position: absolute;
-  z-index: 1;
-  bottom: 2rem;
-  left: 2rem;
-  right: 2rem;
-  color: #fff;
-}
-
-.photoOverlay span,
-.phoneOverlay span {
-  font: 9px var(--font-geist-mono), monospace;
-  letter-spacing: .12em;
-}
-
-.photoOverlay strong {
-  display: block;
-  max-width: 21rem;
-  margin-top: .7rem;
-  font-size: clamp(2rem, 4vw, 3.4rem);
-  line-height: 1.05;
-  font-weight: 550;
-  letter-spacing: -.05em;
-}
-
-.webPanel figcaption,
-.mobilePanel figcaption {
-  padding: 1.2rem 1.25rem 1.4rem;
+.screenCaption span {
   color: var(--ink);
-}
-
-.webPanel figcaption strong,
-.mobilePanel figcaption strong {
-  display: block;
-  font-size: 1rem;
+  font-size: .86rem;
   font-weight: 550;
 }
 
-.webPanel figcaption p,
-.mobilePanel figcaption p {
+.screenCaption small {
   color: var(--gray-500);
-  font-size: .84rem;
-  line-height: 1.6;
+  font: 10px/1.5 var(--font-geist-mono), monospace;
 }
 
-.webPanel figcaption small,
-.mobilePanel figcaption small {
-  color: var(--gray-400);
-  font: 9px/1.5 var(--font-geist-mono), monospace;
+.phoneGallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
 }
 
-.mobilePanel {
+.phoneCard {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
-  padding: 1.2rem 1rem 0;
+  padding: 1.15rem .7rem .45rem;
   border: 1px solid var(--gray-200);
-  border-radius: 18px;
+  border-radius: 15px;
   background: var(--gray-50);
+  transition: border-color 180ms ease, transform 180ms ease;
 }
 
-.phoneFrame {
-  position: relative;
-  width: min(100%, 244px);
-  aspect-ratio: 9 / 18.6;
-  padding: 6px;
-  border: 2px solid #1c2320;
-  border-radius: 31px;
-  background: #1c2320;
-  box-shadow: 0 25px 55px -36px rgb(0 0 0 / .55);
+.phoneCard:hover {
+  border-color: var(--gray-400);
+  transform: translateY(-3px);
 }
 
-.phoneNotch {
-  position: absolute;
-  z-index: 4;
-  left: 50%;
-  top: 9px;
-  transform: translateX(-50%);
-  width: 28%;
-  height: 13px;
-  border-radius: 999px;
-  background: #1c2320;
-}
-
-.phonePhoto {
-  position: relative;
+.phoneCard .screenCaption {
   width: 100%;
-  height: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  background: #79946c;
-}
-
-.phoneOverlay {
-  position: absolute;
-  z-index: 1;
-  bottom: 1.5rem;
-  left: 1rem;
-  right: 1rem;
-  color: #fff;
-}
-
-.phoneOverlay strong {
-  display: block;
-  margin: .65rem 0 1.25rem;
-  font-size: clamp(1.25rem, 2vw, 1.65rem);
-  font-weight: 550;
-  line-height: 1.1;
-  letter-spacing: -.035em;
-}
-
-.phoneOverlay small {
-  font: 9px var(--font-geist-mono), monospace;
-  letter-spacing: .05em;
-}
-
-.mobilePanel figcaption {
-  width: 100%;
-  padding-top: 1.5rem;
+  padding: 1rem .15rem .75rem;
 }
 
 .workflowGrid,
@@ -365,35 +373,28 @@
 
 .workflowCard h3,
 .architectureGrid h3 {
+  margin: 1.2rem 0 .7rem;
   font-size: 1.35rem;
   font-weight: 550;
   letter-spacing: -.03em;
-  margin: 1.2rem 0 .7rem;
 }
 
 .workflowCard p,
 .architectureGrid p {
-  color: var(--gray-500);
-  line-height: 1.7;
-  font-size: .88rem;
   margin: 0;
+  color: var(--gray-500);
+  font-size: .88rem;
+  line-height: 1.7;
 }
 
 .closing {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  align-items: center;
+  grid-template-columns: 1fr 1fr;
+  align-items: start;
   gap: clamp(2rem, 6vw, 5rem);
 }
 
-.closingPhoto {
-  position: relative;
-  min-height: 22rem;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 16px;
-  background: var(--gray-200);
-}
+.closingCopy p:first-child { margin-top: 0; }
 
 .closingCopy a {
   display: inline-block;
@@ -416,48 +417,48 @@
 .footer span,
 .footer > a {
   color: var(--gray-400);
-  font: 9px var(--font-geist-mono), monospace;
+  font: 9px/1.6 var(--font-geist-mono), monospace;
   text-transform: uppercase;
-}
-
-.footer p {
-  color: var(--gray-500);
-  font-size: 11px;
-  line-height: 1.6;
-  margin: .5rem 0 0;
 }
 
 .footer a:hover { color: var(--ink); }
 
-@media (max-width: 850px) {
+@media (max-width: 950px) {
   .heroGrid { grid-template-columns: 1fr; }
-  .platformGrid { grid-template-columns: 1fr; }
-  .mobilePanel {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    align-items: center;
-    padding: 1.2rem;
-    gap: 1rem;
-  }
-  .mobilePanel figcaption { padding: 1rem; }
-  .closing { grid-template-columns: 1fr; }
-  .closingPhoto { min-height: 18rem; aspect-ratio: 16/8; }
+  .phoneGallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .heroScreens { grid-template-columns: minmax(0, 1.7fr) minmax(11rem, .8fr); }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
+  .page { width: min(100% - 1.3rem, 1180px); }
+  .topbar { padding-right: 5rem; }
   .topbar > span { display: none; }
-  .hero { padding-top: 3.5rem; }
-  .heroLabel { flex-direction: column; gap: .5rem; }
+  .heroLabel { flex-direction: column; gap: .55rem; }
   .hero h1 { font-size: clamp(5rem, 18vw, 8rem); }
-  .mobilePanel { display: flex; flex-direction: column; padding: 1rem .6rem; }
-  .mobilePanel figcaption { padding: 1.1rem; }
-  .phoneFrame { width: min(74%, 235px); }
-  .photoOverlay { left: 1rem; right: 1rem; bottom: 1.25rem; }
-  .photoOverlay strong { font-size: 2.1rem; }
-  .workflowGrid, .architectureGrid { grid-template-columns: 1fr; }
+  .heroScreens { grid-template-columns: 1fr; }
+  .heroPhone { padding: 1.3rem 1rem; }
+  .heroPhone .phoneShell { width: min(58%, 220px); }
+  .webGallery { grid-template-columns: 1fr; }
+  .phoneGallery { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+  .phoneCard { padding: .7rem .45rem .25rem; }
+  .phoneShell { padding: 3px; border-width: 2px; border-radius: 21px; }
+  .phoneViewport { border-radius: 15px; }
+  .phoneCard .screenCaption { padding: .85rem .15rem .7rem; }
+  .screenCaption span { font-size: .75rem; }
+  .screenCaption small { font-size: 9px; }
+  .workflowGrid, .architectureGrid, .closing { grid-template-columns: 1fr; }
   .footer { flex-direction: column; align-items: flex-start; }
 }
 
+@media (max-width: 365px) {
+  .phoneGallery { gap: .45rem; }
+  .phoneCard { padding: .5rem .3rem .25rem; }
+  .screenCaption { padding: .75rem .4rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .primaryAction { transition: none; }
+  .webCard,
+  .phoneCard { transition: none; }
+  .webCard:hover,
+  .phoneCard:hover { transform: none; }
 }

@@ -5,19 +5,136 @@ import { ThemeToggle } from "@/components/ThemeToggle";
 import styles from "./anigo.module.css";
 
 export const metadata: Metadata = {
-  title: "AniGo — Farm Management for Web & Android | Stephen Pinacate",
+  title: "AniGo — Web & Android Farm Management | Stephen Pinacate",
   description:
-    "Completed academic MVP case study for AniGo, a farmer-first farm and crop management system with .NET, SQL Server, Hangfire and Kotlin Android offline workflows.",
+    "AniGo case study with actual web dashboard and Android app screenshots, architecture, crop workflows, harvests and offline field recording.",
 };
 
-const photoRoot =
-  "/projects/anigo/";
+const base = "/projects/anigo/";
 
-const photos = {
-  web: photoRoot + "fields-hero.webp",
-  android: photoRoot + "farmers-working.webp",
-  details: photoRoot + "fields-detail.webp",
-};
+const webScreens = [
+  {
+    src: base + "Screenshot 2026-11-24 at 8.32.41 PM.png",
+    title: "Today dashboard",
+    detail: "Priorities, scheduled fieldwork and farm weather",
+  },
+  {
+    src: base + "Screenshot 2026-11-24 at 8.33.39 PM.png",
+    title: "Crops & Calendar",
+    detail: "Current crops, plots and planting plans",
+  },
+  {
+    src: base + "Screenshot 2026-11-24 at 8.33.45 PM.png",
+    title: "Harvest reports",
+    detail: "Confirmed harvest records and unit-aware totals",
+  },
+  {
+    src: base + "Screenshot 2026-11-24 at 8.33.52 PM.png",
+    title: "Farm workspace",
+    detail: "Farm details, plots and team permissions",
+  },
+  {
+    src: base + "Screenshot 2026-11-24 at 8.34.02 PM.png",
+    title: "Notifications",
+    detail: "Task reminders and other farm notices",
+  },
+  {
+    src: base + "Screenshot 2026-11-24 at 8.34.16 PM.png",
+    title: "Account & preferences",
+    detail: "Personal settings in the dark interface",
+  },
+  {
+    src: base + "Screenshot 2026-11-24 at 8.32.05 PM.png",
+    title: "Additional web view",
+    detail: "More of the completed web experience",
+  },
+];
+
+const fieldScreens = [
+  {
+    src: base + "9a4cf8a6-b6d4-4cec-903d-45a5a22b56e8.jpeg",
+    title: "Choose a farm",
+    detail: "Farm selection and access",
+  },
+  {
+    src: base + "074ef7f5-1eae-44c6-a2d4-7eb46df946f9.jpeg",
+    title: "My Farm",
+    detail: "Crop, supply, weather and harvest records",
+  },
+  {
+    src: base + "996d1bdd-7b24-452a-a7ee-b036c2a87020.jpeg",
+    title: "Record an inspection",
+    detail: "Crop condition, notes and photo capture",
+  },
+  {
+    src: base + "5fed6d48-9971-4f51-b2d6-d1c5eb4c8850.jpeg",
+    title: "Record a harvest",
+    detail: "Saved harvest totals and a new harvest entry",
+  },
+  {
+    src: base + "0e4bda7f-65ec-41c2-9d9e-26bdb0788c47.jpeg",
+    title: "Harvest summary",
+    detail: "Server-confirmed totals separated by unit",
+  },
+  {
+    src: base + "98c8f0e1-3cc1-4b31-aca5-deca8aa6830b.jpeg",
+    title: "Team & access",
+    detail: "Farm membership and roles",
+  },
+  {
+    src: base + "66cf3de8-460a-4d04-a7a3-21ca0b47b219.jpeg",
+    title: "Notifications",
+    detail: "Upcoming and due farm work",
+  },
+  {
+    src: base + "246830cb-04ee-44bc-8edb-1ca74d82307d.jpeg",
+    title: "Account settings",
+    detail: "Dark mode and Filipino language options",
+  },
+];
+
+const introductionScreens = [
+  {
+    src: base + "a3d26dc8-e3e2-47cc-b868-fdd0a4e5eac2.jpeg",
+    title: "Welcome animation",
+    detail: "AniGo's illustrated carabao guide",
+  },
+  {
+    src: base + "8c3f1c22-2daf-4560-9f31-2f726828295e.jpeg",
+    title: "Get started",
+    detail: "Log in, join or explore the farm guide",
+  },
+  {
+    src: base + "0dee007f-f0dc-47a9-963c-6544b97c868e.jpeg",
+    title: "Login",
+    detail: "Branded account access",
+  },
+  {
+    src: base + "3df9afce-0f18-414c-92ab-2121f59e43dd.jpeg",
+    title: "Meet Ani",
+    detail: "An approachable onboarding welcome",
+  },
+  {
+    src: base + "f33233bd-f426-4043-a565-8054db8d7350.jpeg",
+    title: "Organize a farm",
+    detail: "The guided farm setup lesson",
+  },
+  {
+    src: base + "cfe2c23e-def5-421b-8d0b-39b4270ffc92.jpeg",
+    title: "Grow with a plan",
+    detail: "Crop planning explained visually",
+  },
+  {
+    src: base + "31c8a8ed-73c8-4350-a5a7-45bb6a905d1c.jpeg",
+    title: "Record fieldwork",
+    detail: "Inspection and sync-status guidance",
+  },
+  {
+    src: base + "83c18e1b-8513-450a-af88-02b92b9806d7.jpeg",
+    title: "From field to harvest",
+    detail: "Partial harvests and supply tracking",
+  },
+];
 
 const workflowItems = [
   {
@@ -73,6 +190,64 @@ const architecture = [
   },
 ];
 
+type Screen = { src: string; title: string; detail: string };
+
+function WebGallery({ images }: { images: Screen[] }) {
+  return (
+    <div className={styles.webGallery}>
+      {images.map((screen, index) => (
+        <figure className={styles.webCard} key={screen.src}>
+          <div className={styles.browserChrome}>
+            <div className={styles.chromeDots} aria-hidden="true"><span /><span /><span /></div>
+            <span>ANIGO / WEB</span>
+          </div>
+          <div className={styles.webViewport}>
+            <Image
+              src={screen.src}
+              alt={"AniGo web screenshot: " + screen.title}
+              fill
+              className={styles.screenshot}
+              sizes="(max-width: 640px) 100vw, (max-width: 900px) 85vw, 46vw"
+              loading="lazy"
+            />
+          </div>
+          <figcaption className={styles.screenCaption}>
+            <span>{String(index + 1).padStart(2, "0")} — {screen.title}</span>
+            <small>{screen.detail}</small>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
+function PhoneGallery({ images }: { images: Screen[] }) {
+  return (
+    <div className={styles.phoneGallery}>
+      {images.map((screen, index) => (
+        <figure className={styles.phoneCard} key={screen.src}>
+          <div className={styles.phoneShell}>
+            <div className={styles.phoneViewport}>
+              <Image
+                src={screen.src}
+                alt={"AniGo Android screenshot: " + screen.title}
+                fill
+                className={styles.phoneScreenshot}
+                sizes="(max-width: 640px) 42vw, (max-width: 1000px) 24vw, 210px"
+                loading="lazy"
+              />
+            </div>
+          </div>
+          <figcaption className={styles.screenCaption}>
+            <span>{String(index + 1).padStart(2, "0")} — {screen.title}</span>
+            <small>{screen.detail}</small>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+  );
+}
+
 export default function AniGoCaseStudy() {
   return (
     <>
@@ -91,17 +266,17 @@ export default function AniGoCaseStudy() {
 
           <div className={styles.heroGrid}>
             <div>
-              <p className={styles.eyebrow}>Software for everyday farm work</p>
+              <p className={styles.eyebrow}>A practical system for everyday farming</p>
               <h1>AniGo<span>.</span></h1>
               <p className={styles.lead}>
-                A farmer-first platform that brings crop planning, field
-                activities, supplies, harvests, and useful weather reminders into
-                one connected system — at a desk or out in the field.
+                One connected farm-management system for crop planning,
+                everyday fieldwork, supplies, partial harvests and weather
+                reminders — with a web workspace and a dedicated Android app.
               </p>
               <div className={styles.actions}>
-                <a className={styles.primaryAction} href="#platforms">Explore the platforms ↓</a>
+                <a className={styles.primaryAction} href="#screens">Explore the actual screens ↓</a>
                 <a className={styles.secondaryAction} href="https://github.com/Stephware/SmartFarm" target="_blank" rel="noreferrer">
-                  Source on GitHub ↗
+                  View source on GitHub ↗
                 </a>
               </div>
             </div>
@@ -112,82 +287,91 @@ export default function AniGoCaseStudy() {
               <div><dt>Stack</dt><dd>.NET 10 · EF Core · SQL Server · Hangfire · Kotlin</dd></div>
             </dl>
           </div>
+
+          <div className={styles.heroScreens} id="screens">
+            <figure className={styles.heroWeb}>
+              <div className={styles.browserChrome}>
+                <div className={styles.chromeDots} aria-hidden="true"><span /><span /><span /></div>
+                <span>ANIGO / DESKTOP WEB</span>
+              </div>
+              <div className={styles.heroWebViewport}>
+                <Image
+                  src={webScreens[0].src}
+                  alt="AniGo web app Today dashboard with farm priorities, fieldwork and weather"
+                  fill
+                  priority
+                  className={styles.screenshot}
+                  sizes="(max-width: 850px) 100vw, 780px"
+                />
+              </div>
+              <figcaption>01 / ASP.NET Core web dashboard · Actual application screenshot</figcaption>
+            </figure>
+            <figure className={styles.heroPhone}>
+              <div className={styles.phoneShell}>
+                <div className={styles.phoneViewport}>
+                  <Image
+                    src={fieldScreens[1].src}
+                    alt="AniGo Android My Farm page showing crops, supplies, weather and harvest summaries"
+                    fill
+                    priority
+                    className={styles.phoneScreenshot}
+                    sizes="(max-width: 850px) 48vw, 240px"
+                  />
+                </div>
+              </div>
+              <figcaption>02 / Kotlin Android app · Actual device screenshot</figcaption>
+            </figure>
+          </div>
+          <p className={styles.imageNote}>Real screenshots of the AniGo academic MVP, using demonstration accounts. Select any screen to enlarge it.</p>
         </section>
 
-        <section className={styles.showcase} id="platforms">
+        <section className={styles.showcase} id="web">
           <div className={styles.sectionHeading}>
-            <p className={styles.eyebrow}>01 — Platform overview</p>
-            <h2>Built for the office. Built for the field.</h2>
+            <p className={styles.eyebrow}>01 — Web experience</p>
+            <h2>Plan and manage from one workspace.</h2>
             <p>
-              The web app handles setup and oversight, while Android supports
-              everyday recording. The imagery below comes from AniGo&apos;s
-              actual bundled photography, not from user farm records or
-              captured application screenshots.
+              Explore actual desktop screens for today&apos;s work, crop planning,
+              confirmed harvests, farm management and notifications. These
+              screenshots show the implemented interface rather than mockups.
             </p>
           </div>
+          <WebGallery images={webScreens.slice(1)} />
+        </section>
 
-          <div className={styles.platformGrid}>
-            <figure className={styles.webPanel}>
-              <div className={styles.browserBar}>
-                <div className={styles.browserDots} aria-hidden="true"><span /><span /><span /></div>
-                <span>ANIGO · WEB EXPERIENCE</span>
-              </div>
-              <div className={styles.webPhoto}>
-                <Image
-                  src={photos.web}
-                  alt="Rice-field editorial photograph used on the AniGo web landing page"
-                  fill
-                  sizes="(max-width: 850px) 100vw, 720px"
-                  priority
-                  unoptimized
-                />
-                <div className={styles.photoOverlay}>
-                  <span>ANIGO / WEB</span>
-                  <strong>Your farm, organized.</strong>
-                </div>
-              </div>
-              <figcaption>
-                <strong>Web · plan and manage</strong>
-                <p>Farms, plots, crop calendar, inventory, harvests and owner/manager workflows.</p>
-                <small>Branded photography · illustrative browser presentation</small>
-              </figcaption>
-            </figure>
-
-            <figure className={styles.mobilePanel}>
-              <div className={styles.phoneFrame}>
-                <div className={styles.phoneNotch} aria-hidden="true" />
-                <div className={styles.phonePhoto}>
-                  <Image
-                    src={photos.android}
-                    alt="Photograph of farmers working in a field, bundled with AniGo"
-                    fill
-                    sizes="(max-width: 850px) 65vw, 260px"
-                    unoptimized
-                  />
-                  <div className={styles.phoneOverlay}>
-                    <span>ANIGO / ANDROID</span>
-                    <strong>Record work where it happens.</strong>
-                    <small>Today · Record · My Farm</small>
-                  </div>
-                </div>
-              </div>
-              <figcaption>
-                <strong>Android · record in the field</strong>
-                <p>Field activities, inspections, photos, supplies and offline-capable recording.</p>
-                <small>Branded photography · illustrative phone presentation</small>
-              </figcaption>
-            </figure>
+        <section className={styles.showcase} id="android">
+          <div className={styles.sectionHeading}>
+            <p className={styles.eyebrow}>02 — Android experience</p>
+            <h2>Record work where it happens.</h2>
+            <p>
+              The native Android experience lets field workers find their
+              farm&apos;s records, inspect crops, record harvests and review
+              confirmed data. Selected workflows support offline recording and
+              synchronization when connectivity returns.
+            </p>
           </div>
+          <PhoneGallery images={fieldScreens} />
+        </section>
+
+        <section className={styles.showcase} id="onboarding">
+          <div className={styles.sectionHeading}>
+            <p className={styles.eyebrow}>03 — A guided first experience</p>
+            <h2>Meet Ani, your farm buddy.</h2>
+            <p>
+              The illustrated carabao introduces farm setup, crop planning,
+              fieldwork and partial harvests through a short, approachable
+              Android onboarding journey.
+            </p>
+          </div>
+          <PhoneGallery images={introductionScreens} />
         </section>
 
         <section className={styles.workflows}>
           <div className={styles.sectionHeading}>
-            <p className={styles.eyebrow}>02 — Core workflows</p>
+            <p className={styles.eyebrow}>04 — Core workflows</p>
             <h2>Less admin. More time for farm work.</h2>
             <p>
-              AniGo was designed around the practical sequence from planting
-              through harvest, with clear permissions for owners, managers and
-              field workers.
+              AniGo follows the sequence from planting through harvest, with
+              distinct permissions for owners, managers and field workers.
             </p>
           </div>
           <div className={styles.workflowGrid}>
@@ -203,12 +387,12 @@ export default function AniGoCaseStudy() {
 
         <section className={styles.architectureSection}>
           <div className={styles.sectionHeading}>
-            <p className={styles.eyebrow}>03 — Engineering</p>
+            <p className={styles.eyebrow}>05 — Engineering</p>
             <h2>Four components. One farm workflow.</h2>
             <p>
-              The web interface, backend API, background worker and Android
-              app have distinct responsibilities while sharing the same
-              farm-management domain.
+              The MVC web app, backend API, background worker and Android
+              client have distinct responsibilities while operating around
+              the same farm-management domain.
             </p>
           </div>
           <div className={styles.architectureGrid}>
@@ -223,46 +407,30 @@ export default function AniGoCaseStudy() {
         </section>
 
         <section className={styles.closing}>
-          <div className={styles.closingPhoto}>
-            <Image
-              src={photos.details}
-              alt="Agricultural terraces photograph included with AniGo's web photography"
-              fill
-              sizes="(max-width: 800px) 100vw, 520px"
-              unoptimized
-            />
+          <div>
+            <p className={styles.eyebrow}>06 — My contribution</p>
+            <h2>From farm records to connected workflows.</h2>
           </div>
           <div className={styles.closingCopy}>
-            <p className={styles.eyebrow}>04 — My contribution</p>
-            <h2>From records to working workflows.</h2>
             <p>
-              As part of a two-developer team, I worked across the full-stack
-              and Android experience: integrating farm-management processes,
-              backend services, field recording and the interactions between
-              on-device workflows and server-confirmed records.
+              In our two-developer team, I worked across the full-stack
+              and Android experience: connecting farm-management workflows,
+              backend services, field recording and the progression from
+              on-device data to server-confirmed records.
             </p>
             <p>
-              This is a completed academic MVP. Repository documentation also
-              identifies release, device and real-farmer usability checks that
-              are separate from the course-project completion.
+              AniGo is a completed academic MVP. The repository also documents
+              release, device and real-farmer usability checks that are
+              distinct from course-project completion.
             </p>
             <a href="https://github.com/Stephware/SmartFarm" target="_blank" rel="noreferrer">
-              Explore the AniGo repository ↗
+              Explore the AniGo source and documentation ↗
             </a>
           </div>
         </section>
 
         <footer className={styles.footer}>
-          <div>
-            <span>Image credits · bundled AniGo editorial photography</span>
-            <p>
-              <a href="https://unsplash.com/photos/a-rice-field-with-a-village-on-top-of-it-HNOvQPazhLk" target="_blank" rel="noreferrer">Quang Nguyen Vinh</a>
-              {" · "}
-              <a href="https://unsplash.com/photos/farmers-working-in-a-lush-green-rice-paddy-field-DGj82Et5PKc" target="_blank" rel="noreferrer">YiChuan Li</a>
-              {" · "}
-              <a href="https://unsplash.com/license" target="_blank" rel="noreferrer">Unsplash</a>
-            </p>
-          </div>
+          <span>AniGo · Actual web and Android screenshots · 2026</span>
           <Link href="/#projects">Back to projects ↑</Link>
         </footer>
       </main>

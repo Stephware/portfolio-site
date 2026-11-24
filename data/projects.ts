@@ -165,7 +165,7 @@ export const projects: Project[] = [
     status: "Completed academic MVP",
     repository: "https://github.com/Stephware/SmartFarm",
     detailPath: "/projects/anigo",
-    previewImage: "/projects/anigo/fields-hero.webp",
-    previewAlt: "Editorial rice-field photograph bundled with the AniGo web app, not a user farm or product screenshot",
+    previewImage: "/projects/anigo/Screenshot 2026-11-24 at 8.32.41 PM.png",
+    previewAlt: "AniGo web dashboard showing farm priorities, tasks and weather",
   },
 ];
