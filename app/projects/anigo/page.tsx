@@ -100,16 +100,6 @@ const introductionScreens = [
     detail: "AniGo's illustrated carabao guide",
   },
   {
-    src: base + "8c3f1c22-2daf-4560-9f31-2f726828295e.jpeg",
-    title: "Get started",
-    detail: "Log in, join or explore the farm guide",
-  },
-  {
-    src: base + "0dee007f-f0dc-47a9-963c-6544b97c868e.jpeg",
-    title: "Login",
-    detail: "Branded account access",
-  },
-  {
     src: base + "3df9afce-0f18-414c-92ab-2121f59e43dd.jpeg",
     title: "Meet Ani",
     detail: "An approachable onboarding welcome",
@@ -260,7 +250,7 @@ export default function AniGoCaseStudy() {
 
         <section className={styles.hero}>
           <div className={styles.heroLabel}>
-            <span>07 — Farm & crop management</span>
+            <span>04 — Farm & crop management</span>
             <span>Web + Android · 2026</span>
           </div>
 

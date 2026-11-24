@@ -86,6 +86,27 @@ export const projects: Project[] = [
   },
   {
     number: "04",
+    title: "AniGo",
+    homepageSummary: "Completed farmer-first web and Android system for crop planning, fieldwork, stock use, partial harvests, weather reminders, and offline recording.",
+    description:
+      "A completed academic farm-management MVP built by a two-developer team. AniGo connects farm and plot setup, crop calendars, daily field activities, inspections with optional photos, supply inventory, partial harvest records, and saved weather reminders across a .NET web app and Kotlin Android app with selected offline workflows.",
+    tags: [".NET 10", "ASP.NET Core", "SQL Server", "Kotlin", "Hangfire"],
+    featured: true,
+    homepage: "featured",
+    imageLabel: "FARM MANAGEMENT · WEB + ANDROID",
+    ownership: "Two-developer team",
+    role: "Full-stack / Android Developer",
+    contribution:
+      "Co-developed farm-management workflows and the web/Android experience, integrating backend services, API-backed field recording, inventory, harvest reporting, scheduled tasks, and offline synchronization.",
+    scope: "Web · Android · API · background worker",
+    status: "Completed academic MVP",
+    repository: "https://github.com/Stephware/SmartFarm",
+    detailPath: "/projects/anigo",
+    previewImage: "/projects/anigo/Screenshot 2026-11-24 at 8.32.41 PM.png",
+    previewAlt: "AniGo web dashboard showing farm priorities, tasks and weather",
+  },
+  {
+    number: "05",
     title: "AUFTHORIZE",
     homepageSummary: "Digital university request and approval workflows with multi-stage review, e-signatures, generated PDF outputs, and email notifications.",
     description:
@@ -106,7 +127,7 @@ export const projects: Project[] = [
     previewAlt: "AUFTHORIZE officer dashboard showing request workflow summaries",
   },
   {
-    number: "05",
+    number: "06",
     title: "ENGRLINK",
     homepageSummary: "Role-based AUF CEA academic portal prototype for enrollment, records, schedules, grades, balances, and announcements.",
     description:
@@ -127,7 +148,7 @@ export const projects: Project[] = [
     previewAlt: "ENGRLINK AUF College of Engineering and Architecture desktop portal",
   },
   {
-    number: "06",
+    number: "07",
     title: "GAUSS BUSTERS",
     homepageSummary: "Desktop numerical-methods solver with traceable iteration steps, equation processing, and plotted numerical results.",
     description:
@@ -146,26 +167,5 @@ export const projects: Project[] = [
     detailLabel: "View project",
     previewImage: "/projects/gauss-busters/gaussbusters-1.png",
     previewAlt: "GAUSS BUSTERS numerical methods solver showing Newton-Raphson iteration results",
-  },
-  {
-    number: "07",
-    title: "AniGo",
-    homepageSummary: "Completed farmer-first web and Android system for crop planning, fieldwork, stock use, partial harvests, weather reminders, and offline recording.",
-    description:
-      "A completed academic farm-management MVP built by a two-developer team. AniGo connects farm and plot setup, crop calendars, daily field activities, inspections with optional photos, supply inventory, partial harvest records, and saved weather reminders across a .NET web app and Kotlin Android app with selected offline workflows.",
-    tags: [".NET 10", "ASP.NET Core", "SQL Server", "Kotlin", "Hangfire"],
-    featured: true,
-    homepage: "featured",
-    imageLabel: "FARM MANAGEMENT · WEB + ANDROID",
-    ownership: "Two-developer team",
-    role: "Full-stack / Android Developer",
-    contribution:
-      "Co-developed farm-management workflows and the web/Android experience, integrating backend services, API-backed field recording, inventory, harvest reporting, scheduled tasks, and offline synchronization.",
-    scope: "Web · Android · API · background worker",
-    status: "Completed academic MVP",
-    repository: "https://github.com/Stephware/SmartFarm",
-    detailPath: "/projects/anigo",
-    previewImage: "/projects/anigo/Screenshot 2026-11-24 at 8.32.41 PM.png",
-    previewAlt: "AniGo web dashboard showing farm priorities, tasks and weather",
   },
 ];

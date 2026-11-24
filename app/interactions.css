@@ -264,3 +264,205 @@ body.project-lightbox-open {
   margin-top: 1.15rem;
   margin-bottom: -.9rem;
 }
+
+
+/* One compact, horizontal layout for every homepage project card.
+   Keep the same visual treatment for featured and additional work. */
+#projects .project-grid {
+  grid-template-columns: minmax(0, 1fr);
+  gap: .8rem;
+}
+
+#projects .project-card,
+#projects .project-card-featured {
+  display: grid;
+  grid-column: auto;
+  grid-template-columns: minmax(0, 42%) minmax(0, 1fr);
+  align-items: stretch;
+  min-height: 0;
+}
+
+#projects .project-card > .project-preview-image-link,
+#projects .project-card .project-preview-column {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  align-self: stretch;
+}
+
+#projects .project-card .project-preview-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+#projects .project-card .project-preview-image-link {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+#projects .project-card .project-visual,
+#projects .project-card-featured .project-visual,
+#projects .project-card:not(.project-card-featured) .project-visual {
+  min-height: 12rem;
+  height: 100%;
+  border-right: 1px solid var(--gray-200);
+  border-bottom: 0;
+}
+
+#projects .project-card .project-preview-meta,
+#projects .project-card-featured .project-preview-meta {
+  min-height: 0;
+  flex: 0 0 auto;
+  justify-content: center;
+  padding: .5rem .85rem;
+  gap: .2rem;
+}
+
+#projects .project-preview-scope {
+  font-size: 8px;
+  line-height: 1.35;
+}
+
+#projects .project-card .project-copy,
+#projects .project-card-featured .project-copy {
+  display: flex;
+  min-width: 0;
+  min-height: 0;
+  height: auto;
+  flex-direction: column;
+  padding: .95rem 1.2rem;
+  border-top: 0;
+}
+
+#projects .project-copy h3 {
+  margin: .6rem 0 .4rem;
+  font-size: clamp(1.03rem, 1.8vw, 1.25rem);
+  line-height: 1.25;
+}
+
+#projects .project-summary {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: .84rem;
+  line-height: 1.48;
+}
+
+#projects .project-byline {
+  margin-top: .6rem;
+  padding-top: .55rem;
+}
+
+#projects .project-card .tag-row {
+  margin-top: .65rem;
+}
+
+#projects .project-card .project-actions {
+  flex-wrap: wrap;
+  gap: .35rem .85rem;
+  padding-top: .7rem;
+}
+
+@media (max-width: 767px) {
+  #projects .project-card,
+  #projects .project-card-featured {
+    display: grid;
+    grid-template-columns: minmax(0, 37%) minmax(0, 1fr);
+  }
+
+  #projects .project-card .project-visual,
+  #projects .project-card-featured .project-visual,
+  #projects .project-card:not(.project-card-featured) .project-visual {
+    min-height: 12rem;
+    width: 100%;
+    height: 100%;
+    flex: initial;
+    border-right: 1px solid var(--gray-200);
+    border-bottom: 0;
+  }
+
+  /* The small cards retain project details in the content column. */
+  #projects .project-card .project-preview-meta {
+    display: none;
+  }
+
+  #projects .project-card .project-preview-image-link,
+  #projects .project-card .project-preview-column {
+    width: auto;
+    min-height: 0;
+    height: 100%;
+    flex: initial;
+  }
+
+  #projects .project-card .project-preview-column {
+    display: flex;
+  }
+
+  #projects .project-card .project-preview-column .project-preview-image-link {
+    flex: 1 1 auto;
+  }
+
+  #projects .project-card .project-copy,
+  #projects .project-card-featured .project-copy {
+    min-width: 0;
+    padding: .75rem .8rem;
+  }
+
+  #projects .project-copy h3 {
+    margin: .45rem 0 .35rem;
+    font-size: 1rem;
+  }
+
+  #projects .project-summary {
+    -webkit-line-clamp: 3;
+    font-size: .75rem;
+  }
+
+  #projects .project-byline {
+    gap: .25rem .55rem;
+    margin-top: .45rem;
+    padding-top: .45rem;
+    font-size: 7px;
+  }
+
+  #projects .project-card .tag-row {
+    gap: .22rem;
+    margin-top: .5rem;
+  }
+
+  #projects .tag-row span {
+    padding: .12rem .34rem;
+    font-size: 7px;
+  }
+
+  #projects .project-card .project-actions {
+    padding-top: .6rem;
+    font-size: 8px;
+  }
+
+  #projects .project-meta {
+    flex-wrap: wrap;
+    gap: .25rem;
+    font-size: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  #projects .project-card,
+  #projects .project-card-featured {
+    grid-template-columns: minmax(0, 34%) minmax(0, 1fr);
+  }
+
+  #projects .project-card .project-copy,
+  #projects .project-card-featured .project-copy {
+    padding: .65rem .65rem .75rem;
+  }
+
+  #projects .project-summary {
+    -webkit-line-clamp: 2;
+  }
+}

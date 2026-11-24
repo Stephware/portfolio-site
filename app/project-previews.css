@@ -215,34 +215,3 @@ html.dark .project-card:not(.project-card-featured) .project-visual-with-image .
   opacity: .54;
   filter: grayscale(.4) brightness(1.05) contrast(.96);
 }
-
-
-/* The AniGo card uses an actual interface screenshot, without the editorial
-   grayscale treatment applied to the other featured project photography. */
-.project-visual-07.project-visual-with-image {
-  background: #e8f0ea;
-}
-
-.project-visual-07.project-visual-with-image .project-preview-image,
-html.dark .project-visual-07.project-visual-with-image .project-preview-image {
-  opacity: .95;
-  filter: none;
-  object-fit: contain;
-  object-position: center;
-}
-
-.project-visual-07.project-visual-with-image .project-preview-wash,
-html.dark .project-visual-07.project-visual-with-image .project-preview-wash {
-  background: linear-gradient(180deg, transparent 70%, rgb(14 38 24 / .08));
-}
-
-.project-visual-07.project-visual-with-image .visual-grid,
-html.dark .project-visual-07.project-visual-with-image .visual-grid {
-  opacity: 0;
-}
-
-.project-card:hover .project-visual-07.project-visual-with-image .project-preview-image,
-html.dark .project-card:hover .project-visual-07.project-visual-with-image .project-preview-image {
-  opacity: 1;
-  filter: none;
-}
