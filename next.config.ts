@@ -8,13 +8,6 @@ const nextConfig: NextConfig = {
     // The hero portrait is intentionally cropped/zoomed in CSS, so serving the
     // full source avoids enlarging a small optimized rendition in the browser.
     unoptimized: true,
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "raw.githubusercontent.com",
-        pathname: "/Stephware/SmartFarm/**",
-      },
-    ],
   },
 };
 

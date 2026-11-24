@@ -40,37 +40,37 @@ const integrityFeatures = [
 
 const productVisuals = [
   {
-    src: "/Screenshot 2026-08-30 at 7.35.31 PM.png",
+    src: "/projects/vitally/Screenshot 2026-08-30 at 7.35.31 PM.png",
     alt: "Sanitized VITALLY assistant dashboard",
     label: "Dashboard",
     note: "Daily operations at a glance",
   },
   {
-    src: "/Screenshot 2026-08-30 at 7.35.48 PM.png",
+    src: "/projects/vitally/Screenshot 2026-08-30 at 7.35.48 PM.png",
     alt: "Sanitized VITALLY records workspace",
     label: "Records",
     note: "Searchable transaction history",
   },
   {
-    src: "/Screenshot 2026-08-30 at 7.35.39 PM.png",
+    src: "/projects/vitally/Screenshot 2026-08-30 at 7.35.39 PM.png",
     alt: "Sanitized VITALLY add record workflow",
     label: "Add record",
     note: "Patient → items → payment",
   },
   {
-    src: "/Screenshot 2026-08-30 at 7.36.17 PM.png",
+    src: "/projects/vitally/Screenshot 2026-08-30 at 7.36.17 PM.png",
     alt: "Sanitized VITALLY inventory workspace",
     label: "Inventory",
     note: "Stock · expiry · reorder",
   },
   {
-    src: "/Screenshot 2026-08-30 at 7.36.30 PM.png",
+    src: "/projects/vitally/Screenshot 2026-08-30 at 7.36.30 PM.png",
     alt: "Sanitized VITALLY expenses workspace",
     label: "Expenses",
     note: "Clinic operating costs",
   },
   {
-    src: "/Screenshot 2026-08-30 at 7.35.11 PM.png",
+    src: "/projects/vitally/Screenshot 2026-08-30 at 7.35.11 PM.png",
     alt: "Sanitized VITALLY sign-in screen",
     label: "Access",
     note: "Role-aware clinic sign in",
@@ -132,7 +132,7 @@ export default function VitallyCaseStudy() {
           <figure className={styles.heroProductVisual}>
             <div className={styles.demoBadge}>Sanitized production visual</div>
             <Image
-              src="/mainpage-vitally.png"
+              src="/projects/vitally/mainpage-vitally.png"
               alt="Sanitized VITALLY clinic operations dashboard"
               fill
               priority

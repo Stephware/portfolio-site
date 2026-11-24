@@ -13,46 +13,46 @@ export const metadata: Metadata = {
 const liveUrl = "https://apcc-innovet.runasp.net/";
 
 const clientScreens = [
-  "/Screenshot 2026-08-30 at 11.58.30 AM.png",
-  "/Screenshot 2026-08-30 at 11.58.48 AM.png",
-  "/Screenshot 2026-08-30 at 11.59.08 AM.png",
-  "/Screenshot 2026-08-30 at 11.59.22 AM.png",
-  "/Screenshot 2026-08-30 at 11.59.40 AM.png",
-  "/Screenshot 2026-08-30 at 11.59.50 AM.png",
-  "/Screenshot 2026-08-30 at 12.00.02 PM.png",
-  "/Screenshot 2026-08-30 at 12.00.31 PM.png",
-  "/Screenshot 2026-08-30 at 12.00.50 PM.png",
-  "/Screenshot 2026-08-30 at 12.01.22 PM.png",
-  "/Screenshot 2026-08-30 at 12.01.36 PM.png",
-  "/Screenshot 2026-08-30 at 12.01.46 PM.png",
-  "/Screenshot 2026-08-30 at 12.02.02 PM.png",
-  "/Screenshot 2026-08-30 at 12.02.21 PM.png",
-  "/Screenshot 2026-08-30 at 12.02.38 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 11.58.30 AM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 11.58.48 AM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 11.59.08 AM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 11.59.22 AM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 11.59.40 AM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 11.59.50 AM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.00.02 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.00.31 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.00.50 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.01.22 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.01.36 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.01.46 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.02.02 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.02.21 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.02.38 PM.png",
 ];
 
 const adminScreens = [
-  "/Screenshot 2026-08-30 at 12.04.28 PM.png",
-  "/Screenshot 2026-08-30 at 12.05.06 PM.png",
-  "/Screenshot 2026-08-30 at 12.05.28 PM.png",
-  "/Screenshot 2026-08-30 at 12.05.40 PM.png",
-  "/Screenshot 2026-08-30 at 12.05.50 PM.png",
-  "/Screenshot 2026-08-30 at 12.05.57 PM.png",
-  "/Screenshot 2026-08-30 at 12.06.17 PM.png",
-  "/Screenshot 2026-08-30 at 12.06.28 PM.png",
-  "/Screenshot 2026-08-30 at 12.06.44 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.04.28 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.05.06 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.05.28 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.05.40 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.05.50 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.05.57 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.06.17 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.06.28 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.06.44 PM.png",
 ];
 
 const superAdminScreens = [
-  "/Screenshot 2026-08-30 at 12.09.27 PM.png",
-  "/Screenshot 2026-08-30 at 12.09.49 PM.png",
-  "/Screenshot 2026-08-30 at 12.09.59 PM.png",
-  "/Screenshot 2026-08-30 at 12.10.09 PM.png",
-  "/Screenshot 2026-08-30 at 12.10.20 PM.png",
-  "/Screenshot 2026-08-30 at 12.10.30 PM.png",
-  "/Screenshot 2026-08-30 at 12.10.42 PM.png",
-  "/Screenshot 2026-08-30 at 12.12.30 PM.png",
-  "/Screenshot 2026-08-30 at 12.12.39 PM.png",
-  "/Screenshot 2026-08-30 at 12.12.51 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.09.27 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.09.49 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.09.59 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.10.09 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.10.20 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.10.30 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.10.42 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.12.30 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.12.39 PM.png",
+  "/projects/innovet/Screenshot 2026-08-30 at 12.12.51 PM.png",
 ];
 
 const clientFeatures = [
@@ -189,7 +189,7 @@ export default function InnovetCaseStudy() {
             </div>
             <div className={styles.heroImageFrame}>
               <Image
-                src="/Screenshot 2026-08-30 at 11.58.07 AM.png"
+                src="/projects/innovet/Screenshot 2026-08-30 at 11.58.07 AM.png"
                 alt="INNOVET veterinary clinic management system"
                 fill
                 priority

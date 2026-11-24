@@ -41,7 +41,7 @@ export const projects: Project[] = [
     repositoryLabel: "Private source",
     detailPath: "/projects/innovet",
     liveUrl: "https://apcc-innovet.runasp.net/",
-    previewImage: "/Screenshot 2026-08-30 at 11.58.07 AM.png",
+    previewImage: "/projects/innovet/Screenshot 2026-08-30 at 11.58.07 AM.png",
     previewAlt: "INNOVET veterinary clinic management system interface",
   },
   {
@@ -61,7 +61,7 @@ export const projects: Project[] = [
     status: "Client system",
     repositoryLabel: "Private source",
     detailPath: "/projects/vitally",
-    previewImage: "/mainpage-vitally.png",
+    previewImage: "/projects/vitally/mainpage-vitally.png",
     previewAlt: "Sanitized VITALLY clinic operations dashboard",
   },
   {
@@ -81,7 +81,7 @@ export const projects: Project[] = [
     status: "Hackathon / team product",
     repository: "https://github.com/Mark-Batongbacal/AUP",
     detailPath: "/projects/tuki",
-    previewImage: "/Screenshot 2026-08-30 at 9.01.43 PM.png",
+    previewImage: "/projects/tuki/Screenshot 2026-08-30 at 9.01.43 PM.png",
     previewAlt: "TUKI onboarding screen featuring the app mascot",
   },
   {
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     repository: "https://github.com/KurtSarmiento/auf-requests-system",
     detailPath: "/projects/aufthorize",
     detailLabel: "View project",
-    previewImage: "/aufthorize-5.png",
+    previewImage: "/projects/aufthorize/aufthorize-5.png",
     previewAlt: "AUFTHORIZE officer dashboard showing request workflow summaries",
   },
   {
@@ -123,7 +123,7 @@ export const projects: Project[] = [
     repository: "https://github.com/Mark-Batongbacal/EngrLink",
     detailPath: "/projects/engrlink",
     detailLabel: "View project",
-    previewImage: "/engrlink-1.png",
+    previewImage: "/projects/engrlink/engrlink-1.png",
     previewAlt: "ENGRLINK AUF College of Engineering and Architecture desktop portal",
   },
   {
@@ -144,7 +144,7 @@ export const projects: Project[] = [
     repository: "https://github.com/gutierrez-jv/LVS-Gauss-Busters",
     detailPath: "/projects/gauss-busters",
     detailLabel: "View project",
-    previewImage: "/gaussbusters-1.png",
+    previewImage: "/projects/gauss-busters/gaussbusters-1.png",
     previewAlt: "GAUSS BUSTERS numerical methods solver showing Newton-Raphson iteration results",
   },
   {
@@ -165,7 +165,7 @@ export const projects: Project[] = [
     status: "Completed academic MVP",
     repository: "https://github.com/Stephware/SmartFarm",
     detailPath: "/projects/anigo",
-    previewImage: "https://raw.githubusercontent.com/Stephware/SmartFarm/936373b6688a6bc555f59d9186275f8cb13b56ac/src/SmartFarm.Web/wwwroot/images/photography/fields-hero.webp",
+    previewImage: "/projects/anigo/fields-hero.webp",
     previewAlt: "Editorial rice-field photograph bundled with the AniGo web app, not a user farm or product screenshot",
   },
 ];

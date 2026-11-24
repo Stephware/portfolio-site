@@ -30,47 +30,47 @@ export default function AufthorizePage() {
       ]}
       proofs={[
         {
-          src: "/aufthorize-1.png",
+          src: "/projects/aufthorize/aufthorize-1.png",
           alt: "AUFTHORIZE project workflow screenshot 1",
           contain: true,
         },
         {
-          src: "/aufthorize-2.png",
+          src: "/projects/aufthorize/aufthorize-2.png",
           alt: "AUFTHORIZE project workflow screenshot 2",
           contain: true,
         },
         {
-          src: "/aufthorize-3.png",
+          src: "/projects/aufthorize/aufthorize-3.png",
           alt: "AUFTHORIZE project workflow screenshot 3",
           contain: true,
         },
         {
-          src: "/aufthorize-4.png",
+          src: "/projects/aufthorize/aufthorize-4.png",
           alt: "AUFTHORIZE project workflow screenshot 4",
           contain: true,
         },
         {
-          src: "/aufthorize-5.png",
+          src: "/projects/aufthorize/aufthorize-5.png",
           alt: "AUFTHORIZE project workflow screenshot 5",
           contain: true,
         },
         {
-          src: "/aufthorize-6.png",
+          src: "/projects/aufthorize/aufthorize-6.png",
           alt: "AUFTHORIZE project workflow screenshot 6",
           contain: true,
         },
         {
-          src: "/aufthorize-7.png",
+          src: "/projects/aufthorize/aufthorize-7.png",
           alt: "AUFTHORIZE project workflow screenshot 7",
           contain: true,
         },
         {
-          src: "/aufthorize-8.png",
+          src: "/projects/aufthorize/aufthorize-8.png",
           alt: "AUFTHORIZE project workflow screenshot 8",
           contain: true,
         },
         {
-          src: "/aufthorize-9.png",
+          src: "/projects/aufthorize/aufthorize-9.png",
           alt: "AUFTHORIZE project workflow screenshot 9",
           contain: true,
         },

@@ -29,7 +29,7 @@ export default function EngrlinkPage() {
       ]}
       proofs={[
         {
-          src: "/engrlink-1.png",
+          src: "/projects/engrlink/engrlink-1.png",
           alt: "ENGRLINK desktop dashboard for the AUF College of Engineering and Architecture",
           caption: "Desktop portal — role-based navigation for faculty, students, announcements, and enrollment workflows.",
         },

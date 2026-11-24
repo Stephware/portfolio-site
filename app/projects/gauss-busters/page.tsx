@@ -29,7 +29,7 @@ export default function GaussBustersPage() {
       ]}
       proofs={[
         {
-          src: "/gaussbusters-1.png",
+          src: "/projects/gauss-busters/gaussbusters-1.png",
           alt: "GAUSS BUSTERS numerical solver showing Newton-Raphson inputs and solution steps",
           caption: "Numerical solver — Newton-Raphson input, iteration table, and computed approximate root.",
         },

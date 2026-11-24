@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 const photoRoot =
-  "https://raw.githubusercontent.com/Stephware/SmartFarm/936373b6688a6bc555f59d9186275f8cb13b56ac/src/SmartFarm.Web/wwwroot/images/photography/";
+  "/projects/anigo/";
 
 const photos = {
   web: photoRoot + "fields-hero.webp",

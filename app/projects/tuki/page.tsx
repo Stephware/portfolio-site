@@ -12,38 +12,38 @@ export const metadata: Metadata = {
 };
 
 const onboardingVisuals = [
-  "/Screenshot 2026-08-30 at 9.00.43 PM.png",
-  "/Screenshot 2026-08-30 at 9.00.48 PM.png",
-  "/Screenshot 2026-08-30 at 9.00.52 PM.png",
-  "/Screenshot 2026-08-30 at 9.00.59 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.00.43 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.00.48 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.00.52 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.00.59 PM.png",
 ];
 
 const accessVisuals = [
-  "/Screenshot 2026-08-30 at 9.01.03 PM.png",
-  "/Screenshot 2026-08-30 at 9.01.20 PM.png",
-  "/Screenshot 2026-08-30 at 9.01.27 PM.png",
-  "/Screenshot 2026-08-30 at 9.01.35 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.01.03 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.01.20 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.01.27 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.01.35 PM.png",
 ];
 
 const planningVisuals = [
-  "/Screenshot 2026-08-30 at 9.01.43 PM.png",
-  "/Screenshot 2026-08-30 at 9.01.51 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.00 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.04 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.10 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.14 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.01.43 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.01.51 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.00 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.04 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.10 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.14 PM.png",
 ];
 
 const navigationVisuals = [
-  "/Screenshot 2026-08-30 at 9.02.26 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.32 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.45 PM.png",
-  "/Screenshot 2026-08-30 at 9.02.53 PM.png",
-  "/Screenshot 2026-08-30 at 9.03.31 PM.png",
-  "/Screenshot 2026-08-30 at 9.03.41 PM.png",
-  "/Screenshot 2026-08-30 at 9.04.05 PM.png",
-  "/Screenshot 2026-08-30 at 9.04.11 PM.png",
-  "/Screenshot 2026-08-30 at 9.04.17 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.26 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.32 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.45 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.02.53 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.03.31 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.03.41 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.04.05 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.04.11 PM.png",
+  "/projects/tuki/Screenshot 2026-08-30 at 9.04.17 PM.png",
 ];
 
 const commuterFeatures = [
@@ -139,7 +139,7 @@ export default function TukiCaseStudy() {
           <div className={styles.heroPhones}>
             <div className={styles.heroPhonePrimary}>
               <Image
-                src="/mainpage-tuki.png"
+                src="/projects/tuki/mainpage-tuki.png"
                 alt="TUKI navigation interface"
                 fill
                 priority
@@ -148,7 +148,7 @@ export default function TukiCaseStudy() {
             </div>
             <div className={styles.heroPhoneSecondary}>
               <Image
-                src="/Screenshot 2026-08-30 at 9.01.43 PM.png"
+                src="/projects/tuki/Screenshot 2026-08-30 at 9.01.43 PM.png"
                 alt="TUKI commuter interface"
                 fill
                 priority
