@@ -107,6 +107,26 @@ export const projects: Project[] = [
   },
   {
     number: "05",
+    title: "Pickleball Booking System",
+    homepageSummary:
+      "Branded court-booking platform for independent pickleball venues with live slot availability, booking holds, manual payment-proof review, and staff operations.",
+    description:
+      "A reusable pickleball court-booking platform built for independently branded venue deployments. The Next.js player website shows court availability and pricing, while the .NET 10 API and PostgreSQL enforce booking holds, prevent overlapping reservations, and support manual GCash/bank payment-proof review. Owners and staff can manage schedules, courts, pricing, payments, walk-ins, and maintenance blocks.",
+    tags: ["Next.js", "ASP.NET Core", ".NET 10", "PostgreSQL", "EF Core"],
+    featured: true,
+    homepage: "featured",
+    imageLabel: "VENUE BOOKING · PLAYER + STAFF",
+    ownership: "Independent project",
+    role: "Full-stack Developer",
+    contribution:
+      "Designed and built the shared player and staff booking experiences, the ASP.NET Core API, PostgreSQL-backed availability and booking rules, secure guest access, staff operations, payment-proof review, and configurable branding for five venue presets.",
+    scope: "Player booking · Staff dashboard · 5 venue themes",
+    status: "Implementation complete · Pre-launch",
+    repository: "https://github.com/Stephware/PickleballBooking",
+    detailPath: "/projects/pickleball-booking",
+  },
+  {
+    number: "06",
     title: "AUFTHORIZE",
     homepageSummary: "Digital university request and approval workflows with multi-stage review, e-signatures, generated PDF outputs, and email notifications.",
     description:
@@ -127,7 +147,7 @@ export const projects: Project[] = [
     previewAlt: "AUFTHORIZE officer dashboard showing request workflow summaries",
   },
   {
-    number: "06",
+    number: "07",
     title: "ENGRLINK",
     homepageSummary: "Role-based AUF CEA academic portal prototype for enrollment, records, schedules, grades, balances, and announcements.",
     description:
@@ -148,7 +168,7 @@ export const projects: Project[] = [
     previewAlt: "ENGRLINK AUF College of Engineering and Architecture desktop portal",
   },
   {
-    number: "07",
+    number: "08",
     title: "GAUSS BUSTERS",
     homepageSummary: "Desktop numerical-methods solver with traceable iteration steps, equation processing, and plotted numerical results.",
     description:

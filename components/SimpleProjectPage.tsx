@@ -82,25 +82,32 @@ export function SimpleProjectPage({
         <section className={styles.proofSection}>
           <div className={styles.sectionHeading}>
             <span className={styles.kicker}>Project proof</span>
-            <h2>Selected interface and workflow evidence.</h2>
+            <h2>{proofs.length > 0 ? "Selected interface and workflow evidence." : "Interface gallery coming soon."}</h2>
           </div>
 
-          <div className={styles.proofGrid}>
-            {proofs.map((proof, index) => (
-              <figure className={`${styles.proof} ${index === 0 ? styles.primaryProof : ""}`} key={proof.src}>
-                <div className={`${styles.imageFrame} ${proof.contain ? styles.containFrame : ""}`}>
-                  <Image
-                    src={proof.src}
-                    alt={proof.alt}
-                    fill
-                    sizes="(max-width: 800px) 100vw, 900px"
-                    className={proof.contain ? styles.containImage : styles.coverImage}
-                  />
-                </div>
-                {proof.caption ? <figcaption>{proof.caption}</figcaption> : null}
-              </figure>
-            ))}
-          </div>
+          {proofs.length > 0 ? (
+            <div className={styles.proofGrid}>
+              {proofs.map((proof, index) => (
+                <figure className={`${styles.proof} ${index === 0 ? styles.primaryProof : ""}`} key={proof.src}>
+                  <div className={`${styles.imageFrame} ${proof.contain ? styles.containFrame : ""}`}>
+                    <Image
+                      src={proof.src}
+                      alt={proof.alt}
+                      fill
+                      sizes="(max-width: 800px) 100vw, 900px"
+                      className={proof.contain ? styles.containImage : styles.coverImage}
+                    />
+                  </div>
+                  {proof.caption ? <figcaption>{proof.caption}</figcaption> : null}
+                </figure>
+              ))}
+            </div>
+          ) : (
+            <p className={styles.proofPending}>
+              Screenshots will be added here once the project images are provided.
+              The implementation details and source repository are available above.
+            </p>
+          )}
         </section>
 
         <footer className={styles.footer}>

@@ -137,6 +137,17 @@
   margin-bottom: 2rem;
 }
 
+.proofPending {
+  margin: 0;
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  border: 1px dashed var(--gray-300);
+  border-radius: 14px;
+  background: var(--gray-50);
+  color: var(--gray-500);
+  font-size: .9rem;
+  line-height: 1.7;
+}
+
 .proofGrid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
